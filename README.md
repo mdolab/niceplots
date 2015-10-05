@@ -4,8 +4,6 @@
 
 * A collection of small tweaks to improve Python / plotting
 
-![alt tag](https://raw.bitbucket.org/jjasa/misc/example.png)
-
 ### How do I get set up? ###
 
 * Add the matplotlibrc file to your ~/.config/matplotlib/ folder
