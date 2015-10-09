@@ -1,9 +1,14 @@
 import matplotlib.pyplot as plt
 import numpy as np
+import colormaps as cmaps
 
 def handle_close(evt):
     plt.tight_layout()
     plt.savefig('figure.pdf')
+
+def viridis():
+    plt.register_cmap(name='viridis', cmap=cmaps.viridis)
+    plt.set_cmap(cmaps.viridis)
 
 def adjust_spines(ax = None, spines=['left', 'bottom'], off_spines=['top', 'right']):
     if ax == None:
@@ -67,5 +72,5 @@ def draggable_legend(axis = None, color_on = True):
 def all():
     adjust_spines()
     draggable_legend()
-
-plt.gcf().canvas.mpl_connect('close_event', handle_close)
+    viridis()
+    plt.gcf().canvas.mpl_connect('close_event', handle_close)

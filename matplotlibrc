@@ -329,7 +329,7 @@ figure.facecolor : 1  # figure facecolor; 0.75 is scalar gray
 ### IMAGES
 #image.aspect : equal             # equal | auto | a number
 #image.interpolation  : bilinear  # see help(imshow) for options
-#image.cmap   : jet               # gray | jet etc...
+image.cmap   : hot               # gray | jet etc...
 #image.lut    : 256               # the size of the colormap lookup table
 #image.origin : upper             # lower | upper
 #image.resample  : False
