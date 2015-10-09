@@ -1,7 +1,14 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-def adjust_spines(ax, spines=['left', 'bottom'], off_spines=['top', 'right']):
+def handle_close(evt):
+    plt.tight_layout()
+    plt.savefig('figure.pdf')
+
+def adjust_spines(ax = None, spines=['left', 'bottom'], off_spines=['top', 'right']):
+    if ax == None:
+        ax = plt.gca()
+
     for loc, spine in ax.spines.items():
         if loc in spines:
             spine.set_position(('outward', 18))  # outward by 10 points
@@ -26,7 +33,7 @@ def adjust_spines(ax, spines=['left', 'bottom'], off_spines=['top', 'right']):
         ax.spines[spine].set_visible(False)
 
 
-def my_legend(axis = None, color_on = True):
+def draggable_legend(axis = None, color_on = True):
 
     if axis == None:
         axis = plt.gca()
@@ -56,3 +63,9 @@ def my_legend(axis = None, color_on = True):
                    xycoords='axes fraction'
                    ))
         legend[idx].draggable()
+
+def all():
+    adjust_spines()
+    draggable_legend()
+
+plt.gcf().canvas.mpl_connect('close_event', handle_close)
