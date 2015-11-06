@@ -7,7 +7,8 @@
 ### How do I get set up? ###
 
 * Add the matplotlibrc file to your ~/.config/matplotlib/ folder.
-* Use 'import misc' at the top of a file where you would like to use any function defined in this package.
+* Use 'import niceplots' at the top of a file where you would like to use any function defined in this package.
+* Use 'niceplots.all()' after all the plot commands to apply the niceplot standards on the figure
 
 ### Contribution guidelines ###
 
