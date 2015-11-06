@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
-import misc
+import niceplots
 import matplotlib.mlab as mlab
 
 # Simple line plot
@@ -11,7 +11,7 @@ plt.figure()
 for i in range(1,4):
     plt.plot(x, x**i, label='label_{}'.format(i), clip_on=False)
 
-misc.all()
+niceplots.all()
 plt.xlabel('x')
 plt.ylabel('y')
 
@@ -27,7 +27,7 @@ Z = 10.0 * (Z2 - Z1)
 
 plt.figure()
 
-misc.all()
+niceplots.all()
 
 im = plt.imshow(Z, interpolation='bilinear', origin='lower',
                 extent=(-3,3,-2,2))
