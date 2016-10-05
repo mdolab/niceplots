@@ -9,7 +9,7 @@ try:
     def rw():
         return random.choice(words)
     header = [rw(), rw()]
-    n = 5 # number of bars to create
+    n = 15 # number of bars to create
     labels = [rw() for i in range(n)]
     times = [random.random() * random.randint(0, 1000) for i in range(n)]
     nd = 1
