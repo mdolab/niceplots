@@ -149,21 +149,21 @@ def horiz_bar(labels, times, header, ts=1, nd=1, size=[5, .5], color='#FFCC00'):
         ax.spines['bottom'].set_visible(False)
         ax.text(left_lim, 1, l, va='center')
         d = t_max_digits - len(str(int(t)))
-        exec("string = '  ' * d + '%0.{}f'%t".format(nd))
-        ax.text(right_lim, 1, string, va='center')
+        string = '{number:.{digits}f}'.format(number=t, digits=nd)
+        ax.text(right_lim*1.15, 1, string, va='center', ha='right')
 
         # Create border graphics if this is the top bar line
         if j == 0:
             ax.text(left_header_pos,1.02, header[0], fontsize=13)
             ax.text(right_header_pos,1.02, header[1], fontsize=13)
 
-            line = Line2D([left_lim, right_lim+t_max*(.15+nd*.02)], [1.012, 1.012], lw=1.2, color='k')
+            line = Line2D([left_lim, right_lim+t_max*(.15+nd*.03)], [1.014, 1.014], lw=1.2, color='k')
             line.set_clip_on(False)
             ax.add_line(line)
 
-            line = Line2D([left_lim, right_lim+t_max*(.15+nd*.02)], [1.01, 1.01], lw=1.2, color='k')
-            line.set_clip_on(False)
-            ax.add_line(line)
+            # line = Line2D([left_lim, right_lim+t_max*(.15+nd*.03)], [1.012, 1.012], lw=1.2, color='k')
+            # line.set_clip_on(False)
+            # ax.add_line(line)
 
     # Save the figure and export as pdf
     fig.set_size_inches(width, height)
@@ -173,5 +173,4 @@ def all():
     """ Runs all of the functions provided in this module. """
     adjust_spines()
     draggable_legend()
-    viridis()
     plt.gcf().canvas.mpl_connect('close_event', handle_close)

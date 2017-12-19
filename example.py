@@ -8,7 +8,7 @@ n = 1000
 x = np.linspace(0, 1, n)
 
 plt.figure()
-for i in range(1,4):
+for i in range(1,5):
     plt.plot(x, x**i, label='label_{}'.format(i), clip_on=False)
 
 niceplots.all()
