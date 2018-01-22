@@ -44,7 +44,7 @@ cm_data = [[0.2081, 0.1663, 0.5292], [0.2116238095, 0.1897809524, 0.5776761905],
  [0.9763, 0.9831, 0.0538]]
 
 parula_map = LinearSegmentedColormap.from_list('parula', cm_data)
-parula_map_r = LinearSegmentedColormap.from_list('parula', np.array(cm_data)[:-1])
+parula_map_r = LinearSegmentedColormap.from_list('parula', list(reversed(cm_data)))
 
 if __name__ == "__main__":
     import matplotlib.pyplot as plt
@@ -57,4 +57,13 @@ if __name__ == "__main__":
         print("viscm not found, falling back on simple display")
         plt.imshow(np.linspace(0, 100, 256)[None, :], aspect='auto',
                    cmap=parula_map)
+    plt.show()
+
+    try:
+        from viscm import viscm
+        viscm(parula_map)
+    except ImportError:
+        print("viscm not found, falling back on simple display")
+        plt.imshow(np.linspace(0, 100, 256)[None, :], aspect='auto',
+                   cmap=parula_map_r)
     plt.show()
