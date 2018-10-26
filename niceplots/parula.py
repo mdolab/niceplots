@@ -58,12 +58,3 @@ if __name__ == "__main__":
         plt.imshow(np.linspace(0, 100, 256)[None, :], aspect='auto',
                    cmap=parula_map)
     plt.show()
-
-    try:
-        from viscm import viscm
-        viscm(parula_map)
-    except ImportError:
-        print("viscm not found, falling back on simple display")
-        plt.imshow(np.linspace(0, 100, 256)[None, :], aspect='auto',
-                   cmap=parula_map_r)
-    plt.show()
