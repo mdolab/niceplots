@@ -4,6 +4,11 @@
 
 * A collection of small tweaks to improve Python / plotting
 
+### How do I install? ###
+
+* Clone this repository, then enter the folder in the command line terminal.
+* Enter `pip install -e .` within the `niceplots` folder.
+
 ### How do I get set up? ###
 
 * Use 'import niceplots' at the top of a file where you would like to use any function defined in this package.
@@ -12,8 +17,9 @@
 
 ### Contribution guidelines ###
 
-* Make any changes you see fit; please submit a pull request if you'd think they'd be useful.
+* Make any changes you see fit. Please fork your own version and submit a pull request.
 
 ### Who do I talk to? ###
 
+* Any MDO Lab member
 * John Jasa, johnjasa@umich.edu

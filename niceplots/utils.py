@@ -1,6 +1,5 @@
 from __future__ import division
 import matplotlib
-matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib.lines import Line2D
@@ -12,7 +11,7 @@ def handle_close(evt):
     plt.tight_layout()
     plt.savefig('figure.pdf')
 
-def adjust_spines(ax = None, spines=['left']):
+def adjust_spines(ax = None, spines=['left', 'bottom'], smart_bounds=True, outward=False):
     """ Function to shift the axes/spines so they have that offset
         Doumont look. """
     if ax == None:
@@ -21,8 +20,9 @@ def adjust_spines(ax = None, spines=['left']):
     # Loop over the spines in the axes and shift them
     for loc, spine in ax.spines.items():
         if loc in spines:
-            # spine.set_position(('outward', 18))  # outward by 18 points
-            spine.set_smart_bounds(True)
+            if outward:
+                spine.set_position(('outward', 12))  # outward by 18 points
+            spine.set_smart_bounds(smart_bounds)
         else:
             spine.set_color('none')  # don't draw spine
 
@@ -168,32 +168,56 @@ def horiz_bar(labels, times, header, ts=1, nd=1, size=[5, .5], color='#FFCC00'):
     fig.set_size_inches(width, height)
     fig.savefig('bar_chart.pdf', bbox_inches="tight")
 
-def stacked_plots(xlabel, xdata, data_dict, figsize=(12, 10), pad=200):
+def stacked_plots(xlabel, xdata, data_dict_list, figsize=(12, 10), pad=200, filename='stacks.png', xticks=None, cushion=0.1):
 
+    # If it's a dictionary, make it into a list so we can generically loop over it
+    if type(data_dict_list) == type({}):
+        data_dict_list = [data_dict_list]
+
+    data_dict = data_dict_list[0]
     n = len(data_dict)
 
     colors = plt.rcParams['axes.prop_cycle'].by_key()['color']
     f, axarr = plt.subplots(n, figsize=figsize)
 
     for i, (ylabel, ydata) in enumerate(data_dict.items()):
-        axarr[i].plot(xdata, ydata)
-        axarr[i].scatter(xdata, ydata)
+        if type(ydata) == dict:
+            if 'limits' in ydata.keys():
+                axarr[i].set_ylim(ydata['limits'])
+            elif 'ticks' in ydata.keys():
+                axarr[i].set_yticks(ydata['ticks'])
+                low_tick = ydata['ticks'][0]
+                high_tick = ydata['ticks'][-1]
+                height = high_tick - low_tick
+                limits = [low_tick - cushion * height, high_tick + cushion * height]
+                axarr[i].set_ylim(limits)
+
         axarr[i].set_ylabel(ylabel, rotation='horizontal', horizontalalignment='left', labelpad=pad)
 
+    for data_dict in data_dict_list:
+        for i, (ylabel, ydata) in enumerate(data_dict.items()):
+            if type(ydata) == dict:
+                ydata = ydata['data']
+            axarr[i].plot(xdata, ydata, clip_on=False, lw=6)
+            axarr[i].scatter(xdata, ydata, clip_on=False, edgecolors='white', s=100, lw=1.5, zorder=100)
+
     for i,ax in enumerate(axarr):
+        adjust_spines(ax)
         if i < len(axarr)-1:
-            adjust_spines(ax)
+            ax.xaxis.set_ticks([])
         else:
-            adjust_spines(ax, spines=['left', 'bottom'])
             ax.xaxis.set_ticks_position('bottom')
-            ax.xaxis.set_ticks([.75, 1.0, 1.25])
+            if xticks is not None:
+                ax.xaxis.set_ticks(xticks)
 
     f.align_labels()
 
     axarr[-1].set_xlabel(xlabel)
     plt.tight_layout()
-    plt.savefig('stacks.png', bbox_inches='tight')
+    plt.savefig(filename, bbox_inches='tight')
     # plt.show()
+
+    return f, axarr
 
 
 
