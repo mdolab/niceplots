@@ -168,7 +168,7 @@ def horiz_bar(labels, times, header, ts=1, nd=1, size=[5, .5], color='#FFCC00'):
     fig.set_size_inches(width, height)
     fig.savefig('bar_chart.pdf', bbox_inches="tight")
 
-def stacked_plots(xlabel, xdata, data_dict_list, figsize=(12, 10), pad=200, filename='stacks.png', xticks=None, cushion=0.1):
+def stacked_plots(xlabel, xdata, data_dict_list, figsize=(12, 10), pad=200, filename='stacks.png', xticks=None, cushion=0.1, colors=plt.rcParams['axes.prop_cycle'].by_key()['color'], lines_only=False, line_scaler=1.0, xlim=None, dpi=200):
 
     # If it's a dictionary, make it into a list so we can generically loop over it
     if type(data_dict_list) == type({}):
@@ -177,7 +177,6 @@ def stacked_plots(xlabel, xdata, data_dict_list, figsize=(12, 10), pad=200, file
     data_dict = data_dict_list[0]
     n = len(data_dict)
 
-    colors = plt.rcParams['axes.prop_cycle'].by_key()['color']
     f, axarr = plt.subplots(n, figsize=figsize)
 
     for i, (ylabel, ydata) in enumerate(data_dict.items()):
@@ -193,13 +192,23 @@ def stacked_plots(xlabel, xdata, data_dict_list, figsize=(12, 10), pad=200, file
                 axarr[i].set_ylim(limits)
 
         axarr[i].set_ylabel(ylabel, rotation='horizontal', horizontalalignment='left', labelpad=pad)
+        
+        # Doesn't correctly work when we give a dict version
+        if xlim is not None:
+            if type(ydata) == dict:
+                ydata = ydata['data']
+            ydata = np.array(ydata, dtype='float')
+            no_nan_y = ydata[np.isfinite(ydata)]
+            ylim = [np.mean(no_nan_y), np.mean(no_nan_y)]
+            axarr[i].scatter(list(xlim), ylim, alpha=0.)
 
-    for data_dict in data_dict_list:
+    for j, data_dict in enumerate(data_dict_list):
         for i, (ylabel, ydata) in enumerate(data_dict.items()):
             if type(ydata) == dict:
                 ydata = ydata['data']
-            axarr[i].plot(xdata, ydata, clip_on=False, lw=6)
-            axarr[i].scatter(xdata, ydata, clip_on=False, edgecolors='white', s=100, lw=1.5, zorder=100)
+            axarr[i].plot(xdata, ydata, clip_on=False, lw=6*line_scaler, color=colors[j])
+            if not lines_only:
+                axarr[i].scatter(xdata, ydata, clip_on=False, edgecolors='white', s=100*line_scaler**2, lw=1.5*line_scaler, zorder=100, color=colors[j])
 
     for i,ax in enumerate(axarr):
         adjust_spines(ax)
@@ -211,12 +220,15 @@ def stacked_plots(xlabel, xdata, data_dict_list, figsize=(12, 10), pad=200, file
                 ax.xaxis.set_ticks(xticks)
 
     f.align_labels()
-
     axarr[-1].set_xlabel(xlabel)
-    plt.tight_layout()
-    plt.savefig(filename, bbox_inches='tight')
-    # plt.show()
-
+    
+    # plt.tight_layout()
+    
+    if 'png' in filename:
+        plt.savefig(filename, bbox_inches='tight', dpi=dpi)
+    else:
+        plt.savefig(filename, bbox_inches='tight')
+        
     return f, axarr
 
 
