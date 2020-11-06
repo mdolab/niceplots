@@ -48,6 +48,8 @@ def get_niceColours():
     niceColours["Red"] = (226/255.0, 26/255.0, 26/255.0)
     niceColours["Green"] = "#00a650ff"
     niceColours["Maroon"] = "#800000ff"
+    niceColours["Cyan"] = "#00A6D6"
+    niceColours["Orange"] = (230/255.0, 70/255.0, 22/255.0)
     niceColours["Purple"] = "#800080ff"
     niceColours["Grey"] = "#5a5758ff"
     niceColours["Black"] = "#000000ff"
@@ -60,11 +62,11 @@ def get_delftColours():
     delftColours = OrderedDict()
     delftColours["Cyan"] = "#00A6D6"  #'#f8a30dff'
     delftColours["Yellow"] = (225/255.0, 196/255.0, 0.)
-    delftColours["Red"] = (226/255.0,26/255.0,26/255.0)
     delftColours["Purple"] = (109/255.0, 23/255.0, 127/255.0)
-    delftColours["Orange"] = (230/255.0, 70/255.0, 22/255.0)
+    delftColours["Red"] = (226/255.0,26/255.0,26/255.0)
     delftColours["Green"] = (165/255.0, 202/255.0, 26/255.0)
     delftColours["Blue"] = (29/255.0, 28/255.0, 115/255.0)
+    delftColours["Orange"] = (230/255.0, 70/255.0, 22/255.0)
     delftColours["Grey"] = "#5a5758ff"
     delftColours["Black"] = "#000000ff"
 
@@ -86,24 +88,30 @@ def adjust_spines(ax=None, spines=["left", "bottom"], smart_bounds=True, outward
     # Loop over the spines in the axes and shift them
     for loc, spine in ax.spines.items():
         if loc in spines:
+            ax.spines[loc].set_visible(True)
             if outward:
                 spine.set_position(("outward", 12))  # outward by 18 points
             spine.set_smart_bounds(smart_bounds)
         else:
-            spine.set_color("none")  # don't draw spine
+            ax.spines[loc].set_visible(False) # don't draw spine
 
     # turn off ticks where there is no spine
     if "left" in spines:
         ax.yaxis.set_ticks_position("left")
+    elif "right" in spines:
+        ax.yaxis.set_ticks_position("right")
     else:
         # no yaxis ticks
-        ax.yaxis.set_ticks([])
+        ax.yaxis.set_visible(False)
 
     if "bottom" in spines:
         ax.xaxis.set_ticks_position("bottom")
+    elif "top" in spines:
+        ax.xaxis.set_ticks_position("top")
     else:
         # no xaxis ticks
-        ax.xaxis.set_ticks([])
+        # ax.xaxis.set_ticks([])
+        ax.xaxis.set_visible(False)
 
 
 def draggable_legend(axis=None, color_on=True):
