@@ -6,7 +6,6 @@ from matplotlib.lines import Line2D
 import random
 from cycler import cycler
 from collections import OrderedDict
-from parula import parula_map
 
 
 def setRCParams():
@@ -28,6 +27,9 @@ def setRCParams():
 
     plt.rcParams["patch.edgecolor"] = "w"
 
+    plt.rcParams["axes.spines.top"] = False
+    plt.rcParams["axes.spines.right"] = False
+
     # plt.rcParams['image.cmap'] = parula_map
 
     niceColours = get_niceColours()
@@ -35,7 +37,7 @@ def setRCParams():
     plt.rcParams["axes.edgecolor"] = niceColours["Grey"]
     plt.rcParams["text.color"] = niceColours["Grey"]
     plt.rcParams["axes.labelcolor"] = niceColours["Grey"]
-    plt.rcParams['axes.labelweight'] = 200
+    plt.rcParams["axes.labelweight"] = 200
     plt.rcParams["xtick.color"] = niceColours["Grey"]
     plt.rcParams["ytick.color"] = niceColours["Grey"]
 
@@ -45,11 +47,11 @@ def get_niceColours():
     niceColours = OrderedDict()
     niceColours["Yellow"] = "#e29400ff"  #'#f8a30dff'
     niceColours["Blue"] = "#1E90FF"
-    niceColours["Red"] = (226/255.0, 26/255.0, 26/255.0)
+    niceColours["Red"] = (226 / 255.0, 26 / 255.0, 26 / 255.0)
     niceColours["Green"] = "#00a650ff"
     niceColours["Maroon"] = "#800000ff"
     niceColours["Cyan"] = "#00A6D6"
-    niceColours["Orange"] = (230/255.0, 70/255.0, 22/255.0)
+    niceColours["Orange"] = (230 / 255.0, 70 / 255.0, 22 / 255.0)
     niceColours["Purple"] = "#800080ff"
     niceColours["Grey"] = "#5a5758ff"
     niceColours["Black"] = "#000000ff"
@@ -61,12 +63,12 @@ def get_delftColours():
     # Define an ordered dictionary of the official TU Delft colours to use as the default colour cycle
     delftColours = OrderedDict()
     delftColours["Cyan"] = "#00A6D6"  #'#f8a30dff'
-    delftColours["Yellow"] = (225/255.0, 196/255.0, 0.)
-    delftColours["Purple"] = (109/255.0, 23/255.0, 127/255.0)
-    delftColours["Red"] = (226/255.0,26/255.0,26/255.0)
-    delftColours["Green"] = (165/255.0, 202/255.0, 26/255.0)
-    delftColours["Blue"] = (29/255.0, 28/255.0, 115/255.0)
-    delftColours["Orange"] = (230/255.0, 70/255.0, 22/255.0)
+    delftColours["Yellow"] = (225 / 255.0, 196 / 255.0, 0.0)
+    delftColours["Purple"] = (109 / 255.0, 23 / 255.0, 127 / 255.0)
+    delftColours["Red"] = (226 / 255.0, 26 / 255.0, 26 / 255.0)
+    delftColours["Green"] = (165 / 255.0, 202 / 255.0, 26 / 255.0)
+    delftColours["Blue"] = (29 / 255.0, 28 / 255.0, 115 / 255.0)
+    delftColours["Orange"] = (230 / 255.0, 70 / 255.0, 22 / 255.0)
     delftColours["Grey"] = "#5a5758ff"
     delftColours["Black"] = "#000000ff"
 
@@ -79,9 +81,9 @@ def handle_close(evt):
     plt.savefig("figure.pdf")
 
 
-def adjust_spines(ax=None, spines=["left", "bottom"], smart_bounds=True, outward=False):
-    """ Function to shift the axes/spines so they have that offset
-        Doumont look. """
+def adjust_spines(ax=None, spines=["left", "bottom"], outward=False):
+    """Function to shift the axes/spines so they have that offset
+    Doumont look."""
     if ax == None:
         ax = plt.gca()
 
@@ -91,9 +93,8 @@ def adjust_spines(ax=None, spines=["left", "bottom"], smart_bounds=True, outward
             ax.spines[loc].set_visible(True)
             if outward:
                 spine.set_position(("outward", 12))  # outward by 18 points
-            spine.set_smart_bounds(smart_bounds)
         else:
-            ax.spines[loc].set_visible(False) # don't draw spine
+            ax.spines[loc].set_visible(False)  # don't draw spine
 
     # turn off ticks where there is no spine
     if "left" in spines:
@@ -154,7 +155,7 @@ def draggable_legend(axis=None, color_on=True):
 
 
 def horiz_bar(labels, times, header, ts=1, nd=1, size=[5, 0.5], color="#FFCC00"):
-    """ Creates a horizontal bar chart to compare positive numbers.
+    """Creates a horizontal bar chart to compare positive numbers.
 
     'labels' contains the ordered labels for each data set
     'times' contains the numerical data for each entry
