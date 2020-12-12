@@ -20,7 +20,6 @@ def setRCParams():
     plt.rcParams["axes.labelpad"] = 8.0
     plt.rcParams["text.latex.preamble"] = r"\usepackage{cmbright}"
 
-    plt.rcParams["legend.handletextpad"] = 0.01
     plt.rcParams["legend.columnspacing"] = 0.2
     plt.rcParams["legend.frameon"] = False
     plt.rcParams["figure.constrained_layout.use"] = True
