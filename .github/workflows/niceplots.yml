@@ -19,8 +19,6 @@ jobs:
             blackFlag: "py37"
           - python-version: 3.8
             blackFlag: "py38"
-          - python-version: 3.9
-            blackFlag: "py39"
 
     steps:
     - uses: actions/checkout@v2
