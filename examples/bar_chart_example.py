@@ -7,6 +7,7 @@ try:
     word_file = "/usr/share/dict/words"
     words = open(word_file).read().splitlines()
     wl = len(words)
+    random.seed(100)
 
     def rw():
         return random.choice(words)
