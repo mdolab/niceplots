@@ -32,7 +32,7 @@ TP = [0.5, 0.8, 1.2, 1.6, 2.0]
 for formatting in ["default", "niceplots"]:
     if formatting == "niceplots":
         niceplots.setRCParams()
-    colors = plt.rcParams['axes.prop_cycle'].by_key()['color']
+    colors = plt.rcParams["axes.prop_cycle"].by_key()["color"]
 
     fig, axes = plt.subplots(nrows=len(TP), figsize=(12, 16))
 

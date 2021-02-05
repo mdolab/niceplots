@@ -7,6 +7,7 @@ try:
     word_file = "/usr/share/dict/words"
     words = open(word_file).read().splitlines()
     wl = len(words)
+    random.seed(100)
 
     def rw():
         return random.choice(words)
@@ -17,13 +18,19 @@ try:
     times = [random.random() * random.randint(0, 1000) for i in range(n)]
     nd = 1
 
-except:  # if user is not on a *nix system
+except:  # noqa: E722 if user is not on a *nix system
     header = ["Method", "Time (sec)"]
-    labels = ["Analytic Forward", "Analytic Adjoint", "FD Forward Diff.", "FD Central Diff.", "FD Backward Diff."]
+    labels = [
+        "Analytic Forward",
+        "Analytic Adjoint",
+        "FD Forward Diff.",
+        "FD Central Diff.",
+        "FD Backward Diff.",
+    ]
     times = [0.00456, 0.00847, 0.0110, 0.0213, 0.011]
     nd = 4
 
 horiz_bar(labels, times, header, nd=nd)
 
 plt.savefig("bar_chart.pdf", bbox_inches="tight")
-plt.savefig("bar_chart.png", dpi=400,  bbox_inches="tight")
+plt.savefig("bar_chart.png", dpi=400, bbox_inches="tight")

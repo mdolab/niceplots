@@ -25,3 +25,4 @@
 
 * Any MDO Lab member
 * Alasdair Gray, alachris@umich.edu
+* Eirikur Jonsson eirikurj@umich.edu

@@ -1,9 +1,7 @@
 from __future__ import division
-import matplotlib
 import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib.lines import Line2D
-import random
 from cycler import cycler
 from collections import OrderedDict
 
@@ -49,7 +47,7 @@ def setRCParams():
 def get_niceColors():
     # Define an ordered dictionary of some nice Doumont style colors to use as the default color cycle
     niceColors = OrderedDict()
-    niceColors["Yellow"] = "#e29400ff"  #'#f8a30dff'
+    niceColors["Yellow"] = "#e29400ff"  # '#f8a30dff'
     niceColors["Blue"] = "#1E90FF"
     niceColors["Red"] = (226 / 255.0, 26 / 255.0, 26 / 255.0)
     niceColors["Green"] = "#00a650ff"
@@ -66,7 +64,7 @@ def get_niceColors():
 def get_delftColors():
     # Define an ordered dictionary of the official TU Delft colors to use as the default color cycle
     delftColors = OrderedDict()
-    delftColors["Cyan"] = "#00A6D6"  #'#f8a30dff'
+    delftColors["Cyan"] = "#00A6D6"  # '#f8a30dff'
     delftColors["Yellow"] = (225 / 255.0, 196 / 255.0, 0.0)
     delftColors["Purple"] = (109 / 255.0, 23 / 255.0, 127 / 255.0)
     delftColors["Red"] = (226 / 255.0, 26 / 255.0, 26 / 255.0)
@@ -88,7 +86,7 @@ def handle_close(evt):
 def adjust_spines(ax=None, spines=["left", "bottom"], outward=False):
     """Function to shift the axes/spines so they have that offset
     Doumont look."""
-    if ax == None:
+    if ax is None:
         ax = plt.gca()
 
     # Loop over the spines in the axes and shift them
@@ -121,13 +119,10 @@ def adjust_spines(ax=None, spines=["left", "bottom"], outward=False):
 
 def draggable_legend(axis=None, color_on=True):
     """ Function to create draggable labels on a plot. """
-    if axis == None:
+    if axis is None:
         axis = plt.gca()
 
-    # Get the limits and relevant parameters
-    xlim = axis.get_xlim()
-    ylim = axis.get_ylim()
-    xl, yl = xlim[1] - xlim[0], ylim[1] - ylim[0]
+    # Get relevant parameters
     legend = []
     nlines = len(axis.lines)
 
@@ -154,7 +149,16 @@ def draggable_legend(axis=None, color_on=True):
             color = "k"
 
         # Set each annotation and make them draggable
-        legend.append(axis.annotate(label, xy=coords, ha="center", va="center", color=color, xycoords="axes fraction"))
+        legend.append(
+            axis.annotate(
+                label,
+                xy=coords,
+                ha="center",
+                va="center",
+                color=color,
+                xycoords="axes fraction",
+            )
+        )
         legend[idx].draggable()
 
 
@@ -224,7 +228,7 @@ def horiz_bar(labels, times, header, ts=1, nd=1, size=[5, 0.5], color="#FFCC00")
         ax.spines["right"].set_visible(False)
         ax.spines["bottom"].set_visible(False)
         ax.text(left_lim, 1, l, va="center")
-        d = t_max_digits - len(str(int(t)))
+        # d = t_max_digits - len(str(int(t)))
         string = "{number:.{digits}f}".format(number=t, digits=nd)
         ax.text(right_lim * 1.15, 1, string, va="center", ha="right")
 
@@ -233,7 +237,12 @@ def horiz_bar(labels, times, header, ts=1, nd=1, size=[5, 0.5], color="#FFCC00")
             ax.text(left_header_pos, 1.02, header[0], fontsize=13)
             ax.text(right_header_pos, 1.02, header[1], fontsize=13)
 
-            line = Line2D([left_lim, right_lim + t_max * (0.15 + nd * 0.03)], [1.014, 1.014], lw=1.2, color="k")
+            line = Line2D(
+                [left_lim, right_lim + t_max * (0.15 + nd * 0.03)],
+                [1.014, 1.014],
+                lw=1.2,
+                color="k",
+            )
             line.set_clip_on(False)
             ax.add_line(line)
 
@@ -262,7 +271,7 @@ def stacked_plots(
 ):
 
     # If it's a dictionary, make it into a list so we can generically loop over it
-    if type(data_dict_list) == type({}):
+    if isinstance(data_dict_list, dict):
         data_dict_list = [data_dict_list]
 
     if colors is None:

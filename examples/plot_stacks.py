@@ -39,6 +39,11 @@ plt.savefig("opt_stacks.png", dpi=400)
 # We grabbed the fig and axarr handles here so that we can modify the plot.
 # Also, since there are many lines, we use the line_scaler option to reduce their thickness and keep the plot clean
 f, axarr = niceplots.stacked_plots(
-    "Time (s)", time, data, figsize=(10, 6), line_scaler=0.5, filename="opt_stacks_more_data.pdf"
+    "Time (s)",
+    time,
+    data,
+    figsize=(10, 6),
+    line_scaler=0.5,
+    filename="opt_stacks_more_data.pdf",
 )
 plt.savefig("opt_stacks_more_data.png", dpi=400)
