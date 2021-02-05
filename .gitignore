@@ -4,6 +4,8 @@
 *.png
 !examples/*.png
 
+.vscode/
+
 ### Python ###
 # Byte-compiled / optimized / DLL files
 __pycache__/
