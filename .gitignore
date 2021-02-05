@@ -1,3 +1,9 @@
+# Ignore any pdf's or png's except in the examples folder
+*.pdf
+!examples/*.pdf
+*.png
+!examples/*.png
+
 ### Python ###
 # Byte-compiled / optimized / DLL files
 __pycache__/

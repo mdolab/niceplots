@@ -12,8 +12,9 @@ def setRCParams():
     # Set some defaults for generating nice, Doumont-esque, plots
     plt.rcParams["font.family"] = "sans-serif"
     plt.rcParams["font.sans-serif"] = ["CMU Bright"]
-    plt.rcParams["font.size"] = 14
+    plt.rcParams["font.size"] = 24
     plt.rcParams["figure.dpi"] = 100
+    plt.rcParams["figure.figsize"] = [12, 6.75]
     plt.rcParams["savefig.dpi"] = 600
     plt.rcParams["axes.spines.top"] = False
     plt.rcParams["axes.spines.right"] = False
@@ -29,7 +30,11 @@ def setRCParams():
     plt.rcParams["axes.spines.top"] = False
     plt.rcParams["axes.spines.right"] = False
 
-    # plt.rcParams['image.cmap'] = parula_map
+    plt.rcParams["axes.autolimit_mode"] = "round_numbers"
+    plt.rcParams["axes.xmargin"] = 0
+    plt.rcParams["axes.ymargin"] = 0
+
+    plt.rcParams["lines.linewidth"] = 2.0
 
     niceColours = get_niceColours()
     plt.rcParams["axes.prop_cycle"] = cycler("color", niceColours.values())
@@ -246,11 +251,11 @@ def stacked_plots(
     xdata,
     data_dict_list,
     figsize=(12, 10),
-    pad=200,
+    outward=True,
     filename="stacks.png",
     xticks=None,
     cushion=0.1,
-    colors=get_delftColours().values(),
+    colors=None,
     lines_only=False,
     line_scaler=1.0,
     xlim=None,
@@ -260,6 +265,9 @@ def stacked_plots(
     # If it's a dictionary, make it into a list so we can generically loop over it
     if type(data_dict_list) == type({}):
         data_dict_list = [data_dict_list]
+
+    if colors is None:
+        colors = plt.rcParams["axes.prop_cycle"].by_key()["color"]
 
     data_dict = data_dict_list[0]
     n = len(data_dict)
@@ -278,7 +286,7 @@ def stacked_plots(
                 limits = [low_tick - cushion * height, high_tick + cushion * height]
                 axarr[i].set_ylim(limits)
 
-        axarr[i].set_ylabel(ylabel, rotation="horizontal", horizontalalignment="left", labelpad=pad)
+        axarr[i].set_ylabel(ylabel, rotation="horizontal", horizontalalignment="right")
 
         # Doesn't correctly work when we give a dict version
         if xlim is not None:
@@ -307,7 +315,7 @@ def stacked_plots(
                 )
 
     for i, ax in enumerate(axarr):
-        adjust_spines(ax)
+        adjust_spines(ax, outward=outward)
         if i < len(axarr) - 1:
             ax.xaxis.set_ticks([])
         else:
