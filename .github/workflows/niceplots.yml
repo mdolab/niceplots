@@ -14,7 +14,13 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [3.7, 3.8, 3.9]
+        include: 
+          - python-version: 3.7
+            blackFlag: "py37"
+          - python-version: 3.8
+            blackFlag: "py38"
+          - python-version: 3.9
+            blackFlag: "py39"
 
     steps:
     - uses: actions/checkout@v2
@@ -30,11 +36,11 @@ jobs:
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Lint with flake8
       run: |
-        # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
-        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+        wget https://raw.githubusercontent.com/mdolab/.github/master/.flake8;
+        flake8 . --count --show-source --statistics;
     - name: Lint with black
       run: |
-        black . --check --diff -l 120 --target-version ${{ matrix.python-version }};
+        black . --check --diff -l 120 --target-version ${{ matrix.blackFlag }};
     - name: Test examples (this is very janky for now)
       run: |
         cd examples
