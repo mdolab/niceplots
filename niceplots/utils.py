@@ -193,9 +193,7 @@ def horiz_bar(labels, times, header, ts=1, nd=1, size=[5, 0.5], color="#FFCC00")
 
     # These values tweak the header label placement
     left_header_pos = -len(header[0]) * 0.018 * t_max + left_lim / 2
-    right_header_pos = (
-        -len(header[1]) * 0.018 * t_max + right_lim + t_max * (0.09 + nd * 0.02)
-    )
+    right_header_pos = -len(header[1]) * 0.018 * t_max + right_lim + t_max * (0.09 + nd * 0.02)
 
     # Loop over each time and get the max number of digits
     t_max_digits = 0
@@ -311,9 +309,7 @@ def stacked_plots(
         for i, (ylabel, ydata) in enumerate(data_dict.items()):
             if type(ydata) == dict:
                 ydata = ydata["data"]
-            axarr[i].plot(
-                xdata, ydata, clip_on=False, lw=6 * line_scaler, color=colors[j]
-            )
+            axarr[i].plot(xdata, ydata, clip_on=False, lw=6 * line_scaler, color=colors[j])
             if not lines_only:
                 axarr[i].scatter(
                     xdata,

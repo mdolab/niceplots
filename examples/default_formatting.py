@@ -18,8 +18,7 @@ def MSPulseResponse(t, tp, omega):
     x = np.where(
         t < tp,
         1.0 - np.cos(omega * t),
-        (np.cos(omega * tp) - 1.0) * np.cos(omega * t)
-        + np.sin(omega * tp) * np.sin(omega * t),
+        (np.cos(omega * tp) - 1.0) * np.cos(omega * t) + np.sin(omega * tp) * np.sin(omega * t),
     )
     return x
 
@@ -42,9 +41,7 @@ for formatting in ["default", "niceplots"]:
         ax = axes[i]
         x = MSPulseResponse(t, tp, omega)
         line = ax.plot(t, x, clip_on=False, color=colors[i])
-        ax.vlines(
-            tp, -3, 1.0 - np.cos(omega * tp), linestyle="--", color="gray", zorder=0
-        )
+        ax.vlines(tp, -3, 1.0 - np.cos(omega * tp), linestyle="--", color="gray", zorder=0)
         ax.set_xticks([0, tp, 3])
         if i == len(TP) - 1:
             ax.set_xlabel("t (s)")
