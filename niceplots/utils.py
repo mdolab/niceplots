@@ -243,7 +243,6 @@ def horiz_bar(labels, times, header, ts=1, nd=1, size=[5, 0.5], color="#FFCC00")
 
     # Save the figure and export as pdf
     fig.set_size_inches(width, height)
-    fig.savefig("bar_chart.pdf", bbox_inches="tight")
 
 
 def stacked_plots(

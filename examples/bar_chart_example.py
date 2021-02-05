@@ -1,4 +1,5 @@
 import random
+import matplotlib.pyplot as plt
 from niceplots import horiz_bar
 
 try:
@@ -23,3 +24,5 @@ except:  # if user is not on a *nix system
     nd = 4
 
 horiz_bar(labels, times, header, nd=nd)
+
+plt.savefig("bar_chart.pdf", bbox_inches="tight")
