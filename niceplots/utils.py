@@ -36,47 +36,47 @@ def setRCParams():
 
     plt.rcParams["lines.linewidth"] = 2.0
 
-    niceColours = get_niceColours()
-    plt.rcParams["axes.prop_cycle"] = cycler("color", niceColours.values())
-    plt.rcParams["axes.edgecolor"] = niceColours["Grey"]
-    plt.rcParams["text.color"] = niceColours["Grey"]
-    plt.rcParams["axes.labelcolor"] = niceColours["Grey"]
+    niceColors = get_niceColors()
+    plt.rcParams["axes.prop_cycle"] = cycler("color", niceColors.values())
+    plt.rcParams["axes.edgecolor"] = niceColors["Grey"]
+    plt.rcParams["text.color"] = niceColors["Grey"]
+    plt.rcParams["axes.labelcolor"] = niceColors["Grey"]
     plt.rcParams["axes.labelweight"] = 200
-    plt.rcParams["xtick.color"] = niceColours["Grey"]
-    plt.rcParams["ytick.color"] = niceColours["Grey"]
+    plt.rcParams["xtick.color"] = niceColors["Grey"]
+    plt.rcParams["ytick.color"] = niceColors["Grey"]
 
 
-def get_niceColours():
-    # Define an ordered dictionary of some nice Doumont style colours to use as the default colour cycle
-    niceColours = OrderedDict()
-    niceColours["Yellow"] = "#e29400ff"  #'#f8a30dff'
-    niceColours["Blue"] = "#1E90FF"
-    niceColours["Red"] = (226 / 255.0, 26 / 255.0, 26 / 255.0)
-    niceColours["Green"] = "#00a650ff"
-    niceColours["Maroon"] = "#800000ff"
-    niceColours["Cyan"] = "#00A6D6"
-    niceColours["Orange"] = (230 / 255.0, 70 / 255.0, 22 / 255.0)
-    niceColours["Purple"] = "#800080ff"
-    niceColours["Grey"] = "#5a5758ff"
-    niceColours["Black"] = "#000000ff"
+def get_niceColors():
+    # Define an ordered dictionary of some nice Doumont style colors to use as the default color cycle
+    niceColors = OrderedDict()
+    niceColors["Yellow"] = "#e29400ff"  #'#f8a30dff'
+    niceColors["Blue"] = "#1E90FF"
+    niceColors["Red"] = (226 / 255.0, 26 / 255.0, 26 / 255.0)
+    niceColors["Green"] = "#00a650ff"
+    niceColors["Maroon"] = "#800000ff"
+    niceColors["Cyan"] = "#00A6D6"
+    niceColors["Orange"] = (230 / 255.0, 70 / 255.0, 22 / 255.0)
+    niceColors["Purple"] = "#800080ff"
+    niceColors["Grey"] = "#5a5758ff"
+    niceColors["Black"] = "#000000ff"
 
-    return niceColours
+    return niceColors
 
 
-def get_delftColours():
-    # Define an ordered dictionary of the official TU Delft colours to use as the default colour cycle
-    delftColours = OrderedDict()
-    delftColours["Cyan"] = "#00A6D6"  #'#f8a30dff'
-    delftColours["Yellow"] = (225 / 255.0, 196 / 255.0, 0.0)
-    delftColours["Purple"] = (109 / 255.0, 23 / 255.0, 127 / 255.0)
-    delftColours["Red"] = (226 / 255.0, 26 / 255.0, 26 / 255.0)
-    delftColours["Green"] = (165 / 255.0, 202 / 255.0, 26 / 255.0)
-    delftColours["Blue"] = (29 / 255.0, 28 / 255.0, 115 / 255.0)
-    delftColours["Orange"] = (230 / 255.0, 70 / 255.0, 22 / 255.0)
-    delftColours["Grey"] = "#5a5758ff"
-    delftColours["Black"] = "#000000ff"
+def get_delftColors():
+    # Define an ordered dictionary of the official TU Delft colors to use as the default color cycle
+    delftColors = OrderedDict()
+    delftColors["Cyan"] = "#00A6D6"  #'#f8a30dff'
+    delftColors["Yellow"] = (225 / 255.0, 196 / 255.0, 0.0)
+    delftColors["Purple"] = (109 / 255.0, 23 / 255.0, 127 / 255.0)
+    delftColors["Red"] = (226 / 255.0, 26 / 255.0, 26 / 255.0)
+    delftColors["Green"] = (165 / 255.0, 202 / 255.0, 26 / 255.0)
+    delftColors["Blue"] = (29 / 255.0, 28 / 255.0, 115 / 255.0)
+    delftColors["Orange"] = (230 / 255.0, 70 / 255.0, 22 / 255.0)
+    delftColors["Grey"] = "#5a5758ff"
+    delftColors["Black"] = "#000000ff"
 
-    return delftColours
+    return delftColors
 
 
 def handle_close(evt):

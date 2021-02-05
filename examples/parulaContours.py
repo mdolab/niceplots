@@ -21,7 +21,7 @@ import niceplots
 
 
 niceplots.setRCParams()
-niceColours = niceplots.get_niceColours()
+niceColors = niceplots.get_niceColors()
 
 f = lambda x1, x2: x1 ** 3 + 2.0 * x1 * x2 ** 2 - x2 ** 3 - 20.0 * x1
 x1 = x2 = np.linspace(-5, 5, 201)
@@ -35,7 +35,7 @@ q2ax.plot(
     minimum[1],
     clip_on=False,
     marker="o",
-    color=niceColours["Grey"],
+    color=niceColors["Grey"],
     markeredgecolor="w",
     linestyle="",
     markersize=12,
@@ -46,7 +46,7 @@ q2ax.plot(
     minimum[1],
     clip_on=False,
     marker="o",
-    color=niceColours["Grey"],
+    color=niceColors["Grey"],
     markeredgecolor="w",
     linestyle="",
     markersize=12,
@@ -58,7 +58,7 @@ q2ax.annotate(
     textcoords="offset points",
     va="top",
     ha="center",
-    color=niceColours["Grey"],
+    color=niceColors["Grey"],
 )
 niceplots.adjust_spines(q2ax, outward=True)
 q2ax.set_xlabel("$x_1$")

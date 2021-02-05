@@ -14,7 +14,7 @@ import niceplots
 
 
 niceplots.setRCParams()
-colours = niceplots.get_niceColours()
+colors = niceplots.get_niceColors()
 
 # This function computes the displacement history of an undamped oscilator subjec to to a force pulse of length tp
 def MSPulseResponse(t, tp, omega):
@@ -38,8 +38,8 @@ for i in range(len(TP)):
     tp = TP[i]
     ax = axes[i]
     x = MSPulseResponse(t, tp, omega)
-    line = ax.plot(t, x, clip_on=False, color=list(colours.values())[i])
-    ax.vlines(tp, -3, 1.0 - np.cos(omega * tp), linestyle="--", color=colours["Grey"], zorder=0)
+    line = ax.plot(t, x, clip_on=False, color=list(colors.values())[i])
+    ax.vlines(tp, -3, 1.0 - np.cos(omega * tp), linestyle="--", color=colors["Grey"], zorder=0)
     ax.set_xticks([0, tp, 3])
     if i == len(TP) - 1:
         ax.set_xlabel("t (s)")
