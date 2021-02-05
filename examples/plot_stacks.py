@@ -32,6 +32,7 @@ for phase, damp in zip(phases, damping):
 # y-labels from the y-axes if you have long labels.
 # This function will save a pdf with the filename given.
 niceplots.stacked_plots("Time (s)", time, data[0], figsize=(10, 6), filename="opt_stacks.pdf")
+plt.savefig("opt_stacks.png", dpi=400)
 
 # stacked_plots can also accept a list of dicts to plot multiple strains
 # of data on the same set of plots.
@@ -40,3 +41,4 @@ niceplots.stacked_plots("Time (s)", time, data[0], figsize=(10, 6), filename="op
 f, axarr = niceplots.stacked_plots(
     "Time (s)", time, data, figsize=(10, 6), line_scaler=0.5, filename="opt_stacks_more_data.pdf"
 )
+plt.savefig("opt_stacks_more_data.png", dpi=400)

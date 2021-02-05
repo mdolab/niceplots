@@ -48,3 +48,4 @@ for i in range(len(TP)):
     niceplots.adjust_spines(ax, outward=True)
 
 plt.savefig("PulseResponse.pdf")
+plt.savefig("PulseResponse.png", dpi=400)

@@ -26,3 +26,4 @@ except:  # if user is not on a *nix system
 horiz_bar(labels, times, header, nd=nd)
 
 plt.savefig("bar_chart.pdf", bbox_inches="tight")
+plt.savefig("bar_chart.png", dpi=400,  bbox_inches="tight")

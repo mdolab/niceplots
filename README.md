@@ -1,6 +1,7 @@
 # README #
 
-
+<img src="examples/bar_chart.png" width="45%" /> <img src="examples/PulseResponse.png" width="45%" />
+<img src="examples/ParulaContours.png" width="75%" />
 
 ### What is this repository for? ###
 
