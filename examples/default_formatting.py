@@ -5,16 +5,13 @@ Niceplots default formatting
 @File    :   default_formatting.py
 @Date    :   2021/02/04
 @Author  :   Alasdair Gray
-@Description : A short example to demonstrate the use of niceplots default plot formatting
+@Description : A short example to demonstrate the use of niceplots default plot formatting and compre it to matplotlib defaults
 """
 
 import numpy as np
 import matplotlib.pyplot as plt
 import niceplots
 
-
-niceplots.setRCParams()
-colors = niceplots.get_niceColors()
 
 # This function computes the displacement history of an undamped oscilator subjec to to a force pulse of length tp
 def MSPulseResponse(t, tp, omega):
@@ -32,20 +29,26 @@ omega = np.sqrt(k / m)
 t = np.linspace(0, 3.0, 1001)
 TP = [0.5, 0.8, 1.2, 1.6, 2.0]
 
-fig, axes = plt.subplots(nrows=len(TP), figsize=(12, 16))
+for formatting in ["default", "niceplots"]:
+    if formatting == "niceplots":
+        niceplots.setRCParams()
+    colors = plt.rcParams['axes.prop_cycle'].by_key()['color']
 
-for i in range(len(TP)):
-    tp = TP[i]
-    ax = axes[i]
-    x = MSPulseResponse(t, tp, omega)
-    line = ax.plot(t, x, clip_on=False, color=list(colors.values())[i])
-    ax.vlines(tp, -3, 1.0 - np.cos(omega * tp), linestyle="--", color=colors["Grey"], zorder=0)
-    ax.set_xticks([0, tp, 3])
-    if i == len(TP) - 1:
-        ax.set_xlabel("t (s)")
-    ax.set_ylabel(r"$\frac{x(t)}{x_s}$", ha="right", rotation="horizontal")
-    ax.set_ylim(bottom=-2.0, top=2.0)
-    niceplots.adjust_spines(ax, outward=True)
+    fig, axes = plt.subplots(nrows=len(TP), figsize=(12, 16))
 
-plt.savefig("PulseResponse.pdf")
-plt.savefig("PulseResponse.png", dpi=400)
+    for i in range(len(TP)):
+        tp = TP[i]
+        ax = axes[i]
+        x = MSPulseResponse(t, tp, omega)
+        line = ax.plot(t, x, clip_on=False, color=colors[i])
+        ax.vlines(tp, -3, 1.0 - np.cos(omega * tp), linestyle="--", color="gray", zorder=0)
+        ax.set_xticks([0, tp, 3])
+        if i == len(TP) - 1:
+            ax.set_xlabel("t (s)")
+        ax.set_ylabel(r"$\frac{x(t)}{x_s}$", ha="right", rotation="horizontal")
+        ax.set_ylim(bottom=-2.0, top=2.0)
+        if formatting == "niceplots":
+            niceplots.adjust_spines(ax, outward=True)
+
+    plt.savefig(f"{formatting}PulseResponse.pdf")
+    plt.savefig(f"{formatting}PulseResponse.png", dpi=400)
