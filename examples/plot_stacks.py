@@ -19,7 +19,9 @@ data = []
 
 for phase, damp in zip(phases, damping):
     Position = 1.0 + np.sin(2 * np.pi * time / 100 + phase) * np.exp(time / damp)
-    Velocity = 2 * np.pi / 100 * np.cos(2 * np.pi * time / 100 + phase) * np.exp(time / damp)
+    Velocity = (
+        2 * np.pi / 100 * np.cos(2 * np.pi * time / 100 + phase) * np.exp(time / damp)
+    )
 
     data.append({})
     data[-1]["Position (m)"] = Position
@@ -31,7 +33,9 @@ for phase, damp in zip(phases, damping):
 # You can set some plot options here as well, like the pad distance for the
 # y-labels from the y-axes if you have long labels.
 # This function will save a pdf with the filename given.
-niceplots.stacked_plots("Time (s)", time, data[0], figsize=(10, 6), filename="opt_stacks.pdf")
+niceplots.stacked_plots(
+    "Time (s)", time, data[0], figsize=(10, 6), filename="opt_stacks.pdf"
+)
 plt.savefig("opt_stacks.png", dpi=400)
 
 # stacked_plots can also accept a list of dicts to plot multiple strains
@@ -39,6 +43,11 @@ plt.savefig("opt_stacks.png", dpi=400)
 # We grabbed the fig and axarr handles here so that we can modify the plot.
 # Also, since there are many lines, we use the line_scaler option to reduce their thickness and keep the plot clean
 f, axarr = niceplots.stacked_plots(
-    "Time (s)", time, data, figsize=(10, 6), line_scaler=0.5, filename="opt_stacks_more_data.pdf"
+    "Time (s)",
+    time,
+    data,
+    figsize=(10, 6),
+    line_scaler=0.5,
+    filename="opt_stacks_more_data.pdf",
 )
 plt.savefig("opt_stacks_more_data.png", dpi=400)

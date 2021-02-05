@@ -23,7 +23,11 @@ import niceplots
 niceplots.setRCParams()
 niceColors = niceplots.get_niceColors()
 
-f = lambda x1, x2: x1 ** 3 + 2.0 * x1 * x2 ** 2 - x2 ** 3 - 20.0 * x1
+
+def f(x1, x2):
+    return x1 ** 3 + 2.0 * x1 * x2 ** 2 - x2 ** 3 - 20.0 * x1
+
+
 x1 = x2 = np.linspace(-5, 5, 201)
 X1, X2 = np.meshgrid(x1, x2)
 minimum = [2.58199, 0]
@@ -40,7 +44,14 @@ q2ax.plot(
     linestyle="",
     markersize=12,
 )
-q2ax.annotate("Local Minimum", xy=minimum, xytext=(-5, 10), textcoords="offset points", va="bottom", ha="center")
+q2ax.annotate(
+    "Local Minimum",
+    xy=minimum,
+    xytext=(-5, 10),
+    textcoords="offset points",
+    va="bottom",
+    ha="center",
+)
 q2ax.plot(
     -minimum[0],
     minimum[1],
