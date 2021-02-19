@@ -37,12 +37,12 @@ jobs:
         python -m pip install matplotlib==${{ matrix.mpl-version }}
         pip install .
     - name: Lint with flake8
-      if: ${{ matrix.numpy-version == "1.16.6" && matrix.mpl-version == "3.2.*" }}
+      if: ${{ matrix.numpy-version == 1.16.6 && matrix.mpl-version == 3.2.* }}
       run: |
         wget https://raw.githubusercontent.com/mdolab/.github/master/.flake8;
         flake8 . --count --show-source --statistics;
     - name: Lint with black
-      if: ${{ matrix.numpy-version == "1.16.6" && matrix.mpl-version == "3.2.*" }}
+      if: ${{ matrix.numpy-version == 1.16.6 && matrix.mpl-version == 3.2.* }}
       run: |
         black . --check --diff -l 120 --target-version ${{ matrix.blackFlag }};
     - name: Test examples (this is very janky for now)
