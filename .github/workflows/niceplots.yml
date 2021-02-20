@@ -9,20 +9,15 @@ on:
     branches: [ master ]
 
 jobs:
-  build:
-
+  style-checks:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [3.7, 3.8]
-        numpy-version: ['1.16.6', '1.18.5']
-        mpl-version: ['3.2.*', '3.3.*']
         include: 
           - python-version: 3.7
             blackFlag: "py37"
           - python-version: 3.8
             blackFlag: "py38"
-
     steps:
     - uses: actions/checkout@v2
     - name: Set up Python ${{ matrix.python-version }}
@@ -31,21 +26,36 @@ jobs:
         python-version: ${{ matrix.python-version }}
     - name: Install dependencies
       run: |
-        python -m pip install --upgrade pip wheel
-        python -m pip install flake8 black 
-        python -m pip install numpy==${{ matrix.numpy-version }} 
-        python -m pip install matplotlib==${{ matrix.mpl-version }}
-        pip install .
+        pip install flake8 black
     - name: Lint with flake8
-      if: matrix.numpy-version == '1.16.6' && matrix.mpl-version == '3.2.*'
       run: |
         wget https://raw.githubusercontent.com/mdolab/.github/master/.flake8;
         flake8 . --count --show-source --statistics;
-    - name: Lint with black
-      if: matrix.numpy-version == '1.16.6' && matrix.mpl-version == '3.2.*'
+    - name: Format with black
       run: |
         black . --check --diff -l 120 --target-version ${{ matrix.blackFlag }};
-    - name: Test examples (this is very janky for now)
+
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.7, 3.8]
+        numpy-version: ['1.16.6', '1.18.5']
+        mpl-version: ['3.2.*', '3.3.*']
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies
       run: |
+        pip install --upgrade pip wheel
+        pip install numpy==${{ matrix.numpy-version }} 
+        pip install matplotlib==${{ matrix.mpl-version }}
+        pip install .
+    - name: Test examples
+      run: |
+        # this is very janky for now
         cd examples
         python default_formatting.py && python bar_chart_example.py && python parulaContours.py  && python plot_stacks.py
