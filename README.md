@@ -1,6 +1,8 @@
 # NicePlots #
 ## A collection of small tweaks to improve Python / plotting ##
 
+![Build Status](https://github.com/mdolab/niceplots/workflows/niceplots/badge.svg)
+
 <img src="examples/bar_chart.png" width="57.5%" /> <img src="examples/niceplotsPulseResponse.png" width="39.9%" />
 <img src="examples/ParulaContours.png" width="97.6%" />
 
