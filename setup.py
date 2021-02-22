@@ -19,5 +19,5 @@ setup(
     packages=[
         "niceplots",
     ],
-    install_requires=[],
+    install_requires=["numpy>=1.16", "matplotlib>=2.2"],
 )

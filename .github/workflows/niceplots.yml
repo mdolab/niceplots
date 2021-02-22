@@ -9,17 +9,13 @@ on:
     branches: [ master ]
 
 jobs:
-  build:
-
+  lint-check:
     runs-on: ubuntu-latest
     strategy:
       matrix:
         include: 
           - python-version: 3.7
-            blackFlag: "py37"
           - python-version: 3.8
-            blackFlag: "py38"
-
     steps:
     - uses: actions/checkout@v2
     - name: Set up Python ${{ matrix.python-version }}
@@ -28,18 +24,55 @@ jobs:
         python-version: ${{ matrix.python-version }}
     - name: Install dependencies
       run: |
-        python -m pip install --upgrade pip wheel
-        pip install .
-        python -m pip install flake8 black numpy matplotlib
-        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+        pip install flake8
     - name: Lint with flake8
       run: |
         wget https://raw.githubusercontent.com/mdolab/.github/master/.flake8;
         flake8 . --count --show-source --statistics;
-    - name: Lint with black
+
+  format-check:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include: 
+          - python-version: 3.7
+            blackFlag: "py37"
+          - python-version: 3.8
+            blackFlag: "py38"
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies
+      run: |
+        pip install black
+    - name: Format with black
       run: |
         black . --check --diff -l 120 --target-version ${{ matrix.blackFlag }};
-    - name: Test examples (this is very janky for now)
+
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.7, 3.8]
+        numpy-version: ['1.16.6', '1.18.5']
+        mpl-version: ['3.2.*', '3.3.*']
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies
       run: |
+        pip install --upgrade pip wheel
+        pip install numpy==${{ matrix.numpy-version }} 
+        pip install matplotlib==${{ matrix.mpl-version }}
+        pip install .
+    - name: Test examples
+      run: |
+        # this is very janky for now
         cd examples
         python default_formatting.py && python bar_chart_example.py && python parulaContours.py  && python plot_stacks.py
