@@ -49,12 +49,12 @@ def get_niceColors():
     niceColors = OrderedDict()
     niceColors["Yellow"] = "#e29400ff"  # '#f8a30dff'
     niceColors["Blue"] = "#1E90FF"
-    niceColors["Red"] = (226 / 255.0, 26 / 255.0, 26 / 255.0)
+    niceColors["Red"] = "#E21A1A"
     niceColors["Green"] = "#00a650ff"
     niceColors["Maroon"] = "#800000ff"
-    niceColors["Cyan"] = "#00A6D6"
-    niceColors["Orange"] = (230 / 255.0, 70 / 255.0, 22 / 255.0)
+    niceColors["Orange"] = "#E64616"
     niceColors["Purple"] = "#800080ff"
+    niceColors["Cyan"] = "#00A6D6"
     niceColors["Grey"] = "#5a5758ff"
     niceColors["Black"] = "#000000ff"
 
@@ -65,12 +65,12 @@ def get_delftColors():
     # Define an ordered dictionary of the official TU Delft colors to use as the default color cycle
     delftColors = OrderedDict()
     delftColors["Cyan"] = "#00A6D6"  # '#f8a30dff'
-    delftColors["Yellow"] = (225 / 255.0, 196 / 255.0, 0.0)
-    delftColors["Purple"] = (109 / 255.0, 23 / 255.0, 127 / 255.0)
-    delftColors["Red"] = (226 / 255.0, 26 / 255.0, 26 / 255.0)
-    delftColors["Green"] = (165 / 255.0, 202 / 255.0, 26 / 255.0)
-    delftColors["Blue"] = (29 / 255.0, 28 / 255.0, 115 / 255.0)
-    delftColors["Orange"] = (230 / 255.0, 70 / 255.0, 22 / 255.0)
+    delftColors["Yellow"] = "#E1C400"
+    delftColors["Purple"] = "#6D177F"
+    delftColors["Red"] = "#E21A1A"
+    delftColors["Green"] = "#A5CA1A"
+    delftColors["Blue"] = "#1D1C73"
+    delftColors["Orange"] = "#E64616"
     delftColors["Grey"] = "#5a5758ff"
     delftColors["Black"] = "#000000ff"
 
