@@ -83,7 +83,7 @@ def handle_close(evt):
     plt.savefig("figure.pdf")
 
 
-def adjust_spines(ax=None, spines=["left", "bottom"], outward=False):
+def adjust_spines(ax=None, spines=["left", "bottom"], outward=True):
     """Function to shift the axes/spines so they have that offset
     Doumont look."""
     if ax is None:
