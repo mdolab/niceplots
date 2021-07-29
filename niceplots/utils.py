@@ -78,12 +78,12 @@ def get_delftColors():
 
 
 def handle_close(evt):
-    """ Handler function that saves the figure as a pdf if the window is closed. """
+    """Handler function that saves the figure as a pdf if the window is closed."""
     plt.tight_layout()
     plt.savefig("figure.pdf")
 
 
-def adjust_spines(ax=None, spines=["left", "bottom"], outward=False):
+def adjust_spines(ax=None, spines=["left", "bottom"], outward=True):
     """Function to shift the axes/spines so they have that offset
     Doumont look."""
     if ax is None:
@@ -118,7 +118,7 @@ def adjust_spines(ax=None, spines=["left", "bottom"], outward=False):
 
 
 def draggable_legend(axis=None, color_on=True):
-    """ Function to create draggable labels on a plot. """
+    """Function to create draggable labels on a plot."""
     if axis is None:
         axis = plt.gca()
 
@@ -345,7 +345,7 @@ def stacked_plots(
 
 
 def all():
-    """ Runs all of the functions provided in this module. """
+    """Runs all of the functions provided in this module."""
     adjust_spines()
     draggable_legend()
     plt.gcf().canvas.mpl_connect("close_event", handle_close)
