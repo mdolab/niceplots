@@ -4,12 +4,15 @@ import numpy as np
 from matplotlib.lines import Line2D
 from cycler import cycler
 from collections import OrderedDict
+from .parula import parula_map
+from matplotlib import patheffects
 
 
 def setRCParams():
     # Set some defaults for generating nice, Doumont-esque, plots
     plt.rcParams["font.family"] = "sans-serif"
     plt.rcParams["font.sans-serif"] = ["CMU Bright"]
+    plt.rcParams["axes.unicode_minus"] = False
     plt.rcParams["font.size"] = 24
     plt.rcParams["figure.dpi"] = 100
     plt.rcParams["figure.figsize"] = [12, 6.75]
@@ -128,7 +131,7 @@ def draggable_legend(axis=None, color_on=True):
 
     # Set the coordinates of the starting location of the draggable labels
     n = np.ceil(np.sqrt(nlines))
-    lins = np.linspace(0.1, 0.9, n)
+    lins = np.linspace(0.1, 0.9, int(n))
     xs, ys = np.meshgrid(lins, lins)
     xs = xs.reshape(-1)
     ys = ys.reshape(-1)
@@ -342,6 +345,134 @@ def stacked_plots(
         plt.savefig(filename, bbox_inches="tight")
 
     return f, axarr
+
+
+def plotOptProb(
+    obj,
+    xRange,
+    yRange,
+    ineqCon=None,
+    eqCon=None,
+    nPoints=51,
+    optPoint=None,
+    conStyle="shaded",
+    ax=None,
+    colors=None,
+    cmap=None,
+    levels=None,
+    labelAxes=True,
+):
+    """Generate a contour plot of a 2D constrained optimisation problem
+
+    Parameters
+    ----------
+    obj : Function
+        Objective function, should accept inputs in the form f = obj(x, y) where x and y are 2D arrays
+    ineqCon : function or list of functions, optional
+        Inequality constraint functions, should accept inputs in the form g = g(x, y) where x and y are 2D arrays.
+        Constraints are assumed to be of the form g <= 0
+    eqCon : functions or list of functions, optional
+        Equality constraint functions, should accept inputs in the form h = h(x, y) where x and y are 2D arrays.
+        Constraints are assumed to be of the form h == 0
+    xRange : list or array
+        Upper and lower limits of the plot in x
+    yRange : list or array
+        Upper and lower limits of the plot in x
+    nPoints : int, optional
+        Number of points in each direction to evaluate the objective and constraint functions at
+    optPoint : list or array, optional
+        Optimal Point, if you want to plot a point there, by default None
+    conStyle : str, optional
+        Controls how inequality constraints are represented, "shaded" will shade the infeasible regions while "hashed"
+        will place hashed lines on the infeasible side of the feasible boundary, by default "shaded", note the "hashed"
+        option only works for matplotlib >= 3.4
+    ax : matplotlib axes object, optional
+        axes to plot, by default None, in which case a new figure will be created and returned by the function
+    colors : list, optional
+        List of colors to use for the constraint lines, by default uses the current matplotlib color cycle
+    cmap : colormap, optional
+        Colormap to use for the objective contours, by default will use nicePlots' parula map
+    levels : list, array, int, optional
+        Number or values of contour lines to plot for the objective function, by default 31
+    labelAxes : bool, optional
+        Whether to label the x and y axes, by default True, in which case the axes will be labelled, "$X_1$" and "$X_2$"
+    """
+
+    if ax is None:
+        fig, ax = plt.subplots()
+        returnFig = True
+    else:
+        returnFig = False
+
+    # --- If user provided only single inequality or equality constraint, convert it to an iterable  ---
+    cons = {}
+    for inp, key in zip([eqCon, ineqCon], ["eqCon", "ineqCon"]):
+        if inp is not None:
+            if not hasattr(inp, "__iter__"):
+                cons[key] = [inp]
+            else:
+                cons[key] = inp
+        else:
+            cons[key] = []
+
+    # --- Define some default values if the user didn't provide them ---
+    if cmap is None:
+        cmap = parula_map
+
+    if colors is None:
+        colors = plt.rcParams["axes.prop_cycle"].by_key()["color"]
+    nColor = len(colors)
+
+    # --- Create grid of points for evaluating functions ---
+    X, Y = np.meshgrid(np.linspace(xRange[0], xRange[1], nPoints), np.linspace(yRange[0], yRange[1], nPoints))
+
+    # --- Evaluate objective and constraint functions ---
+    Fobj = obj(X, Y)
+    g = []
+    for ineq in cons["ineqCon"]:
+        g.append(ineq(X, Y))
+    h = []
+    for eq in cons["eqCon"]:
+        h.append(eq(X, Y))
+
+    # --- Plot objective contours ---
+    adjust_spines(ax, outward=True)
+    ax.contour(
+        X,
+        Y,
+        Fobj,
+        levels=levels,
+        cmap=cmap,
+    )
+
+    # --- Plot constraint boundaries ---
+
+    colorIndex = 0
+    for conValue in g:
+        contour = ax.contour(X, Y, conValue, levels=[0.0], colors=colors[colorIndex % nColor])
+        if conStyle.lower() == "hashed":
+            plt.setp(contour.collections, path_effects=[patheffects.withTickedStroke(angle=60, length=2)])
+        else:
+            ax.contourf(X, Y, conValue, levels=[0.0, np.inf], colors=colors[colorIndex % nColor], alpha=0.4)
+
+        colorIndex += 1
+
+    for conValue in h:
+        ax.contour(X, Y, conValue, levels=[0.0], colors=colors[colorIndex % nColor])
+
+    # --- Plot optimal point if provided ---
+    if optPoint is not None:
+        ax.plot(optPoint[0], optPoint[1], "o", color="black", markeredgecolor="w", markersize=10, clip_on=False)
+
+    # --- Label axes if required ---
+    if labelAxes:
+        ax.set_xlabel("$x_1$")
+        ax.set_ylabel("$x_2$", rotation="horizontal", ha="right")
+
+    if returnFig:
+        return fig, ax
+    else:
+        return ax
 
 
 def all():

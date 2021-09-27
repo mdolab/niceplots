@@ -3,8 +3,8 @@
 
 ![Build Status](https://github.com/mdolab/niceplots/workflows/niceplots/badge.svg)
 
-<img src="examples/bar_chart.png" width="57.5%" /> <img src="examples/niceplotsPulseResponse.png" width="39.9%" />
-<img src="examples/ParulaContours.png" width="97.6%" />
+<img src="examples/bar_chart.png" width="58.5%" /> <img src="examples/niceplotsPulseResponse.png" width="38.82%" />
+<img src="examples/ParulaContours.png" width="62.22%" /> <img src="examples/optProb.png" width="35%" />
 
 
 ### How do I install? ###
