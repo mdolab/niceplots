@@ -39,6 +39,7 @@ def circleCon(x, y):
 def linCon(x, y):
     return x - y
 
+
 for conStyle in ["shaded", "hashed"]:
     fig, ax = plt.subplots(figsize=(8, 8))
     ax.set_aspect("equal")
