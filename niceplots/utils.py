@@ -6,6 +6,7 @@ from cycler import cycler
 from collections import OrderedDict
 from .parula import parula_map
 from matplotlib import patheffects
+import warnings
 
 
 def setRCParams():
@@ -414,6 +415,14 @@ def plotOptProb(
                 cons[key] = inp
         else:
             cons[key] = []
+
+    # --- Check if user has a recent enough version of matplotlib to use hashed boundaries ---
+    if conStyle.lower() == "hashed":
+        try:
+            patheffects.withTickedStroke
+        except AttributeError:
+            warnings.warn("matplotlib >= 3.4 is required for hashed inequality constrain boundaries, switching to shaded inequality constraint style")
+            conStyle = "shaded"
 
     # --- Define some default values if the user didn't provide them ---
     if cmap is None:
