@@ -421,7 +421,9 @@ def plotOptProb(
         try:
             patheffects.withTickedStroke
         except AttributeError:
-            warnings.warn("matplotlib >= 3.4 is required for hashed inequality constrain boundaries, switching to shaded inequality constraint style")
+            warnings.warn(
+                "matplotlib >= 3.4 is required for hashed inequality constrain boundaries, switching to shaded inequality constraint style"
+            )
             conStyle = "shaded"
 
     # --- Define some default values if the user didn't provide them ---
