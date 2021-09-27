@@ -6,6 +6,7 @@ from cycler import cycler
 from collections import OrderedDict
 from .parula import parula_map
 from matplotlib import patheffects
+from matplotlib.collections import LineCollection
 import warnings
 
 
@@ -484,6 +485,73 @@ def plotOptProb(
         return fig, ax
     else:
         return ax
+
+
+def plotColoredLine(x, y, c, cmap=None, fig=None, ax=None, addColorBar=False, cRange=None, cBarLabel=None):
+    """Plot an XY line whose color is determined by some other variable C
+
+    Parameters
+    ----------
+    x : iterable of length n
+        x data
+    y : iterable of length n
+        y data
+    c : iterable of length n
+        Data for linecolor
+    cmap : str or matplotlib colormap, optional
+        Colormap to use for the objective contours, by default will use nicePlots' parula map
+    ax : matplotlib axes object, optional
+        axes to plot on, by default None, in which case a new figure will be created and returned by the function
+
+    Returns
+    -------
+    ax : matplotlib axes object
+        Axis with the colored line
+    fig : matplotlib figure object
+        Figure containing the plot
+    """
+    if ax is None or fig is None:
+        fig, ax = plt.subplots()
+        returnFig = True
+    else:
+        returnFig = False
+
+    if cmap is None:
+        cmap = parula_map
+
+    # --- Convert inputs to flattened arrays ---
+    data = {}
+    for d, name in zip([x, y, c], ["x", "y", "c"]):
+        if not isinstance(d, np.ndarray):
+            data[name] = np.array(d)
+        else:
+            data[name] = d
+        data[name] = data[name].flatten()
+
+    # --- Create points and segments ---
+    points = np.array([data["x"], data["y"]]).T.reshape(-1, 1, 2)
+    segments = np.concatenate([points[:-1], points[1:]], axis=1)
+
+    if cRange is not None:
+        norm = plt.Normalize(cRange[0], cRange[1])
+    else:
+        norm = None
+    lc = LineCollection(segments, cmap=cmap, norm=norm, clip_on=False)
+
+    # Set the values used for colormapping
+    lc.set_array(data["c"])
+    line = ax.add_collection(lc)
+    if addColorBar:
+        cBar = fig.colorbar(line, ax=ax)
+        if cBarLabel is not None:
+            cBar.set_label(cBarLabel)
+
+    ax.autoscale()
+
+    if returnFig:
+        return fig, ax
+    else:
+        return
 
 
 def All():
