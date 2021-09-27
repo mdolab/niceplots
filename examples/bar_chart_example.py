@@ -18,7 +18,7 @@ try:
     times = [random.random() * random.randint(0, 1000) for i in range(n)]
     nd = 1
 
-except:  # noqa: E722 if user is not on a *nix system
+except FileNotFoundError:  # noqa: E722 if user is not on a *nix system
     header = ["Method", "Time (sec)"]
     labels = [
         "Analytic Forward",

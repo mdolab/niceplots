@@ -16,7 +16,6 @@ In this example I plot the 2D rosenbrock function with an equlity constraint and
 # ==============================================================================
 # External Python modules
 # ==============================================================================
-import numpy as np
 import matplotlib.pyplot as plt
 import niceplots
 

@@ -309,7 +309,7 @@ def stacked_plots(
             axarr[i].scatter(list(xlim), ylim, alpha=0.0)
 
     for j, data_dict in enumerate(data_dict_list):
-        for i, (ylabel, ydata) in enumerate(data_dict.items()):
+        for i, (_ylabel, ydata) in enumerate(data_dict.items()):
             if type(ydata) == dict:
                 ydata = ydata["data"]
             axarr[i].plot(xdata, ydata, clip_on=False, lw=6 * line_scaler, color=colors[j])
@@ -475,7 +475,7 @@ def plotOptProb(
         return ax
 
 
-def all():
+def All():
     """Runs all of the functions provided in this module."""
     adjust_spines()
     draggable_legend()
