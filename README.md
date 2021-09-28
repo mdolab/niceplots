@@ -12,6 +12,11 @@
 * Clone this repository, then enter the folder in the command line terminal.
 * Enter `pip install -e .` within the `niceplots` folder.
 
+#### Font installation (optional)
+
+Niceplots will try and use the [computer modern bright](https://tug.org/FontCatalogue/computermodernbright/) font for the best looking plots so be sure to install it as a system font if you want to recreate the style of the plots above.
+Otherwise, niceplots will still work but revert back to the matplotlib default sans-serif font, DejaVu Sans.
+
 ### How do I get set up? ###
 
 * Use `import niceplots` at the top of a file where you would like to use any function defined in this package.
