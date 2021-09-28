@@ -487,7 +487,7 @@ def plotOptProb(
         return ax
 
 
-def plotColoredLine(x, y, c, cmap=None, fig=None, ax=None, addColorBar=False, cRange=None, cBarLabel=None):
+def plotColoredLine(x, y, c, cmap=None, fig=None, ax=None, addColorBar=False, cRange=None, cBarLabel=None, **kwargs):
     """Plot an XY line whose color is determined by some other variable C
 
     Parameters
@@ -500,8 +500,16 @@ def plotColoredLine(x, y, c, cmap=None, fig=None, ax=None, addColorBar=False, cR
         Data for linecolor
     cmap : str or matplotlib colormap, optional
         Colormap to use for the objective contours, by default will use nicePlots' parula map
+    fig : matplotlib figure object, optional
+        figure to plot on, by default None, in which case a new figure will be created and returned by the function
     ax : matplotlib axes object, optional
         axes to plot on, by default None, in which case a new figure will be created and returned by the function
+    addColorBar : bool, optional
+        Whether to add a colorbar to the axes, by default False
+    cRange : iterable of length 2, optional
+        Upper and lower limit for the colormap, by default None, in which case the min and max values of c are used.
+    cBarLabel : str, optional
+        Label for the colormap, by default None
 
     Returns
     -------
@@ -536,7 +544,7 @@ def plotColoredLine(x, y, c, cmap=None, fig=None, ax=None, addColorBar=False, cR
         norm = plt.Normalize(cRange[0], cRange[1])
     else:
         norm = None
-    lc = LineCollection(segments, cmap=cmap, norm=norm, clip_on=False)
+    lc = LineCollection(segments, cmap=cmap, norm=norm, **kwargs)
 
     # Set the values used for colormapping
     lc.set_array(data["c"])
