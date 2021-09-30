@@ -6,6 +6,7 @@ from cycler import cycler
 from collections import OrderedDict
 from .parula import parula_map
 from matplotlib import patheffects
+from matplotlib.collections import LineCollection
 import warnings
 
 
@@ -400,18 +401,17 @@ def plotOptProb(
 
     Returns
     -------
-    fig : matplotlib figure object, but only if no ax object is specified
-        Figure containing the plot
-    ax : matplotlib axes object
-        Axis with the colored line
+    fig : matplotlib figure object
+        Figure containing the plot. Returned only if no input ax object is specified
+    ax : matplotlib axes object, but only if no ax object is specified
+        Axis with the colored line. Returned only if no input ax object is specified
     """
 
     # --- Create a new figure if the user did not supply an ax object ---
+    returnFig = False
     if ax is None:
         fig, ax = plt.subplots()
         returnFig = True
-    else:
-        returnFig = False
 
     # --- If user provided only single inequality or equality constraint, convert it to an iterable  ---
     cons = {}
@@ -494,7 +494,81 @@ def plotOptProb(
     if returnFig:
         return fig, ax
     else:
-        return ax
+        return
+
+
+def plotColoredLine(x, y, c, cmap=None, fig=None, ax=None, addColorBar=False, cRange=None, cBarLabel=None, **kwargs):
+    """Plot an XY line whose color is determined by some other variable C
+
+    Parameters
+    ----------
+    x : iterable of length n
+        x data
+    y : iterable of length n
+        y data
+    c : iterable of length n
+        Data for linecolor
+    cmap : str or matplotlib colormap, optional
+        Colormap to use for the objective contours, by default will use nicePlots' parula map
+    fig : matplotlib figure object, optional
+        figure to plot on, by default None, in which case a new figure will be created and returned by the function
+    ax : matplotlib axes object, optional
+        axes to plot on, by default None, in which case a new figure will be created and returned by the function
+    addColorBar : bool, optional
+        Whether to add a colorbar to the axes, by default False
+    cRange : iterable of length 2, optional
+        Upper and lower limit for the colormap, by default None, in which case the min and max values of c are used.
+    cBarLabel : str, optional
+        Label for the colormap, by default None
+
+    Returns
+    -------
+    ax : matplotlib axes object
+        Axis with the colored line. Returned only if no input ax object is specified
+    fig : matplotlib figure object
+        Figure containing the plot. Returned only if no input ax object is specified
+    """
+    returnFig = False
+    if ax is None or fig is None:
+        fig, ax = plt.subplots()
+        returnFig = True
+
+    if cmap is None:
+        cmap = parula_map
+
+    # --- Convert inputs to flattened arrays ---
+    data = {}
+    for d, name in zip([x, y, c], ["x", "y", "c"]):
+        if not isinstance(d, np.ndarray):
+            data[name] = np.array(d)
+        else:
+            data[name] = d
+        data[name] = data[name].flatten()
+
+    # --- Create points and segments ---
+    points = np.array([data["x"], data["y"]]).T.reshape(-1, 1, 2)
+    segments = np.concatenate([points[:-1], points[1:]], axis=1)
+
+    if cRange is not None:
+        norm = plt.Normalize(cRange[0], cRange[1])
+    else:
+        norm = None
+    lc = LineCollection(segments, cmap=cmap, norm=norm, **kwargs)
+
+    # Set the values used for colormapping
+    lc.set_array(data["c"])
+    line = ax.add_collection(lc)
+    if addColorBar:
+        cBar = fig.colorbar(line, ax=ax)
+        if cBarLabel is not None:
+            cBar.set_label(cBarLabel)
+
+    ax.autoscale()
+
+    if returnFig:
+        return fig, ax
+    else:
+        return
 
 
 def all():
