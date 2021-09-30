@@ -13,9 +13,10 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        include: 
+        include:
           - python-version: 3.7
           - python-version: 3.8
+          - python-version: 3.9
     steps:
     - uses: actions/checkout@v2
     - name: Set up Python ${{ matrix.python-version }}
@@ -34,11 +35,13 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        include: 
+        include:
           - python-version: 3.7
             blackFlag: "py37"
           - python-version: 3.8
             blackFlag: "py38"
+          - python-version: 3.9
+            blackFlag: "py39"
     steps:
     - uses: actions/checkout@v2
     - name: Set up Python ${{ matrix.python-version }}
@@ -56,9 +59,9 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [3.7, 3.8]
+        python-version: [3.7, 3.8, 3.9]
         numpy-version: ['1.16.6', '1.18.5']
-        mpl-version: ['3.2.*', '3.3.*']
+        mpl-version: ['3.2.*', '3.3.*', '3.4.*']
     steps:
     - uses: actions/checkout@v2
     - name: Set up Python ${{ matrix.python-version }}
@@ -68,11 +71,11 @@ jobs:
     - name: Install dependencies
       run: |
         pip install --upgrade pip wheel
-        pip install numpy==${{ matrix.numpy-version }} 
+        pip install numpy==${{ matrix.numpy-version }}
         pip install matplotlib==${{ matrix.mpl-version }}
         pip install .
     - name: Test examples
       run: |
         # this is very janky for now
         cd examples
-        python default_formatting.py && python bar_chart_example.py && python parulaContours.py  && python plot_stacks.py
+        bash testExamples.sh

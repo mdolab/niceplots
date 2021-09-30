@@ -1,0 +1,60 @@
+"""
+==============================================================================
+Optimization problem plotting example
+==============================================================================
+An example of how to use the plotOptProb function to plot a constrained 2D optimization problem.
+This example plots the 2D Rosenbrock function with an equality constraint and an inequality constraint.
+"""
+
+# ==============================================================================
+# Standard Python modules
+# ==============================================================================
+
+# ==============================================================================
+# External Python modules
+# ==============================================================================
+import matplotlib.pyplot as plt
+import niceplots
+
+
+# ==============================================================================
+# Extension modules
+# ==============================================================================
+
+niceplots.setRCParams()
+niceColors = niceplots.get_niceColors()
+
+
+def Rosenbrock(x, y):
+    return (1 - x) ** 2 + 100 * (y - x ** 2) ** 2
+
+
+def circleCon(x, y):
+    return x ** 2 + y ** 2 - 2
+
+
+def linCon(x, y):
+    return x - y
+
+
+for conStyle in ["shaded", "hashed"]:
+    fig, ax = plt.subplots(figsize=(8, 8))
+    ax.set_aspect("equal")
+    ax = niceplots.plotOptProb(
+        Rosenbrock,
+        xRange=[-1.5, 1.5],
+        yRange=[-1.5, 1.5],
+        ineqCon=circleCon,
+        eqCon=linCon,
+        nPoints=51,
+        optPoint=[1.0, 1.0],
+        conStyle=conStyle,
+        ax=ax,
+        colors=None,
+        cmap=None,
+        levels=50,
+        labelAxes=True,
+    )
+    fig.savefig(f"optProb-{conStyle}.png", dpi=400)
+    fig.savefig(f"optProb-{conStyle}.pdf")
+# plt.show()
