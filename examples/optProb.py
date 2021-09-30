@@ -2,11 +2,8 @@
 ==============================================================================
 Optimization problem plotting example
 ==============================================================================
-@File    :   optProb.py
-@Date    :   2021/09/27
-@Author  :   Alasdair Christison Gray
-@Description : An example of how to use the plotOptProb function to plot a constrained 2D optimization problem.
-In this example I plot the 2D rosenbrock function with an equlity constraint and an inequality constraint.
+An example of how to use the plotOptProb function to plot a constrained 2D optimization problem.
+This example plots the 2D Rosenbrock function with an equality constraint and an inequality constraint.
 """
 
 # ==============================================================================
