@@ -311,7 +311,7 @@ def stacked_plots(
             axarr[i].scatter(list(xlim), ylim, alpha=0.0)
 
     for j, data_dict in enumerate(data_dict_list):
-        for i, (_ylabel, ydata) in enumerate(data_dict.items()):
+        for i, (_, ydata) in enumerate(data_dict.items()):
             if type(ydata) == dict:
                 ydata = ydata["data"]
             axarr[i].plot(xdata, ydata, clip_on=False, lw=6 * line_scaler, color=colors[j])
@@ -368,18 +368,18 @@ def plotOptProb(
 
     Parameters
     ----------
-    obj : Function
+    obj : function
         Objective function, should accept inputs in the form f = obj(x, y) where x and y are 2D arrays
+    xRange : list or array
+        Upper and lower limits of the plot in x
+    yRange : list or array
+        Upper and lower limits of the plot in y
     ineqCon : function or list of functions, optional
         Inequality constraint functions, should accept inputs in the form g = g(x, y) where x and y are 2D arrays.
         Constraints are assumed to be of the form g <= 0
     eqCon : functions or list of functions, optional
         Equality constraint functions, should accept inputs in the form h = h(x, y) where x and y are 2D arrays.
         Constraints are assumed to be of the form h == 0
-    xRange : list or array
-        Upper and lower limits of the plot in x
-    yRange : list or array
-        Upper and lower limits of the plot in x
     nPoints : int, optional
         Number of points in each direction to evaluate the objective and constraint functions at
     optPoint : list or array, optional
@@ -395,11 +395,19 @@ def plotOptProb(
     cmap : colormap, optional
         Colormap to use for the objective contours, by default will use nicePlots' parula map
     levels : list, array, int, optional
-        Number or values of contour lines to plot for the objective function, by default 31
+        Number or values of contour lines to plot for the objective function
     labelAxes : bool, optional
         Whether to label the x and y axes, by default True, in which case the axes will be labelled, "$X_1$" and "$X_2$"
+
+    Returns
+    -------
+    fig : matplotlib figure object, but only if no ax object is specified
+        Figure containing the plot
+    ax : matplotlib axes object
+        Axis with the colored line
     """
 
+    # --- Create a new figure if the user did not supply an ax object ---
     if ax is None:
         fig, ax = plt.subplots()
         returnFig = True
@@ -416,6 +424,10 @@ def plotOptProb(
                 cons[key] = inp
         else:
             cons[key] = []
+
+    # --- Check that conStyle contains a supported value to avoid random conStyle arguments ---
+    if conStyle.lower() not in ["shaded", "hashed"]:
+        raise ValueError(f"conStyle: {conStyle} is not supported")
 
     # --- Check if user has a recent enough version of matplotlib to use hashed boundaries ---
     if conStyle.lower() == "hashed":
@@ -458,13 +470,12 @@ def plotOptProb(
     )
 
     # --- Plot constraint boundaries ---
-
     colorIndex = 0
     for conValue in g:
         contour = ax.contour(X, Y, conValue, levels=[0.0], colors=colors[colorIndex % nColor])
         if conStyle.lower() == "hashed":
             plt.setp(contour.collections, path_effects=[patheffects.withTickedStroke(angle=60, length=2)])
-        else:
+        elif conStyle.lower() == "shaded":
             ax.contourf(X, Y, conValue, levels=[0.0, np.inf], colors=colors[colorIndex % nColor], alpha=0.4)
 
         colorIndex += 1
@@ -562,8 +573,8 @@ def plotColoredLine(x, y, c, cmap=None, fig=None, ax=None, addColorBar=False, cR
         return
 
 
-def All():
-    """Runs all of the functions provided in this module."""
+def all():
+    """Runs commonly called functions provided in this module."""
     adjust_spines()
     draggable_legend()
     plt.gcf().canvas.mpl_connect("close_event", handle_close)

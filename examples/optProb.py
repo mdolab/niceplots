@@ -2,11 +2,8 @@
 ==============================================================================
 Optimization problem plotting example
 ==============================================================================
-@File    :   optProb.py
-@Date    :   2021/09/27
-@Author  :   Alasdair Christison Gray
-@Description : An example of how to use the plotOptProb function to plot a constrained 2D optimization problem.
-In this example I plot the 2D rosenbrock function with a quadratic equlity constraint and 3 circular inequality
+An example of how to use the plotOptProb function to plot a constrained 2D optimization problem.
+This example plots the 2D rosenbrock function with a quadratic equlity constraint and 3 circular inequality
 constraints, which has an optimum at (1, 1).
 """
 
