@@ -52,7 +52,7 @@ optY = [1.4, 1.3, 1.0626373624736707, 0.9999644713547426, 1.0]
 for conStyle in ["shaded", "hashed"]:
     fig, ax = plt.subplots(figsize=(8, 8))
     ax.set_aspect("equal")
-    ax = niceplots.plotOptProb(
+    niceplots.plotOptProb(
         Rosenbrock,
         xRange=[0, 1.5],
         yRange=[0, 1.5],

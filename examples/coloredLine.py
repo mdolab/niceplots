@@ -2,10 +2,7 @@
 ==============================================================================
 Colored line plotting example
 ==============================================================================
-@File    :   coloredLine.py
-@Date    :   2021/09/27
-@Author  :   Alasdair Christison Gray
-@Description : An example of the plotColoredLine function, plotting the sine and cosin functions,
+An example of the plotColoredLine function, plotting the sine and cosine functions,
 colored by their derivatives
 """
 

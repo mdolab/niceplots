@@ -401,18 +401,17 @@ def plotOptProb(
 
     Returns
     -------
-    fig : matplotlib figure object, but only if no ax object is specified
-        Figure containing the plot
-    ax : matplotlib axes object
-        Axis with the colored line
+    fig : matplotlib figure object
+        Figure containing the plot. Returned only if no input ax object is specified
+    ax : matplotlib axes object, but only if no ax object is specified
+        Axis with the colored line. Returned only if no input ax object is specified
     """
 
     # --- Create a new figure if the user did not supply an ax object ---
+    returnFig = False
     if ax is None:
         fig, ax = plt.subplots()
         returnFig = True
-    else:
-        returnFig = False
 
     # --- If user provided only single inequality or equality constraint, convert it to an iterable  ---
     cons = {}
@@ -495,7 +494,7 @@ def plotOptProb(
     if returnFig:
         return fig, ax
     else:
-        return ax
+        return
 
 
 def plotColoredLine(x, y, c, cmap=None, fig=None, ax=None, addColorBar=False, cRange=None, cBarLabel=None, **kwargs):
@@ -525,15 +524,14 @@ def plotColoredLine(x, y, c, cmap=None, fig=None, ax=None, addColorBar=False, cR
     Returns
     -------
     ax : matplotlib axes object
-        Axis with the colored line
+        Axis with the colored line. Returned only if no input ax object is specified
     fig : matplotlib figure object
-        Figure containing the plot
+        Figure containing the plot. Returned only if no input ax object is specified
     """
+    returnFig = False
     if ax is None or fig is None:
         fig, ax = plt.subplots()
         returnFig = True
-    else:
-        returnFig = False
 
     if cmap is None:
         cmap = parula_map
