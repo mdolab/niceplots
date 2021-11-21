@@ -521,7 +521,15 @@ def plotOptProb(
 
     # --- Plot optimal point if provided ---
     if optPoint is not None:
-        ax.plot(optPoint[0], optPoint[1], "o", color="black", markeredgecolor=ax.get_facecolor(), markersize=10, clip_on=False)
+        ax.plot(
+            optPoint[0],
+            optPoint[1],
+            "o",
+            color="black",
+            markeredgecolor=ax.get_facecolor(),
+            markersize=10,
+            clip_on=False,
+        )
 
     # --- Label axes if required ---
     if labelAxes:
