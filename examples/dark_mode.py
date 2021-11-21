@@ -2,7 +2,9 @@
 ==============================================================================
 Dark mode plotting example
 ==============================================================================
-An example of dark mode usage applied to some of the existing examples.
+An example of dark mode usage applied to some of the existing examples. Shows
+various usage of the dark_mode and set_dark_background in
+niceplots.setRCParams().
 """
 
 # ==============================================================================
