@@ -10,8 +10,24 @@ from matplotlib.collections import LineCollection
 import warnings
 
 
-def setRCParams():
-    # Set some defaults for generating nice, Doumont-esque, plots
+def setRCParams(dark_mode=False, set_dark_background=False):
+    """
+    Set some defaults for generating nice, Doumont-esque plots.
+
+    Inputs
+    ------
+    dark_mode (optional) : bool
+        If true, sets axes, labels, etc. to white so the plot
+        can be used on a dark background.
+        NOTE: Unless you are explicitly saving the plot with
+        a transparent background (e.g. as a png with
+        transparent=True), also set the
+        set_dark_background option.
+    set_dark_background (optional) : bool or str
+        If true, sets the axis and figure backgrounds to black.
+        This option can also be set to a color string, such as
+        "#aaaaaa", to use a color other than black.
+    """
     plt.rcParams["font.family"] = "sans-serif"
     plt.rcParams["font.sans-serif"] = ["CMU Bright"]
     plt.rcParams["axes.unicode_minus"] = False
@@ -41,12 +57,33 @@ def setRCParams():
 
     niceColors = get_niceColors()
     plt.rcParams["axes.prop_cycle"] = cycler("color", niceColors.values())
-    plt.rcParams["axes.edgecolor"] = niceColors["Grey"]
-    plt.rcParams["text.color"] = niceColors["Grey"]
-    plt.rcParams["axes.labelcolor"] = niceColors["Grey"]
+
+    # Color for axes, labels, ticks, text, etc.
+    color = niceColors["Grey"]
+    if dark_mode:
+        plt.rcParams["patch.edgecolor"] = "#000000"
+        color = "#ffffff"  # white
+
+    plt.rcParams["axes.edgecolor"] = color
+    plt.rcParams["text.color"] = color
+    plt.rcParams["axes.labelcolor"] = color
     plt.rcParams["axes.labelweight"] = 200
-    plt.rcParams["xtick.color"] = niceColors["Grey"]
-    plt.rcParams["ytick.color"] = niceColors["Grey"]
+    plt.rcParams["xtick.color"] = color
+    plt.rcParams["ytick.color"] = color
+
+    # Set the axis and figure background color if necessary
+    if isinstance(set_dark_background, bool):
+        if set_dark_background:
+            # Set background to black
+            plt.rcParams["axes.facecolor"] = "#000000"
+            plt.rcParams["figure.facecolor"] = "#000000"
+    elif isinstance(set_dark_background, str):
+        # Set background to set_dark_background
+        plt.rcParams["axes.facecolor"] = set_dark_background
+        plt.rcParams["figure.facecolor"] = set_dark_background
+        plt.rcParams["patch.edgecolor"] = set_dark_background
+    else:
+        raise TypeError(f"set_dark_background value of {set_dark_background} is invalid")
 
 
 def get_niceColors():
@@ -320,7 +357,7 @@ def stacked_plots(
                     xdata,
                     ydata,
                     clip_on=False,
-                    edgecolors="white",
+                    edgecolors=axarr[i].get_facecolor(),
                     s=100 * line_scaler ** 2,
                     lw=1.5 * line_scaler,
                     zorder=100,
@@ -484,7 +521,15 @@ def plotOptProb(
 
     # --- Plot optimal point if provided ---
     if optPoint is not None:
-        ax.plot(optPoint[0], optPoint[1], "o", color="black", markeredgecolor="w", markersize=10, clip_on=False)
+        ax.plot(
+            optPoint[0],
+            optPoint[1],
+            "o",
+            color="black",
+            markeredgecolor=ax.get_facecolor(),
+            markersize=10,
+            clip_on=False,
+        )
 
     # --- Label axes if required ---
     if labelAxes:
