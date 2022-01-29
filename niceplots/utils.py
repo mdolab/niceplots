@@ -94,7 +94,7 @@ def get_niceColors():
     niceColors["Red"] = "#E21A1A"
     niceColors["Green"] = "#00a650ff"
     niceColors["Maroon"] = "#800000ff"
-    niceColors["Orange"] = "#E64616"
+    niceColors["Orange"] = "#ff7f0e"
     niceColors["Purple"] = "#800080ff"
     niceColors["Cyan"] = "#00A6D6"
     niceColors["Grey"] = "#5a5758ff"
