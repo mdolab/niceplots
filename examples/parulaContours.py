@@ -25,7 +25,7 @@ niceColors = niceplots.get_niceColors()
 
 
 def f(x1, x2):
-    return x1 ** 3 + 2.0 * x1 * x2 ** 2 - x2 ** 3 - 20.0 * x1
+    return x1**3 + 2.0 * x1 * x2**2 - x2**3 - 20.0 * x1
 
 
 x1 = x2 = np.linspace(-5, 5, 201)

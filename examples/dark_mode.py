@@ -51,7 +51,7 @@ for i, back in enumerate(bkgnd):
     niceplots.setRCParams(dark_mode=True, set_dark_background=back)
 
     def f(x1, x2):
-        return x1 ** 3 + 2.0 * x1 * x2 ** 2 - x2 ** 3 - 20.0 * x1
+        return x1**3 + 2.0 * x1 * x2**2 - x2**3 - 20.0 * x1
 
     x1 = x2 = np.linspace(-5, 5, 201)
     X1, X2 = np.meshgrid(x1, x2)
