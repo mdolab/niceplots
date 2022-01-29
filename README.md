@@ -17,7 +17,7 @@
 Niceplots will try and use the [computer modern bright](https://tug.org/FontCatalogue/computermodernbright/) font for the best looking plots so be sure to install it as a system font if you want to recreate the style of the plots above.
 Otherwise, niceplots will still work but revert back to the matplotlib default sans-serif font, DejaVu Sans.
 
-To install the font, run the following commands:
+To install the font on Ubuntu, run the following commands:
 ```
 sudo apt-get update
 sudo apt-get install fonts-cmu
