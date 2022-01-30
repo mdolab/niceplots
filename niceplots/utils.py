@@ -56,7 +56,7 @@ def setRCParams(dark_mode=False, set_dark_background=False):
     plt.rcParams["lines.linewidth"] = 2.0
 
     niceColors = get_niceColors()
-    plt.rcParams["axes.prop_cycle"] = cycler("color", niceColors.values()[:-2])
+    plt.rcParams["axes.prop_cycle"] = cycler("color", list(niceColors.values())[:-2])
 
     # Color for axes, labels, ticks, text, etc.
     color = niceColors["Grey"]
