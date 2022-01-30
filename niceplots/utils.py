@@ -362,7 +362,7 @@ def stacked_plots(
                     ydata,
                     clip_on=False,
                     edgecolors=axarr[i].get_facecolor(),
-                    s=100 * line_scaler ** 2,
+                    s=100 * line_scaler**2,
                     lw=1.5 * line_scaler,
                     zorder=100,
                     color=colors[j],
