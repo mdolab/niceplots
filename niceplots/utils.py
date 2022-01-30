@@ -98,6 +98,9 @@ def get_niceColors():
     niceColors["Purple"] = "#800080ff"
     niceColors["Cyan"] = "#00A6D6"
     niceColors["Black"] = "#000000ff"
+    # The 2 colours below are not used in the colour cycle as they are too close to the other colours.
+    # Grey is kept in the dictionary as it is used as the default axis/tick colour.
+    # RedOrange is the old Orange, and is kept because I think it looks nice.
     niceColors["Grey"] = "#5a5758ff"
     niceColors["RedOrange"] = "#E21A1A"
 
