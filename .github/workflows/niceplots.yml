@@ -50,7 +50,7 @@ jobs:
         python-version: ${{ matrix.python-version }}
     - name: Install dependencies
       run: |
-        pip install black
+        pip install black==22.1.0
     - name: Format with black
       run: |
         black . --check --diff -l 120 --target-version ${{ matrix.blackFlag }};
