@@ -26,23 +26,23 @@ niceColors = niceplots.get_niceColors()
 
 
 def Rosenbrock(x, y):
-    return (1 - x) ** 2 + 100 * (y - x**2) ** 2
+    return (1 - x) ** 2 + 100 * (y - x ** 2) ** 2
 
 
 def circleCon1(x, y):
-    return x**2 + y**2 - 2
+    return x ** 2 + y ** 2 - 2
 
 
 def circleCon2(x, y):
-    return (x - 1.5) ** 2 + y**2 - 2
+    return (x - 1.5) ** 2 + y ** 2 - 2
 
 
 def circleCon3(x, y):
-    return x**2 + (y - 1.5) ** 2 - 2
+    return x ** 2 + (y - 1.5) ** 2 - 2
 
 
 def eqCon(x, y):
-    return x - y**2
+    return x - y ** 2
 
 
 # --- Some fake optimiser path ---
