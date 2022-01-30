@@ -56,7 +56,7 @@ def setRCParams(dark_mode=False, set_dark_background=False):
     plt.rcParams["lines.linewidth"] = 2.0
 
     niceColors = get_niceColors()
-    plt.rcParams["axes.prop_cycle"] = cycler("color", niceColors.values())
+    plt.rcParams["axes.prop_cycle"] = cycler("color", list(niceColors.values())[:-2])
 
     # Color for axes, labels, ticks, text, etc.
     color = niceColors["Grey"]
@@ -94,11 +94,15 @@ def get_niceColors():
     niceColors["Red"] = "#E21A1A"
     niceColors["Green"] = "#00a650ff"
     niceColors["Maroon"] = "#800000ff"
-    niceColors["Orange"] = "#E64616"
+    niceColors["Orange"] = "#ff8f00"
     niceColors["Purple"] = "#800080ff"
     niceColors["Cyan"] = "#00A6D6"
-    niceColors["Grey"] = "#5a5758ff"
     niceColors["Black"] = "#000000ff"
+    # The 2 colours below are not used in the colour cycle as they are too close to the other colours.
+    # Grey is kept in the dictionary as it is used as the default axis/tick colour.
+    # RedOrange is the old Orange, and is kept because I think it looks nice.
+    niceColors["Grey"] = "#5a5758ff"
+    niceColors["RedOrange"] = "#E21A1A"
 
     return niceColors
 
@@ -358,7 +362,7 @@ def stacked_plots(
                     ydata,
                     clip_on=False,
                     edgecolors=axarr[i].get_facecolor(),
-                    s=100 * line_scaler ** 2,
+                    s=100 * line_scaler**2,
                     lw=1.5 * line_scaler,
                     zorder=100,
                     color=colors[j],
