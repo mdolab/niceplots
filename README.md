@@ -22,6 +22,8 @@ To install the font on Ubuntu, run the following commands:
 sudo apt-get update
 sudo apt-get install fonts-cmu
 ```
+Arch linux users can get the font by installing the `otf-cm-unicode` package from AUR.
+
 If niceplots doesn't recognize the font, it might be necessary to delete Matplotlib's font cache file from its location on your computer, likely in `~/.cache/matplotlib`
 
 ### How do I get set up?
