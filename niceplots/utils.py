@@ -620,7 +620,7 @@ def plotColoredLine(x, y, c, cmap=None, fig=None, ax=None, addColorBar=False, cR
         return
 
 
-def all():
+def All():
     """Runs commonly called functions provided in this module."""
     adjust_spines()
     draggable_legend()
