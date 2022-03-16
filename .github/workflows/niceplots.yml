@@ -4,79 +4,39 @@ name: niceplots
 
 on:
   push:
-    branches: [ master ]
+    branches: [main]
   pull_request:
-    branches: [ master ]
+    branches: [main]
 
 jobs:
-  lint-check:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        include:
-          - python-version: 3.7
-          - python-version: 3.8
-          - python-version: 3.9
-    steps:
-    - uses: actions/checkout@v2
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v2
-      with:
-        python-version: ${{ matrix.python-version }}
-    - name: Install dependencies
-      run: |
-        pip install flake8
-    - name: Lint with flake8
-      run: |
-        wget https://raw.githubusercontent.com/mdolab/.github/master/.flake8;
-        flake8 . --count --show-source --statistics;
+  format:
+    uses: mdolab/.github/.github/workflows/format.yaml@add-GHA-templates
 
-  format-check:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        include:
-          - python-version: 3.7
-            blackFlag: "py37"
-          - python-version: 3.8
-            blackFlag: "py38"
-          - python-version: 3.9
-            blackFlag: "py39"
-    steps:
-    - uses: actions/checkout@v2
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v2
-      with:
-        python-version: ${{ matrix.python-version }}
-    - name: Install dependencies
-      run: |
-        pip install black==22.1.0
-    - name: Format with black
-      run: |
-        black . --check --diff -l 120 --target-version ${{ matrix.blackFlag }};
+  lint:
+    uses: mdolab/.github/.github/workflows/lint.yaml@add-GHA-templates
 
   test:
     runs-on: ubuntu-latest
     strategy:
       matrix:
         python-version: [3.7, 3.8, 3.9]
-        numpy-version: ['1.16.6', '1.18.5']
-        mpl-version: ['3.2.*', '3.3.*', '3.4.*']
+        numpy-version: ["1.16.6", "1.18.5"]
+        mpl-version: ["3.2.*", "3.3.*", "3.4.*"]
     steps:
-    - uses: actions/checkout@v2
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v2
-      with:
-        python-version: ${{ matrix.python-version }}
-    - name: Install dependencies
-      run: |
-        sudo apt-get install fonts-cmu
-        pip install --upgrade pip wheel
-        pip install numpy==${{ matrix.numpy-version }}
-        pip install matplotlib==${{ matrix.mpl-version }}
-        pip install .
-    - name: Test examples
-      run: |
-        # this is very janky for now
-        cd examples
-        bash testExamples.sh
+      - uses: actions/checkout@v2
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install dependencies
+        run: |
+          sudo apt-get install fonts-cmu
+          pip install --upgrade pip wheel
+          pip install numpy==${{ matrix.numpy-version }}
+          pip install matplotlib==${{ matrix.mpl-version }}
+          pip install .
+      - name: Test examples
+        run: |
+          # this is very janky for now
+          cd examples
+          bash testExamples.sh
