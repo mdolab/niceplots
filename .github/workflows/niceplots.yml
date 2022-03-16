@@ -10,10 +10,10 @@ on:
 
 jobs:
   format:
-    uses: mdolab/.github/.github/workflows/format.yaml@add-GHA-templates
+    uses: mdolab/.github/.github/workflows/format.yaml
 
   lint:
-    uses: mdolab/.github/.github/workflows/lint.yaml@add-GHA-templates
+    uses: mdolab/.github/.github/workflows/lint.yaml
 
   test:
     runs-on: ubuntu-latest
