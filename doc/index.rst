@@ -9,7 +9,7 @@ Welcome to niceplots's documentation!
 
 .. toctree::
    :maxdepth: 2
-   :caption: Galleries:
+   :caption: Table of contents:
 
+   API
    auto_examples/index
-
