@@ -1,0 +1,2 @@
+sphinx_mdolab_theme
+sphinx-gallery
