@@ -1,7 +1,6 @@
 """
-==============================================================================
-Colored line plotting example
-==============================================================================
+Colored line plotting
+=====================
 An example of the plotColoredLine function, plotting the sine and cosine functions,
 colored by their derivatives
 """

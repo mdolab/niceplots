@@ -1,11 +1,7 @@
 """
-==============================================================================
 Parula colormap example
-==============================================================================
-@File    :   parulaContours.py
-@Date    :   2021/02/05
-@Author  :   Alasdair Gray
-@Description : Demonstrate niceplot's parula colormap on a simple contour plot
+=======================
+Demonstrate niceplot's Parula colormap on a simple contour plot
 """
 
 # ==============================================================================

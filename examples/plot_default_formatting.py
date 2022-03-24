@@ -1,11 +1,7 @@
 """
-==============================================================================
-Niceplots default formatting
-==============================================================================
-@File    :   default_formatting.py
-@Date    :   2021/02/04
-@Author  :   Alasdair Gray
-@Description : A short example to demonstrate the use of niceplots default plot formatting and compre it to matplotlib defaults
+Default formatting
+==================
+A short example to demonstrate the use of niceplots default plot formatting and compre it to matplotlib defaults
 """
 
 import numpy as np

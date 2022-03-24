@@ -1,9 +1,8 @@
 """
-==============================================================================
-Optimization problem plotting example
-==============================================================================
-An example of how to use the plotOptProb function to plot a constrained 2D optimization problem.
-This example plots the 2D rosenbrock function with a quadratic equlity constraint and 3 circular inequality
+Plotting optimization problem
+=============================
+An example of how to use the :func:`plotOptProb` function to plot a constrained 2D optimization problem.
+This example plots the 2D Rosenbrock function with a quadratic equality constraint and 3 circular inequality
 constraints, which has an optimum at (1, 1).
 """
 
