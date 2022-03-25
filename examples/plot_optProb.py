@@ -1,7 +1,7 @@
 """
 Plotting optimization problem
 =============================
-An example of how to use the :func:`plotOptProb` function to plot a constrained 2D optimization problem.
+An example of how to use the :func:`niceplots.utils.plotOptProb` function to plot a constrained 2D optimization problem.
 This example plots the 2D Rosenbrock function with a quadratic equality constraint and 3 circular inequality
 constraints, which has an optimum at (1, 1).
 """
