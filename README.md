@@ -36,7 +36,7 @@ If niceplots doesn't recognize the font, it might be necessary to delete Matplot
 
 ### Do you have docs?
 
-Sort of, you can find our examples gallery and api documentation [here](https://mdolab-niceplots.readthedocs-hosted.com/en/latest/?badge=latest)
+Sort of, you can find our examples gallery and api documentation [here](https://mdolab-niceplots.readthedocs-hosted.com/en/latest)
 
 ### Contribution guidelines
 
