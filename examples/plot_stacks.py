@@ -1,3 +1,9 @@
+"""
+Stacked plots
+=============
+An example of a stacked plot.
+"""
+
 import numpy as np
 import matplotlib.pyplot as plt
 import niceplots

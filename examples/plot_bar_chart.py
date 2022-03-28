@@ -1,3 +1,8 @@
+"""
+Bar chart
+=========
+An example of a bar chart.
+"""
 import random
 import matplotlib.pyplot as plt
 from niceplots import horiz_bar
