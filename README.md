@@ -2,6 +2,7 @@
 ## A collection of small tweaks to improve Python / plotting
 
 ![Build Status](https://github.com/mdolab/niceplots/workflows/niceplots/badge.svg)
+[![Documentation Status](https://readthedocs.com/projects/mdolab-niceplots/badge/?version=latest)](https://mdolab-niceplots.readthedocs-hosted.com/en/latest/?badge=latest)
 
 <img src="examples/bar_chart.png" width="58.5%" /> <img src="examples/niceplotsPulseResponse.png" width="38.82%" />
 <img src="examples/ParulaContours.png" width="62.22%" /> <img src="examples/optProb-shaded.png" width="35%" />
@@ -32,6 +33,10 @@ If niceplots doesn't recognize the font, it might be necessary to delete Matplot
 * Use `niceplots.setRCParams()` to set some matplotlib defaults for nice looking plots. Set `dark_mode=True` and `set_background_color=True` to make plots with a dark background.
 * Use `niceplots.All()` after all the plot commands to apply the niceplot standards on the figure.
 * To use the Matlab colormap "parula", execute `from niceplots import parula` then use `parula.parula_map` as your colormap within your plotting script. See the contour plot example code for an example of this.
+
+### Do you have docs?
+
+Sort of, you can find our examples gallery and api documentation [here](https://mdolab-niceplots.readthedocs-hosted.com/en/latest/?badge=latest)
 
 ### Contribution guidelines
 
