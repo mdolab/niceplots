@@ -11,8 +11,6 @@ on:
 jobs:
   format:
     uses: mdolab/.github/.github/workflows/format.yaml@main
-    with:
-      black_version: "22.1.0"
 
   lint:
     uses: mdolab/.github/.github/workflows/lint.yaml@main
