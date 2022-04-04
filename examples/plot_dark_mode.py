@@ -24,6 +24,8 @@ import niceplots
 
 # Dark mode with a transparent background, saved to a png
 niceplots.setRCParams(dark_mode=True)
+# The next line sets the thumbnail for the sphinx gallery in docs
+# sphinx_gallery_thumbnail_number = 2
 
 x = np.linspace(0, 2 * np.pi, 100)
 y = np.sin(x)
