@@ -9,11 +9,11 @@ on:
     branches: [main]
 
 jobs:
-  format:
-    uses: mdolab/.github/.github/workflows/format.yaml@main
+  black:
+    uses: mdolab/.github/.github/workflows/black.yaml@main
 
-  lint:
-    uses: mdolab/.github/.github/workflows/lint.yaml@main
+  flake8:
+    uses: mdolab/.github/.github/workflows/flake8.yaml@main
 
   test:
     runs-on: ubuntu-latest
