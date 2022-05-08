@@ -546,7 +546,7 @@ def plotOptProb(
         return
 
 
-def plotColoredLine(x, y, c, cmap=None, fig=None, ax=None, addColorBar=False, cRange=None, cBarLabel=None, **kwargs):
+def plotColoredLine(x, y, c, cmap=None, fig=None, ax=None, addColorBar=False, cRange=None, cBarLabel=None, norm=None, **kwargs):
     """Plot an XY line whose color is determined by some other variable C
 
     Parameters
@@ -569,6 +569,8 @@ def plotColoredLine(x, y, c, cmap=None, fig=None, ax=None, addColorBar=False, cR
         Upper and lower limit for the colormap, by default None, in which case the min and max values of c are used.
     cBarLabel : str, optional
         Label for the colormap, by default None
+    norm : matplotlib.colors.Normalize, optional
+        Specify colormap mapping; both this and cRange cannot be specified, it must be one or the other (or neither)
 
     Returns
     -------
@@ -598,10 +600,10 @@ def plotColoredLine(x, y, c, cmap=None, fig=None, ax=None, addColorBar=False, cR
     points = np.array([data["x"], data["y"]]).T.reshape(-1, 1, 2)
     segments = np.concatenate([points[:-1], points[1:]], axis=1)
 
+    if cRange is not None and norm is not None:
+        raise ValueError("cRange and norm cannot both be specified")
     if cRange is not None:
         norm = plt.Normalize(cRange[0], cRange[1])
-    else:
-        norm = None
     lc = LineCollection(segments, cmap=cmap, norm=norm, **kwargs)
 
     # Set the values used for colormapping
