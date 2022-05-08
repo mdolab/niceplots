@@ -546,7 +546,9 @@ def plotOptProb(
         return
 
 
-def plotColoredLine(x, y, c, cmap=None, fig=None, ax=None, addColorBar=False, cRange=None, cBarLabel=None, norm=None, **kwargs):
+def plotColoredLine(
+    x, y, c, cmap=None, fig=None, ax=None, addColorBar=False, cRange=None, cBarLabel=None, norm=None, **kwargs
+):
     """Plot an XY line whose color is determined by some other variable C
 
     Parameters
