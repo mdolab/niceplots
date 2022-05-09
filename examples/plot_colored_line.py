@@ -40,7 +40,7 @@ fig.savefig("coloredLine.png", dpi=400)
 fig.savefig("coloredLine.pdf")
 
 # Use a custom norm to specify the colormap range
-divnorm = TwoSlopeNorm(vmin=-1., vcenter=0.8, vmax=1.)
+divnorm = TwoSlopeNorm(vmin=-1.0, vcenter=0.8, vmax=1.0)
 fig, ax = niceplots.plotColoredLine(x, y, c, cmap="coolwarm", norm=divnorm)
 niceplots.adjust_spines(ax)
 ax.set_xlabel("$x$")
