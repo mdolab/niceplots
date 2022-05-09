@@ -14,6 +14,7 @@ colored by their derivatives
 # ==============================================================================
 import numpy as np
 import matplotlib.pyplot as plt
+from matplotlib.colors import TwoSlopeNorm
 import niceplots
 
 # ==============================================================================
@@ -28,7 +29,7 @@ c = np.cos(x)
 
 fig, ax = plt.subplots()
 niceplots.plotColoredLine(x, y, c, cmap="coolwarm", fig=fig, ax=ax, addColorBar=True, cRange=None, cBarLabel="$dy/dx$")
-niceplots.plotColoredLine(x, c, -y, cmap="coolwarm", fig=fig, ax=ax, addColorBar=True, cRange=None, cBarLabel="$dy/dx$")
+niceplots.plotColoredLine(x, c, -y, cmap="coolwarm", fig=fig, ax=ax)
 niceplots.adjust_spines(ax)
 ax.set_xlabel("$x$")
 ax.set_ylabel("$y$", rotation="horizontal", ha="right")
@@ -37,4 +38,16 @@ ax.set_xticklabels([0, r"$\frac{\pi}{2}$", r"$\pi$", r"$\frac{3\pi}{2}$", r"$2\p
 ax.set_xlim(0, 2 * np.pi)
 fig.savefig("coloredLine.png", dpi=400)
 fig.savefig("coloredLine.pdf")
+
+# Use a custom norm to specify the colormap range
+divnorm = TwoSlopeNorm(vmin=-1.0, vcenter=0.8, vmax=1.0)
+fig, ax = niceplots.plotColoredLine(x, y, c, cmap="coolwarm", norm=divnorm, addColorBar=False, cBarLabel="$dy/dx$")
+niceplots.adjust_spines(ax)
+ax.set_xlabel("$x$")
+ax.set_ylabel("$y$", rotation="horizontal", ha="right")
+ax.set_xticks(np.linspace(0, 2, 5) * np.pi)
+ax.set_xticklabels([0, r"$\frac{\pi}{2}$", r"$\pi$", r"$\frac{3\pi}{2}$", r"$2\pi$"])
+ax.set_xlim(0, 2 * np.pi)
+fig.savefig("coloredLineCustomNorm.png", dpi=400)
+fig.savefig("coloredLineCustomNorm.pdf")
 # plt.show()
