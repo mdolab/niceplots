@@ -29,7 +29,7 @@ c = np.cos(x)
 
 fig, ax = plt.subplots()
 niceplots.plotColoredLine(x, y, c, cmap="coolwarm", fig=fig, ax=ax, addColorBar=True, cRange=None, cBarLabel="$dy/dx$")
-niceplots.plotColoredLine(x, c, -y, cmap="coolwarm", fig=fig, ax=ax, addColorBar=True, cRange=None, cBarLabel="$dy/dx$")
+niceplots.plotColoredLine(x, c, -y, cmap="coolwarm", fig=fig, ax=ax)
 niceplots.adjust_spines(ax)
 ax.set_xlabel("$x$")
 ax.set_ylabel("$y$", rotation="horizontal", ha="right")
@@ -41,7 +41,7 @@ fig.savefig("coloredLine.pdf")
 
 # Use a custom norm to specify the colormap range
 divnorm = TwoSlopeNorm(vmin=-1.0, vcenter=0.8, vmax=1.0)
-fig, ax = niceplots.plotColoredLine(x, y, c, cmap="coolwarm", norm=divnorm)
+fig, ax = niceplots.plotColoredLine(x, y, c, cmap="coolwarm", norm=divnorm, addColorBar=False, cRange=None, cBarLabel="$dy/dx$")
 niceplots.adjust_spines(ax)
 ax.set_xlabel("$x$")
 ax.set_ylabel("$y$", rotation="horizontal", ha="right")
