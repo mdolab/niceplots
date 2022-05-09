@@ -576,10 +576,10 @@ def plotColoredLine(
 
     Returns
     -------
-    ax : matplotlib axes object
-        Axis with the colored line. Returned only if no input ax object is specified
     fig : matplotlib figure object
         Figure containing the plot. Returned only if no input ax object is specified
+    ax : matplotlib axes object
+        Axis with the colored line. Returned only if no input ax object is specified
     """
     returnFig = False
     if ax is None or fig is None:
