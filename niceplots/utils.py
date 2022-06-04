@@ -755,7 +755,6 @@ def plotNestedPie(
         "labels": outerLabels,
         "rotatelabels": False,
         "labeldistance": 0.85,
-
     }
     innerKwargDefaults = {
         "radius": 1.0 - size - buffer,
