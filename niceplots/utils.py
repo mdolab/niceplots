@@ -730,7 +730,7 @@ def plotNestedPie(
     innerColors = [colors[i] for i in range(len(data))]
     outerColors = []
     iCat = 0
-    for cat, catVals in data.items():
+    for catVals in data.values():
         numSubcats = len(catVals)
         for iSubcat in range(numSubcats):
             outerColors.append(colors[iCat] + float.hex(alphas[iSubcat])[4:6])
