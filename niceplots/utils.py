@@ -1,5 +1,4 @@
 from __future__ import division
-from msilib.schema import ODBCSourceAttribute
 import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib.lines import Line2D
@@ -699,7 +698,7 @@ def plotNestedPie(
 
     # Go through the colors and only take the color information (not transparency)
     for i in range(len(colors)):
-        if colors[0] != "#":
+        if colors[i][0] != "#":
             raise ValueError("Colors specified as a string must start with a #")
         colors[i] = colors[i][0:7]
 
@@ -726,14 +725,16 @@ def plotNestedPie(
 
     # Define alphas if not specified
     if alphas is None:
-        alphas = np.linspace(0.4, 0.95, maxSubcat)[-1::-1]
+        alphas = np.linspace(0.75, 0.95, maxSubcat)[-1::-1]
 
     innerColors = [colors[i] for i in range(len(data))]
     outerColors = []
-    for iCat, cat in enumerate(outerVals):
-        numSubcats = len(data[cat])
+    iCat = 0
+    for cat, catVals in data.items():
+        numSubcats = len(catVals)
         for iSubcat in range(numSubcats):
             outerColors.append(colors[iCat] + float.hex(alphas[iSubcat])[4:6])
+        iCat += 1
 
     # Nested plot fitting params
     size = 0.3
@@ -753,6 +754,8 @@ def plotNestedPie(
         "textprops": dict(rotation_mode="anchor", va="center", ha="center", color="w"),
         "labels": outerLabels,
         "rotatelabels": False,
+        "labeldistance": 0.85,
+
     }
     innerKwargDefaults = {
         "radius": 1.0 - size - buffer,
@@ -761,6 +764,7 @@ def plotNestedPie(
         "textprops": dict(rotation_mode="anchor", va="center", ha="center", color="w"),
         "labels": innerLabels,
         "rotatelabels": False,
+        "labeldistance": 0.75,
     }
 
     # Update kwargs
