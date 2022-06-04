@@ -627,7 +627,13 @@ def plotColoredLine(
 
 
 def plotNestedPie(
-    data, colors=None, alphas=None, fig=None, ax=None, innerKwargs={}, outerKwargs={},
+    data,
+    colors=None,
+    alphas=None,
+    fig=None,
+    ax=None,
+    innerKwargs={},
+    outerKwargs={},
 ):
     """Create a two-level pie chart where the inner pie chart is a sum of related categories from the outer one.
     The labels are by default set to the keys in the data dictionary.
@@ -654,6 +660,10 @@ def plotNestedPie(
         by default will use nice colors (niceplots default)
     alphas : iterable of floats at least as long as the max number of subcategories for a given category
         Transparencies to use to vary the color in the outer categories
+    fig : matplotlib figure object, optional
+        figure to plot on, by default None, in which case a new figure will be created and returned by the function
+    ax : matplotlib axes object, optional
+        axes to plot on, by default None, in which case a new figure will be created and returned by the function
     innerKwargs : dict
         Dictionary of keyword arguments to pass to matplotlib.pyplot.pie for the inner pie chart. "color" and "radius"
         are important ones for the nested pie chart and I recommend not touching those unless you know what you're
@@ -664,10 +674,6 @@ def plotNestedPie(
         are important ones for the nested pie chart and I recommend not touching those unless you know what you're
         doing. labels, rotatelabels, wedgeprops, and textprops are also all set by default in this function, but
         can be overridden using this parameter
-    fig : matplotlib figure object, optional
-        figure to plot on, by default None, in which case a new figure will be created and returned by the function
-    ax : matplotlib axes object, optional
-        axes to plot on, by default None, in which case a new figure will be created and returned by the function
 
     Returns
     -------
@@ -702,11 +708,11 @@ def plotNestedPie(
     innerLabels = []
     outerVals = []
     outerLabels = []
-    total = 0.
-    maxSubcat = 0.
+    total = 0.0
+    maxSubcat = 0.0
     for cat, val in data.items():  # top level categories
         innerLabels.append(cat)
-        innerVals.append(0.)
+        innerVals.append(0.0)
 
         # Max number of subcategories for a given category
         maxSubcat = max(maxSubcat, len(val))
@@ -728,7 +734,7 @@ def plotNestedPie(
         numSubcats = len(data[cat])
         for iSubcat in range(numSubcats):
             outerColors.append(colors[iCat] + float.hex(alphas[iSubcat])[4:6])
-    
+
     # Nested plot fitting params
     size = 0.3
     buffer = 0.01
@@ -741,7 +747,7 @@ def plotNestedPie(
 
     # Set keyword arguments
     outerKwargDefaults = {
-        "radius": 1.,
+        "radius": 1.0,
         "colors": outerColors,
         "wedgeprops": dict(width=size, edgecolor=None),
         "textprops": dict(rotation_mode="anchor", va="center", ha="center", color="w"),
@@ -749,7 +755,7 @@ def plotNestedPie(
         "rotatelabels": False,
     }
     innerKwargDefaults = {
-        "radius": 1. - size - buffer,
+        "radius": 1.0 - size - buffer,
         "colors": innerColors,
         "wedgeprops": dict(width=size, edgecolor=None),
         "textprops": dict(rotation_mode="anchor", va="center", ha="center", color="w"),
