@@ -629,10 +629,9 @@ def plotNestedPie(
     data,
     colors=None,
     alphas=None,
-    fig=None,
     ax=None,
-    innerKwargs={},
-    outerKwargs={},
+    innerKwargs=None,
+    outerKwargs=None,
 ):
     """Create a two-level pie chart where the inner pie chart is a sum of related categories from the outer one.
     The labels are by default set to the keys in the data dictionary.
@@ -659,8 +658,6 @@ def plotNestedPie(
         by default will use nice colors (niceplots default)
     alphas : iterable of floats at least as long as the max number of subcategories for a given category
         Transparencies to use to vary the color in the outer categories
-    fig : matplotlib figure object, optional
-        figure to plot on, by default None, in which case a new figure will be created and returned by the function
     ax : matplotlib axes object, optional
         axes to plot on, by default None, in which case a new figure will be created and returned by the function
     innerKwargs : dict
@@ -676,14 +673,24 @@ def plotNestedPie(
 
     Returns
     -------
-    innerWedges : list of matplotlib.patches.Wedge objects
-        Wedges for the inner pie plot
-    innerText : list of matplotlib Text objects
-        Text objects for the inner pie plot labels
-    outerWedges : list of matplotlib.patches.Wedge objects
-        Wedges for the outer pie plot
-    outerText : list of matplotlib Text objects
-        Text objects for the outer pie plot labels
+    pieObjects : dict of matplotlib.patches.Wedge and matplotlib Text objects
+        Wedges and text objects for the pie plot, formatted similarly to the input data dict::
+
+            {
+                "Category 1": {
+                    "wedge": Category 1 wedge
+                    "text": Category 1 text
+                    "Subcategory 1": {"wedge": Subcategory 1 wedge, "text": Subcategory 1 wedge},
+                    "Subcategory 2": {"wedge": Subcategory 2 wedge, "text": Subcategory 2 wedge},
+                },
+                "Category 2": {
+                    "wedge": Category 2 wedge
+                    "text": Category 2 text
+                    "Subcategory 1": {"wedge": Subcategory 1 wedge, "text": Subcategory 1 wedge},
+                },
+                ...
+            }
+
     fig : matplotlib figure object
         Figure containing the plot. Returned only if no input ax object is specified
     ax : matplotlib axes object
@@ -742,7 +749,7 @@ def plotNestedPie(
 
     # Create figure if it's not passed in
     returnFig = False
-    if ax is None or fig is None:
+    if ax is None:
         fig, ax = plt.subplots()
         returnFig = True
 
@@ -765,6 +772,8 @@ def plotNestedPie(
         "rotatelabels": False,
         "labeldistance": 0.75,
     }
+    outerKwargs = {} if outerKwargs is None else outerKwargs
+    innerKwargs = {} if innerKwargs is None else innerKwargs
 
     # Update kwargs
     for outerKey, outerKwargVal in outerKwargDefaults.items():
@@ -780,10 +789,26 @@ def plotNestedPie(
 
     ax.set(aspect="equal")
 
+    # Compile the wedge and text objects into the output dictionary
+    pieObjects = {}
+    iSubcat = 0
+    for i, cat in enumerate(data.keys()):
+        pieObjects[cat] = {
+            "wedge": innerWedges[i],
+            "text": innerText[i],
+        }
+
+        for subcat in data[cat].keys():
+            pieObjects[cat][subcat] = {
+                "wedge": outerWedges[iSubcat],
+                "text": outerText[iSubcat],
+            }
+            iSubcat += 1
+
     if returnFig:
-        return innerWedges, innerText, outerWedges, outerText, fig, ax
+        return pieObjects, fig, ax
     else:
-        return innerWedges, innerText, outerWedges, outerText
+        return pieObjects
 
 
 def All():

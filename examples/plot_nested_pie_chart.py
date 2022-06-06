@@ -19,7 +19,7 @@ data = {
         "Soup": 4,
     },
     "Pizza": {
-        "Plain": 14,
+        "Cheese": 14,
         "White": 5,
         "Veggie": 12,
     },
@@ -29,8 +29,16 @@ data = {
 colors = ["#e86492", "#f0a43a", "#56b2f0"]
 
 fig, ax = plt.subplots(figsize=(13, 8))
-plotNestedPie(data, colors=colors, fig=fig, ax=ax)
+pieObjects = plotNestedPie(data, colors=colors, ax=ax)
 ax.set_title("The best pies")
+
+# Customize one of the wedges...
+pieObjects["Pizza"]["Cheese"]["wedge"].set_radius(1.1)
+pieObjects["Pizza"]["Cheese"]["wedge"].set_width(.4)
+
+# ...and its text
+pieObjects["Pizza"]["Cheese"]["text"].set_weight("bold")
+pieObjects["Pizza"]["Cheese"]["text"].set_x(-0.82)
 
 plt.savefig("nested_pie_chart.pdf", bbox_inches="tight")
 plt.savefig("nested_pie_chart.png", dpi=400, bbox_inches="tight")
