@@ -34,7 +34,7 @@ ax.set_title("The best pies")
 
 # Customize one of the wedges...
 pieObjects["Pizza"]["Cheese"]["wedge"].set_radius(1.1)
-pieObjects["Pizza"]["Cheese"]["wedge"].set_width(.4)
+pieObjects["Pizza"]["Cheese"]["wedge"].set_width(0.4)
 
 # ...and its text
 pieObjects["Pizza"]["Cheese"]["text"].set_weight("bold")
