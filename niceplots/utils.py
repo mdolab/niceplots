@@ -244,7 +244,6 @@ def horiz_bar(labels, times, header, ts=1, nd=1, size=[5, 0.5], color=None):
     # Playing with these values here can help with label alignment
     left_lim = -ts * l_max * 0.038 * t_max
     right_lim = t_max * 1.11
-    right_text_x = right_lim * 1.15
 
     # Loop over each time and get the max number of digits
     t_max_digits = 0
@@ -287,8 +286,8 @@ def horiz_bar(labels, times, header, ts=1, nd=1, size=[5, 0.5], color=None):
 
         # Create border graphics if this is the top bar line
         if j == 0:
-            ax.text(left_lim, 1.02, header[0], ha="left")
-            ax.text(right_text_x, 1.02, header[1], ha="right")
+            ax.text(0, 1.02, header[0], ha="right")
+            ax.text(t_max, 1.02, header[1], ha="left")
 
             line = Line2D(
                 [left_lim, right_lim + t_max * (0.15 + nd * 0.03)],
