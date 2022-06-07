@@ -43,4 +43,5 @@ jobs:
 
   # --- publish to PyPI
   pypi:
+    needs: [test, flake8, black]
     uses: mdolab/.github/.github/workflows/pypi.yaml@main
