@@ -40,3 +40,7 @@ jobs:
           # this is very janky for now
           cd examples
           bash testExamples.sh
+
+  # --- publish to PyPI
+  pypi:
+    uses: mdolab/.github/.github/workflows/pypi.yaml@main
