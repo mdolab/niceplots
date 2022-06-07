@@ -5,6 +5,8 @@ name: niceplots
 on:
   push:
     branches: [main]
+    tags:
+      - v*.*.*
   pull_request:
     branches: [main]
 
@@ -40,3 +42,8 @@ jobs:
           # this is very janky for now
           cd examples
           bash testExamples.sh
+
+  # --- publish to PyPI
+  pypi:
+    needs: [test, flake8, black]
+    uses: mdolab/.github/.github/workflows/pypi.yaml@main

@@ -7,6 +7,7 @@ from collections import OrderedDict
 from .parula import parula_map
 from matplotlib import patheffects
 from matplotlib.collections import LineCollection
+import matplotlib.colors as mcolor
 import warnings
 from adjustText import adjust_text
 
@@ -680,6 +681,192 @@ def plotColoredLine(
         return fig, ax
     else:
         return
+
+
+def plotNestedPie(
+    data,
+    colors=None,
+    alphas=None,
+    ax=None,
+    innerKwargs=None,
+    outerKwargs=None,
+):
+    """Create a two-level pie chart where the inner pie chart is a sum of related categories from the outer one.
+    The labels are by default set to the keys in the data dictionary.
+
+    Parameters
+    ----------
+    data : nested dict
+        Data to plot. Formatted as::
+
+            {
+                "Category 1": {
+                    "Subcategory 1": 0.5,
+                    "Subcategory 2": 1.5,
+                },
+                "Category 2": {
+                    "Subcategory 1": 2.5,
+                },
+                ...
+            }
+
+    colors : str or list of str with hex colors, optional
+        Colors to use for the inner wedges. Can either specify a qualitative matplotlib colormap (it will assume
+        this is the case if a string is specified), or a list of colors specified with hex codes (e.g., "#F4A103"),
+        by default will use nice colors (niceplots default)
+    alphas : iterable of floats at least as long as the max number of subcategories for a given category
+        Transparencies to use to vary the color in the outer categories
+    ax : matplotlib axes object, optional
+        axes to plot on, by default None, in which case a new figure will be created and returned by the function
+    innerKwargs : dict
+        Dictionary of keyword arguments to pass to matplotlib.pyplot.pie for the inner pie chart. "color" and "radius"
+        are important ones for the nested pie chart and I recommend not touching those unless you know what you're
+        doing. labels, rotatelabels, wedgeprops, and textprops are also all set by default in this function, but
+        can be overridden using this parameter
+    outerKwargs : dict
+        Dictionary of keyword arguments to pass to matplotlib.pyplot.pie for the outer pie chart. "color" and "radius"
+        are important ones for the nested pie chart and I recommend not touching those unless you know what you're
+        doing. labels, rotatelabels, wedgeprops, and textprops are also all set by default in this function, but
+        can be overridden using this parameter
+
+    Returns
+    -------
+    pieObjects : dict of matplotlib.patches.Wedge and matplotlib Text objects
+        Wedges and text objects for the pie plot, formatted similarly to the input data dict::
+
+            {
+                "Category 1": {
+                    "wedge": Category 1 wedge
+                    "text": Category 1 text
+                    "Subcategory 1": {"wedge": Subcategory 1 wedge, "text": Subcategory 1 wedge},
+                    "Subcategory 2": {"wedge": Subcategory 2 wedge, "text": Subcategory 2 wedge},
+                },
+                "Category 2": {
+                    "wedge": Category 2 wedge
+                    "text": Category 2 text
+                    "Subcategory 1": {"wedge": Subcategory 1 wedge, "text": Subcategory 1 wedge},
+                },
+                ...
+            }
+
+    fig : matplotlib figure object
+        Figure containing the plot. Returned only if no input ax object is specified
+    ax : matplotlib axes object
+        Axis with the colored line. Returned only if no input ax object is specified
+    """
+    # If colors is not specified, turn the niceColors into a list of hex colors
+    if colors is None:
+        colors = [c for c in get_niceColors().values()]
+    # If colors is given as a qualitative matplotlib colormap, turn it into a list of hex colors
+    elif isinstance(colors, str):
+        colors = [mcolor.rgb2hex(plt.colormaps[colors](i)) for i in range(len(data))]
+
+    # Go through the colors and only take the color information (not transparency)
+    for i in range(len(colors)):
+        if colors[i][0] != "#":
+            raise ValueError("Colors specified as a string must start with a #")
+        colors[i] = colors[i][0:7]
+
+    # Sum categories and collapse subcategories
+    innerVals = []
+    innerLabels = []
+    outerVals = []
+    outerLabels = []
+    total = 0.0
+    maxSubcat = 0.0
+    for cat, val in data.items():  # top level categories
+        innerLabels.append(cat)
+        innerVals.append(0.0)
+
+        # Max number of subcategories for a given category
+        maxSubcat = max(maxSubcat, len(val))
+
+        for subcat, subcatVal in val.items():
+            innerVals[-1] += subcatVal
+            total += subcatVal
+
+            outerVals.append(subcatVal)
+            outerLabels.append(subcat)
+
+    # Define alphas if not specified
+    if alphas is None:
+        alphas = np.linspace(0.75, 0.95, maxSubcat)[-1::-1]
+
+    innerColors = [colors[i] for i in range(len(data))]
+    outerColors = []
+    iCat = 0
+    for catVals in data.values():
+        numSubcats = len(catVals)
+        for iSubcat in range(numSubcats):
+            outerColors.append(colors[iCat] + float.hex(alphas[iSubcat])[4:6])
+        iCat += 1
+
+    # Nested plot fitting params
+    size = 0.3
+    buffer = 0.01
+
+    # Create figure if it's not passed in
+    returnFig = False
+    if ax is None:
+        fig, ax = plt.subplots()
+        returnFig = True
+
+    # Set keyword arguments
+    outerKwargDefaults = {
+        "radius": 1.0,
+        "colors": outerColors,
+        "wedgeprops": dict(width=size, edgecolor=None),
+        "textprops": dict(rotation_mode="anchor", va="center", ha="center", color="w"),
+        "labels": outerLabels,
+        "rotatelabels": False,
+        "labeldistance": 0.85,
+    }
+    innerKwargDefaults = {
+        "radius": 1.0 - size - buffer,
+        "colors": innerColors,
+        "wedgeprops": dict(width=size, edgecolor=None),
+        "textprops": dict(rotation_mode="anchor", va="center", ha="center", color="w"),
+        "labels": innerLabels,
+        "rotatelabels": False,
+        "labeldistance": 0.75,
+    }
+    outerKwargs = {} if outerKwargs is None else outerKwargs
+    innerKwargs = {} if innerKwargs is None else innerKwargs
+
+    # Update kwargs
+    for outerKey, outerKwargVal in outerKwargDefaults.items():
+        if outerKey not in outerKwargs:
+            outerKwargs[outerKey] = outerKwargVal
+    for innerKey, innerKwargVal in innerKwargDefaults.items():
+        if innerKey not in innerKwargs:
+            innerKwargs[innerKey] = innerKwargVal
+
+    # Create the pie charts
+    outerWedges, outerText = ax.pie(outerVals, **outerKwargs)
+    innerWedges, innerText = ax.pie(innerVals, **innerKwargs)
+
+    ax.set(aspect="equal")
+
+    # Compile the wedge and text objects into the output dictionary
+    pieObjects = {}
+    iSubcat = 0
+    for i, cat in enumerate(data.keys()):
+        pieObjects[cat] = {
+            "wedge": innerWedges[i],
+            "text": innerText[i],
+        }
+
+        for subcat in data[cat].keys():
+            pieObjects[cat][subcat] = {
+                "wedge": outerWedges[iSubcat],
+                "text": outerText[iSubcat],
+            }
+            iSubcat += 1
+
+    if returnFig:
+        return pieObjects, fig, ax
+    else:
+        return pieObjects
 
 
 def All():
