@@ -47,3 +47,4 @@ jobs:
   pypi:
     needs: [test, flake8, black]
     uses: mdolab/.github/.github/workflows/pypi.yaml@main
+    secrets: inherit
