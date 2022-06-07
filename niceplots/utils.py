@@ -9,7 +9,6 @@ from matplotlib import patheffects
 from matplotlib.collections import LineCollection
 import matplotlib.colors as mcolor
 import warnings
-from adjustText import adjust_text
 
 
 def setRCParams(dark_mode=False, set_dark_background=False):
@@ -210,60 +209,6 @@ def draggable_legend(axis=None, color_on=True):
             )
         )
         legend[idx].draggable()
-
-
-def auto_place_legend(ax, rel_xloc=None, color_on=True, **kwargs):
-    """
-    This function tries to automatically place legend text
-    close to the respective line and tries to minimize the
-    possible overlap with other lines and text. This function uses
-    a the adjustText module.
-    Inputs:
-        ax : matplotlib axes
-            Single matplotlib axes
-        rel_xloc : list or scalar
-            Relative location (between 0 and 1) on the x axis
-            where to *try* to place the legend text. List has to be the
-            same length as the number of lines in plot.
-            If not specified random location will be chosen.
-        color_on : bool
-            Use the color on the line to color the legend text.
-        kwargs : optional keyword arguments
-            This is intended to tweak the adjustText tool (passed onwards)
-    """
-    nLines = len(ax.lines)
-
-    # If using a scalar generate a full list needed for placing line label
-    if type(rel_xloc) is float:
-        rel_xloc = nLines * [rel_xloc]
-
-    # Loop over the lines in the axes to get line label text and color
-    texts = []
-    for i, line in enumerate(ax.lines):
-
-        # Extract the xy data (numpy Nx2 array) for a given line
-        coords = line.get_xydata()
-
-        # Set the starting x-coordinates of the label either using the
-        # relative locations or randomly
-        if rel_xloc is not None:
-            idx = int(rel_xloc[i] * (coords[:, 0].shape[0] - 1))
-        else:
-            # Select randomly one point from the dataset to place the text
-            idx = np.random.randint(0, coords.shape[0])
-
-        label = line.get_label()
-        # Get the color of each line to set the label color as the same
-        if color_on:
-            color = line.get_color()
-        else:
-            color = "k"
-
-        # Create the text object and place it at this random location on line
-        t = ax.text(coords[idx, 0], coords[idx, 1], label, ha="center", va="center", color=color)
-        texts.append(t)
-
-    adjust_text(texts, ax=ax, **kwargs)
 
 
 def horiz_bar(labels, times, header, ts=1, nd=1, size=[5, 0.5], color=None):
