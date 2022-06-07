@@ -24,6 +24,7 @@ try:
     labels = [rw() for i in range(n)]
     times = [random.random() * random.randint(0, 1000) for i in range(n)]
     nd = 1
+    raise FileNotFoundError
 
 except FileNotFoundError:  # noqa: E722 if user is not on a *nix system
     header = ["Method", "Time (sec)"]
@@ -39,5 +40,5 @@ except FileNotFoundError:  # noqa: E722 if user is not on a *nix system
 
 niceplots.horiz_bar(labels, times, header, nd=nd, size=[7, 0.65])
 
-plt.savefig("bar_chart.pdf", bbox_inches="tight")
-plt.savefig("bar_chart.png", dpi=400, bbox_inches="tight")
+plt.savefig("bar_chart.pdf", bbox_inches="tight", pad_inches=0.25)
+plt.savefig("bar_chart.png", dpi=400, bbox_inches="tight", pad_inches=0.25)
