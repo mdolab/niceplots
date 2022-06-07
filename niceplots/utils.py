@@ -227,8 +227,9 @@ def horiz_bar(labels, times, header, ts=1, nd=1, size=[5, 0.5], color=None):
     """
 
     # Use niceColours yellow if no colour specified
+    niceColours = get_niceColors()
     if color is None:
-        color = get_niceColors()["Yellow"]
+        color = niceColours["Yellow"]
 
     # Obtain parameters to size the chart correctly
     num = len(times)
@@ -256,7 +257,7 @@ def horiz_bar(labels, times, header, ts=1, nd=1, size=[5, 0.5], color=None):
     for j, (l, t, ax) in enumerate(zip(labels, times, axarr)):
 
         # Draw the gray line and singular yellow dot
-        ax.axhline(y=1, c="#C0C0C0", lw=3, zorder=0)
+        ax.axhline(y=1, c=niceColours["Grey"], lw=3, zorder=0, alpha=0.5)
         ax.scatter([t], [1], c=color, lw=0, s=100, zorder=1, clip_on=False)
 
         # Set chart properties
@@ -277,10 +278,12 @@ def horiz_bar(labels, times, header, ts=1, nd=1, size=[5, 0.5], color=None):
         ax.spines["left"].set_visible(False)
         ax.spines["right"].set_visible(False)
         ax.spines["bottom"].set_visible(False)
-        ax.text(left_lim, 1, l, va="center")
+        ax.set_ylabel(l, rotation="horizontal", ha="right", va="center")
         # d = t_max_digits - len(str(int(t)))
         string = "{number:.{digits}f}".format(number=t, digits=nd)
-        ax.text(right_text_x, 1, string, va="center", ha="right")
+        ax.annotate(
+            string, xy=(1, 1), xytext=(6, 0), xycoords=ax.get_yaxis_transform(), textcoords="offset points", va="center"
+        )
 
         # Create border graphics if this is the top bar line
         if j == 0:
