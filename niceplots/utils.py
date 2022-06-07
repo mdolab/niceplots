@@ -8,6 +8,7 @@ from .parula import parula_map
 from matplotlib import patheffects
 from matplotlib.collections import LineCollection
 import warnings
+from adjustText import adjust_text
 
 
 def setRCParams(dark_mode=False, set_dark_background=False):
@@ -54,6 +55,8 @@ def setRCParams(dark_mode=False, set_dark_background=False):
     plt.rcParams["axes.ymargin"] = 0
 
     plt.rcParams["lines.linewidth"] = 2.0
+    plt.rcParams["lines.markeredgewidth"] = 1.0
+    plt.rcParams["lines.markeredgecolor"] = "w"
 
     niceColors = get_niceColors()
     plt.rcParams["axes.prop_cycle"] = cycler("color", list(niceColors.values())[:-2])
@@ -208,7 +211,61 @@ def draggable_legend(axis=None, color_on=True):
         legend[idx].draggable()
 
 
-def horiz_bar(labels, times, header, ts=1, nd=1, size=[5, 0.5], color="#FFCC00"):
+def auto_place_legend(ax, rel_xloc=None, color_on=True, **kwargs):
+    """
+    This function tries to automatically place legend text
+    close to the respective line and tries to minimize the
+    possible overlap with other lines and text. This function uses
+    a the adjustText module.
+    Inputs:
+        ax : matplotlib axes
+            Single matplotlib axes
+        rel_xloc : list or scalar
+            Relative location (between 0 and 1) on the x axis
+            where to *try* to place the legend text. List has to be the
+            same length as the number of lines in plot.
+            If not specified random location will be chosen.
+        color_on : bool
+            Use the color on the line to color the legend text.
+        kwargs : optional keyword arguments
+            This is intended to tweak the adjustText tool (passed onwards)
+    """
+    nLines = len(ax.lines)
+
+    # If using a scalar generate a full list needed for placing line label
+    if type(rel_xloc) is float:
+        rel_xloc = nLines * [rel_xloc]
+
+    # Loop over the lines in the axes to get line label text and color
+    texts = []
+    for i, line in enumerate(ax.lines):
+
+        # Extract the xy data (numpy Nx2 array) for a given line
+        coords = line.get_xydata()
+
+        # Set the starting x-coordinates of the label either using the
+        # relative locations or randomly
+        if rel_xloc is not None:
+            idx = int(rel_xloc[i] * (coords[:, 0].shape[0] - 1))
+        else:
+            # Select randomly one point from the dataset to place the text
+            idx = np.random.randint(0, coords.shape[0])
+
+        label = line.get_label()
+        # Get the color of each line to set the label color as the same
+        if color_on:
+            color = line.get_color()
+        else:
+            color = "k"
+
+        # Create the text object and place it at this random location on line
+        t = ax.text(coords[idx, 0], coords[idx, 1], label, ha="center", va="center", color=color)
+        texts.append(t)
+
+    adjust_text(texts, ax=ax, **kwargs)
+
+
+def horiz_bar(labels, times, header, ts=1, nd=1, size=[5, 0.5], color=None):
     """Creates a horizontal bar chart to compare positive numbers.
 
     'labels' contains the ordered labels for each data set
@@ -223,6 +280,10 @@ def horiz_bar(labels, times, header, ts=1, nd=1, size=[5, 0.5], color="#FFCC00")
 
     """
 
+    # Use niceColours yellow if no colour specified
+    if color is None:
+        color = get_niceColors()["Yellow"]
+
     # Obtain parameters to size the chart correctly
     num = len(times)
     width = size[0]
@@ -236,10 +297,7 @@ def horiz_bar(labels, times, header, ts=1, nd=1, size=[5, 0.5], color="#FFCC00")
     # Playing with these values here can help with label alignment
     left_lim = -ts * l_max * 0.038 * t_max
     right_lim = t_max * 1.11
-
-    # These values tweak the header label placement
-    left_header_pos = -len(header[0]) * 0.018 * t_max + left_lim / 2
-    right_header_pos = -len(header[1]) * 0.018 * t_max + right_lim + t_max * (0.09 + nd * 0.02)
+    right_text_x = right_lim * 1.15
 
     # Loop over each time and get the max number of digits
     t_max_digits = 0
@@ -276,12 +334,12 @@ def horiz_bar(labels, times, header, ts=1, nd=1, size=[5, 0.5], color="#FFCC00")
         ax.text(left_lim, 1, l, va="center")
         # d = t_max_digits - len(str(int(t)))
         string = "{number:.{digits}f}".format(number=t, digits=nd)
-        ax.text(right_lim * 1.15, 1, string, va="center", ha="right")
+        ax.text(right_text_x, 1, string, va="center", ha="right")
 
         # Create border graphics if this is the top bar line
         if j == 0:
-            ax.text(left_header_pos, 1.02, header[0], fontsize=13)
-            ax.text(right_header_pos, 1.02, header[1], fontsize=13)
+            ax.text(left_lim, 1.02, header[0], ha="left")
+            ax.text(right_text_x, 1.02, header[1], ha="right")
 
             line = Line2D(
                 [left_lim, right_lim + t_max * (0.15 + nd * 0.03)],
