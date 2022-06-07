@@ -48,4 +48,5 @@ Sort of, you can find our examples gallery and api documentation [here](https://
 ### Who do I talk to?
 
 * Alasdair Gray, alachris@umich.edu
+* Eytan Adler, eytana@umich.edu
 * Eirikur Jonsson eirikurj@umich.edu
