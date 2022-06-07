@@ -5,7 +5,7 @@
 [![Documentation Status](https://readthedocs.com/projects/mdolab-niceplots/badge/?version=latest)](https://mdolab-niceplots.readthedocs-hosted.com/en/latest)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
-<img src="examples/bar_chart.png" width="51.17%" /> <img src="examples/niceplotsPulseResponse.png" width="46%" />
+<img src="examples/bar_chart.png" width="47.65%" /> <img src="examples/niceplotsPulseResponse.png" width="49.5%" />
 <img src="examples/ParulaContours.png" width="62.22%" /> <img src="examples/optProb-shaded.png" width="35%" />
 
 
