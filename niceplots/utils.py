@@ -211,19 +211,31 @@ def draggable_legend(axis=None, color_on=True):
         legend[idx].draggable()
 
 
-def horiz_bar(labels, times, header, ts=1, nd=1, size=[5, 0.5], color=None):
+def horiz_bar(labels, times, header, nd=1, size=[5, 0.5], color=None):
     """Creates a horizontal bar chart to compare positive numbers.
 
-    'labels' contains the ordered labels for each data set
-    'times' contains the numerical data for each entry
-    'header' contains the left and right header for the labels and
-    numeric data, respectively
-    'ts' is a scaling parameter that's useful when the labels
-    have many skinny or wide characters
-    'nd' is the number of digits to show after the decimal point for the data
-    'size' is the size of the final figure (iffy results)
-    'color' is a hexcode for the color of the scatter points used
+    Parameters
+    ----------
+    labels : list of str
+        contains the ordered labels for each data set
+    times : list of float
+        contains the numerical data for each entry
+    header : list of two str
+        contains the left and right header for the labels and
+        numeric data, respectively
+    nd : float
+        the number of digits to show after the decimal point for the data
+    size : list of two float
+        the size of the final figure (iffy results)
+    color : str
+        hexcode for the color of the scatter points used
 
+    Returns
+    -------
+    fig: matplotlib Figure
+        Figure created
+    ax: matplotlib Axes
+        Axes on which data is plotted
     """
 
     # Use niceColours yellow if no colour specified
@@ -236,14 +248,9 @@ def horiz_bar(labels, times, header, ts=1, nd=1, size=[5, 0.5], color=None):
     width = size[0]
     height = size[1] * num
     t_max = max(times)
-    l_max = len(max(labels, key=len))
 
     # Create the corresponding number of subplots for each individual timing
-    fig, axarr = plt.subplots(num, 1)
-
-    # Playing with these values here can help with label alignment
-    left_lim = -ts * l_max * 0.038 * t_max
-    right_lim = t_max * 1.11
+    fig, axarr = plt.subplots(num, 1, figsize=[width, height])
 
     # Loop over each time and get the max number of digits
     t_max_digits = 0
@@ -278,32 +285,17 @@ def horiz_bar(labels, times, header, ts=1, nd=1, size=[5, 0.5], color=None):
         ax.spines["right"].set_visible(False)
         ax.spines["bottom"].set_visible(False)
         ax.set_ylabel(l, rotation="horizontal", ha="right", va="center")
-        # d = t_max_digits - len(str(int(t)))
         string = "{number:.{digits}f}".format(number=t, digits=nd)
         ax.annotate(
             string, xy=(1, 1), xytext=(6, 0), xycoords=ax.get_yaxis_transform(), textcoords="offset points", va="center"
         )
 
-        # Create border graphics if this is the top bar line
+        # Create the top bar line
         if j == 0:
-            ax.text(0, 1.02, header[0], ha="right")
-            ax.text(t_max, 1.02, header[1], ha="left")
+            ax.text(0, 1.02, header[0], ha="right", fontweight="bold", fontsize="large")
+            ax.text(t_max, 1.02, header[1], ha="left", fontweight="bold", fontsize="large")
 
-            line = Line2D(
-                [left_lim, right_lim + t_max * (0.15 + nd * 0.03)],
-                [1.014, 1.014],
-                lw=1.2,
-                color="k",
-            )
-            line.set_clip_on(False)
-            ax.add_line(line)
-
-            # line = Line2D([left_lim, right_lim+t_max*(.15+nd*.03)], [1.012, 1.012], lw=1.2, color='k')
-            # line.set_clip_on(False)
-            # ax.add_line(line)
-
-    # Save the figure and export as pdf
-    fig.set_size_inches(width, height)
+    return fig, ax
 
 
 def stacked_plots(
