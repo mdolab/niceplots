@@ -1,7 +1,6 @@
 from __future__ import division
 import matplotlib.pyplot as plt
 import numpy as np
-from matplotlib.lines import Line2D
 from cycler import cycler
 from collections import OrderedDict
 from .parula import parula_map
