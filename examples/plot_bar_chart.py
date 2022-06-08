@@ -5,7 +5,9 @@ An example of a bar chart.
 """
 import random
 import matplotlib.pyplot as plt
-from niceplots import horiz_bar
+import niceplots
+
+niceplots.setRCParams()
 
 try:
     # use random words for the example
@@ -35,7 +37,7 @@ except FileNotFoundError:  # noqa: E722 if user is not on a *nix system
     times = [0.00456, 0.00847, 0.0110, 0.0213, 0.011]
     nd = 4
 
-horiz_bar(labels, times, header, nd=nd)
+niceplots.horiz_bar(labels, times, header, nd=nd, size=[7, 0.65])
 
 plt.savefig("bar_chart.pdf", bbox_inches="tight")
 plt.savefig("bar_chart.png", dpi=400, bbox_inches="tight")

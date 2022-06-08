@@ -3,12 +3,12 @@
 
 ![Build Status](https://github.com/mdolab/niceplots/workflows/niceplots/badge.svg)
 [![Documentation Status](https://readthedocs.com/projects/mdolab-niceplots/badge/?version=latest)](https://mdolab-niceplots.readthedocs-hosted.com/en/latest)
-![PyPI][https://img.shields.io/pypi/v/niceplots](https://pypi.org/project/niceplots/)
-![PyPI - Downloads][https://img.shields.io/pypi/dm/niceplots](https://pypi.org/project/niceplots/)
+[![PyPI](https://img.shields.io/pypi/v/niceplots)](https://pypi.org/project/niceplots/)
+[![PyPI - Downloads](https://img.shields.io/pypi/dm/niceplots)](https://pypi.org/project/niceplots/)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
-<img src="examples/bar_chart.png" width="58.5%" /> <img src="examples/niceplotsPulseResponse.png" width="38.82%" />
 <img src="examples/ParulaContours.png" width="62.22%" /> <img src="examples/optProb-shaded.png" width="35%" />
+<img src="examples/bar_chart.png" width="47.65%" /> <img src="examples/niceplotsPulseResponse.png" width="49.5%" />
 
 
 ### How do I install?
