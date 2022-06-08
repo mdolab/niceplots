@@ -7,8 +7,8 @@
 [![PyPI - Downloads](https://img.shields.io/pypi/dm/niceplots)](https://pypi.org/project/niceplots/)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
-<img src="examples/ParulaContours.png" width="62.22%" /> <img src="examples/optProb-shaded.png" width="35%" />
-<img src="examples/bar_chart.png" width="47.65%" /> <img src="examples/niceplotsPulseResponse.png" width="49.5%" />
+<img src="https://raw.githubusercontent.com/mdolab/niceplots/master/examples/ParulaContours.png" width="62.22%" /> <img src="https://raw.githubusercontent.com/mdolab/niceplots/master/examples/optProb-shaded.png" width="35%" />
+<img src="https://raw.githubusercontent.com/mdolab/niceplots/master/examples/bar_chart.png" width="47.65%" /> <img src="https://raw.githubusercontent.com/mdolab/niceplots/master/examples/niceplotsPulseResponse.png" width="49.5%" />
 
 
 ### How do I install?
