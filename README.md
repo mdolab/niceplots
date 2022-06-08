@@ -3,6 +3,8 @@
 
 ![Build Status](https://github.com/mdolab/niceplots/workflows/niceplots/badge.svg)
 [![Documentation Status](https://readthedocs.com/projects/mdolab-niceplots/badge/?version=latest)](https://mdolab-niceplots.readthedocs-hosted.com/en/latest)
+![PyPI][https://img.shields.io/pypi/v/niceplots](https://pypi.org/project/niceplots/)
+![PyPI - Downloads][https://img.shields.io/pypi/dm/niceplots](https://pypi.org/project/niceplots/)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
 <img src="examples/bar_chart.png" width="58.5%" /> <img src="examples/niceplotsPulseResponse.png" width="38.82%" />
@@ -10,6 +12,14 @@
 
 
 ### How do I install?
+
+Niceplots can be pip installed directly from PyPI
+
+```shell
+pip install niceplots
+```
+
+#### If you want to make changes
 
 * Clone this repository, then enter the folder in the command line terminal.
 * Enter `pip install -e .` within the `niceplots` folder.
@@ -46,4 +56,5 @@ Sort of, you can find our examples gallery and api documentation [here](https://
 ### Who do I talk to?
 
 * Alasdair Gray, alachris@umich.edu
+* Eytan Adler, eytana@umich.edu
 * Eirikur Jonsson eirikurj@umich.edu
