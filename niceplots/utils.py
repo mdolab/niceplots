@@ -1,4 +1,3 @@
-from __future__ import division
 import matplotlib.pyplot as plt
 import numpy as np
 from cycler import cycler
@@ -14,8 +13,8 @@ def setRCParams(dark_mode=False, set_dark_background=False):
     """
     Set some defaults for generating nice, Doumont-esque plots.
 
-    Inputs
-    ------
+    Parameters
+    ----------
     dark_mode (optional) : bool
         If true, sets axes, labels, etc. to white so the plot
         can be used on a dark background.

@@ -13,6 +13,14 @@
 
 ### How do I install?
 
+Niceplots can be pip installed directly from PyPI
+
+```shell
+pip install niceplots
+```
+
+#### If you want to make changes
+
 * Clone this repository, then enter the folder in the command line terminal.
 * Enter `pip install -e .` within the `niceplots` folder.
 
@@ -48,4 +56,5 @@ Sort of, you can find our examples gallery and api documentation [here](https://
 ### Who do I talk to?
 
 * Alasdair Gray, alachris@umich.edu
+* Eytan Adler, eytana@umich.edu
 * Eirikur Jonsson eirikurj@umich.edu
