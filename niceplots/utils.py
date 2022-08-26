@@ -164,7 +164,7 @@ def adjust_spines(ax=None, spines=["left", "bottom"], outward=True):
         ax.xaxis.set_visible(False)
 
 
-def draggable_legend(axis=None, color_on=True):
+def draggable_legend(axis=None, color_on=True, fontsize=18, ha="center", va="center"):
     """Function to create draggable labels on a plot."""
     if axis is None:
         axis = plt.gca()
@@ -200,10 +200,11 @@ def draggable_legend(axis=None, color_on=True):
             axis.annotate(
                 label,
                 xy=coords,
-                ha="center",
-                va="center",
+                ha=ha,
+                va=va,
                 color=color,
                 xycoords="axes fraction",
+                fontsize=fontsize,
             )
         )
         legend[idx].draggable()
