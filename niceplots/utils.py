@@ -196,15 +196,7 @@ def draggable_legend(axis=None, color_on=True, **kwargs):
             color = "k"
 
         # Set each annotation and make them draggable
-        legend.append(
-            axis.annotate(
-                label,
-                xy=coords,
-                color=color,
-                xycoords="axes fraction",
-                **kwargs
-            )
-        )
+        legend.append(axis.annotate(label, xy=coords, color=color, xycoords="axes fraction", **kwargs))
         legend[idx].draggable()
 
 
