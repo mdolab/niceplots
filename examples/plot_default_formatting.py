@@ -26,7 +26,7 @@ t = np.linspace(0, 3.0, 1001)
 TP = [0.5, 0.8, 1.2, 1.6, 2.0]
 
 for formatting in ["default"] + niceplots.get_available_styles():
-    with plt.style.context(niceplots.get_style(formatting)):
+    with plt.style.context(niceplots.get_style(formatting), after_reset=True):
         fig, axes = plt.subplots(nrows=len(TP), figsize=(12, 16))
         colors = niceplots.get_colors_list()
 
