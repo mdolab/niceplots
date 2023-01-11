@@ -28,7 +28,9 @@ y = np.sin(x)
 c = np.cos(x)
 
 fig, ax = plt.subplots()
-niceplots.plot_colored_line(x, y, c, cmap="coolwarm", fig=fig, ax=ax, addColorBar=True, cRange=None, cBarLabel="$dy/dx$")
+niceplots.plot_colored_line(
+    x, y, c, cmap="coolwarm", fig=fig, ax=ax, addColorBar=True, cRange=None, cBarLabel="$dy/dx$"
+)
 niceplots.plot_colored_line(x, c, -y, cmap="coolwarm", fig=fig, ax=ax)
 niceplots.adjust_spines(ax)
 ax.set_xlabel("$x$")

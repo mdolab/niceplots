@@ -777,7 +777,7 @@ def plot_nested_pie(
         return pieObjects
 
 
-def all():
+def All():
     """Runs commonly called functions provided in this module."""
     adjust_spines()
     draggable_legend()
