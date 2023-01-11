@@ -42,6 +42,11 @@ jobs:
           pip install numpy==${{ matrix.numpy-version }}
           pip install matplotlib==${{ matrix.mpl-version }}
           pip install .
+      - name: Print installed package file tree
+        run: |
+          sudo apt-get install tree
+          cd /opt/hostedtoolcache/Python/3.9.16/x64/lib/python3.9/site-packages/niceplots
+          tree
       - name: Test examples
         run: |
           # this is very janky for now
