@@ -25,7 +25,7 @@ omega = np.sqrt(k / m)
 t = np.linspace(0, 3.0, 1001)
 TP = [0.5, 0.8, 1.2, 1.6, 2.0]
 
-for formatting in (["default"] + niceplots.get_available_styles()):
+for formatting in ["default"] + niceplots.get_available_styles():
     if formatting != "default":
         niceplots.setStyle(formatting, afterReset=True)
     colors = plt.rcParams["axes.prop_cycle"].by_key()["color"]

@@ -91,7 +91,9 @@ def get_colors():
     color_names = plt.rcParams["keymap.help"]
 
     # Ensure that the amount of color names matches the amount of colors
-    assert len(color_codes) == len(color_names), "The colors are not properly named in the stylesheet, please open an issue on GitHub with the details!"
+    assert len(color_codes) == len(
+        color_names
+    ), "The colors are not properly named in the stylesheet, please open an issue on GitHub with the details!"
 
     # Make the dictionary and return it
     return dict(zip(color_names, color_codes))
