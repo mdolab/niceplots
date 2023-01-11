@@ -26,25 +26,22 @@ t = np.linspace(0, 3.0, 1001)
 TP = [0.5, 0.8, 1.2, 1.6, 2.0]
 
 for formatting in ["default"] + niceplots.get_available_styles():
-    if formatting != "default":
-        niceplots.setStyle(formatting, afterReset=True)
-    colors = plt.rcParams["axes.prop_cycle"].by_key()["color"]
+    with plt.style.context(niceplots.get_style(formatting)):
+        fig, axes = plt.subplots(nrows=len(TP), figsize=(12, 16))
 
-    fig, axes = plt.subplots(nrows=len(TP), figsize=(12, 16))
+        for i in range(len(TP)):
+            tp = TP[i]
+            ax = axes[i]
+            x = MSPulseResponse(t, tp, omega)
+            line = ax.plot(t, x, clip_on=False)
+            ax.vlines(tp, -3, 1.0 - np.cos(omega * tp), linestyle="--", color="gray", zorder=0)
+            ax.set_xticks([0, tp, 3])
+            if i == len(TP) - 1:
+                ax.set_xlabel("t (s)")
+            ax.set_ylabel(r"$\frac{x(t)}{x_s}$", ha="right", rotation="horizontal")
+            ax.set_ylim(bottom=-2.0, top=2.0)
+            if formatting != "default":
+                niceplots.adjust_spines(ax, outward=True)
 
-    for i in range(len(TP)):
-        tp = TP[i]
-        ax = axes[i]
-        x = MSPulseResponse(t, tp, omega)
-        line = ax.plot(t, x, clip_on=False, color=colors[i])
-        ax.vlines(tp, -3, 1.0 - np.cos(omega * tp), linestyle="--", color="gray", zorder=0)
-        ax.set_xticks([0, tp, 3])
-        if i == len(TP) - 1:
-            ax.set_xlabel("t (s)")
-        ax.set_ylabel(r"$\frac{x(t)}{x_s}$", ha="right", rotation="horizontal")
-        ax.set_ylim(bottom=-2.0, top=2.0)
-        if formatting != "default":
-            niceplots.adjust_spines(ax, outward=True)
-
-    plt.savefig(f"{formatting}PulseResponse.pdf")
-    plt.savefig(f"{formatting}PulseResponse.png", dpi=400)
+        plt.savefig(f"{formatting}PulseResponse.pdf")
+        plt.savefig(f"{formatting}PulseResponse.png", dpi=400)

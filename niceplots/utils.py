@@ -1,70 +1,50 @@
-import contextlib
 import matplotlib.pyplot as plt
 import numpy as np
 from .parula import parula_map
-from matplotlib import patheffects, rc_context, style, rcdefaults
+from matplotlib import patheffects
 from matplotlib.collections import LineCollection
 import matplotlib.colors as mcolor
 import warnings
 import os
 
 
-def setStyle(styleName="doumont-light", afterReset=False):
+def get_style(styleName="doumont-light"):
     """
-    Set some defaults for generating nice plots.
+    Get the stylesheet to pass to matplotlib's style setting functions. This function
+    works both with niceplots styles and matplotlib's built-in styles. Usage examples::
+
+        import matplotlib.pyplot as plt
+        import niceplots
+
+        plt.style.use(niceplots.get_style())
+        plt.plot([0, 1], [0, 1])
+
+        # Or you can use it within a context manager
+        with plt.style.context(niceplots.get_style()):
+            plt.plot([0, 1], [0, 1])
+
+        # Also try different styles
+        plt.style.use(niceplots.get_style("james-dark"))  # niceplots james dark style
+        plt.style.use(niceplots.get_style("default"))  # matplotlib default style
 
     Parameters
     ----------
     styleName : str, optional
-        Name of desired style. Avaiable styles are:
+        Name of desired style. By default uses doumont-light style. Avaiable styles are:
 
             - doumont-light: the niceplots style you know and love
             - doumont-dark: the dark version of the niceplots style you know and love
             - james-dark: a really cool alternative to classic niceplots
             - james-light: a version of james with a light background, naturally
 
-    afterReset : bool, optional
-        If True, will first reset the rcParams to the matplotlib then apply
-        the new rcParams. The alternative (when afterReset is False) is to apply
-        the new rcParams on top of the current rcParams.
     """
-    curDir = os.path.dirname(os.path.abspath(__file__))
-    styleFile = os.path.join(curDir, "styles", styleName + ".mplstyle")
+    # If the style is a niceplots style, return the file path
+    if styleName in get_available_styles():
+        curDir = os.path.dirname(os.path.abspath(__file__))
+        return os.path.join(curDir, "styles", styleName + ".mplstyle")
 
-    if afterReset:
-        rcdefaults()
-
-    # Set the style
-    style.use(styleFile)
-
-
-@contextlib.contextmanager
-def styleContext(styleName="doumont-light", afterReset=False):
-    """
-    Temporarily change the style of plots. This function is a context manager,
-    so is to be used in a with block. For example::
-
-        with niceplots.styleContext("james-dark"):
-            # plot stuff here and it will be in the james style
-
-    Parameters
-    ----------
-    styleName : str, optional
-        Name of desired style. Avaiable styles are:
-
-            - doumont-light: the niceplots style you know and love
-            - doumont-dark: the dark version of the niceplots style you know and love
-            - james-dark: a really cool alternative to classic niceplots
-            - james-light: a version of james with a light background, naturally
-
-    afterReset : bool, optional
-        If True, will first reset the rcParams to the matplotlib then apply
-        the new rcParams. The alternative (when afterReset is False) is to apply
-        the new rcParams on top of the current rcParams.
-    """
-    with rc_context():
-        _ = setStyle(styleName, afterReset)
-        yield
+    # Otherwise assume it's a matplotlib style and just return the style name
+    return styleName
 
 
 def get_colors():
@@ -361,7 +341,7 @@ def stacked_plots(
     return f, axarr
 
 
-def plotOptProb(
+def plot_opt_prob(
     obj,
     xRange,
     yRange,
@@ -517,7 +497,7 @@ def plotOptProb(
         return
 
 
-def plotColoredLine(
+def plot_colored_line(
     x, y, c, cmap=None, fig=None, ax=None, addColorBar=False, cRange=None, cBarLabel=None, norm=None, **kwargs
 ):
     """Plot an XY line whose color is determined by some other variable C
@@ -595,7 +575,7 @@ def plotColoredLine(
         return
 
 
-def plotNestedPie(
+def plot_nested_pie(
     data,
     colors=None,
     alphas=None,
@@ -783,7 +763,7 @@ def plotNestedPie(
         return pieObjects
 
 
-def All():
+def all():
     """Runs commonly called functions provided in this module."""
     adjust_spines()
     draggable_legend()

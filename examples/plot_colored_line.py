@@ -1,7 +1,7 @@
 """
 Colored line plotting
 =====================
-An example of the plotColoredLine function, plotting the sine and cosine functions,
+An example of the plot_colored_line function, plotting the sine and cosine functions,
 colored by their derivatives
 """
 
@@ -21,15 +21,15 @@ import niceplots
 # Extension modules
 # ==============================================================================
 
-niceplots.setStyle()
+plt.style.use(niceplots.get_style())
 
 x = np.linspace(0, 2 * np.pi, 100)
 y = np.sin(x)
 c = np.cos(x)
 
 fig, ax = plt.subplots()
-niceplots.plotColoredLine(x, y, c, cmap="coolwarm", fig=fig, ax=ax, addColorBar=True, cRange=None, cBarLabel="$dy/dx$")
-niceplots.plotColoredLine(x, c, -y, cmap="coolwarm", fig=fig, ax=ax)
+niceplots.plot_colored_line(x, y, c, cmap="coolwarm", fig=fig, ax=ax, addColorBar=True, cRange=None, cBarLabel="$dy/dx$")
+niceplots.plot_colored_line(x, c, -y, cmap="coolwarm", fig=fig, ax=ax)
 niceplots.adjust_spines(ax)
 ax.set_xlabel("$x$")
 ax.set_ylabel("$y$", rotation="horizontal", ha="right")
@@ -41,7 +41,7 @@ fig.savefig("coloredLine.pdf")
 
 # Use a custom norm to specify the colormap range
 divnorm = TwoSlopeNorm(vmin=-1.0, vcenter=0.8, vmax=1.0)
-fig, ax = niceplots.plotColoredLine(x, y, c, cmap="coolwarm", norm=divnorm, addColorBar=False, cBarLabel="$dy/dx$")
+fig, ax = niceplots.plot_colored_line(x, y, c, cmap="coolwarm", norm=divnorm, addColorBar=False, cBarLabel="$dy/dx$")
 niceplots.adjust_spines(ax)
 ax.set_xlabel("$x$")
 ax.set_ylabel("$y$", rotation="horizontal", ha="right")

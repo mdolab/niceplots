@@ -55,11 +55,9 @@ The Prompt font can be download from [Google Fonts](https://fonts.google.com/spe
 
 ## How do I get set up?
 
-* Use `import niceplots` at the top of a file where you would like to use any function defined in this package.
-* Use `niceplots.setStyle()` to set some matplotlib defaults for nice looking plots.
+* `import matplotlib.pyplot as plt` and `import niceplots` at the top of a file where you would like to use any function defined in this package.
+* Use `plt.style.use(niceplots.get_style())` to set some defaults for nice looking plots. You can also try passing different styles to `get_style()`, such as niceplots' `james-dark` or any of matplotlib's styles (see the function's documentation for a full list of available niceplots styles).
 * Plot your beautiful data.
-* Use `niceplots.All()` after all the plot commands to apply the niceplot standards on the figure.
-* To use the Matlab colormap "parula", execute `from niceplots import parula` then use `parula.parula_map` as your colormap within your plotting script. See the contour plot example code for an example of this.
 
 ## Do you have docs?
 

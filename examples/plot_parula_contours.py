@@ -16,7 +16,7 @@ from matplotlib import pyplot as plt
 import niceplots
 
 
-niceplots.setStyle()
+plt.style.use(niceplots.get_style())
 grey = "#5a5758"
 
 

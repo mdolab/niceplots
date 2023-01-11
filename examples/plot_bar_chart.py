@@ -35,7 +35,7 @@ except FileNotFoundError:  # noqa: E722 if user is not on a *nix system
     times = [0.00456, 0.00847, 0.0110, 0.0213, 0.011]
     nd = 4
 
-with niceplots.styleContext():
+with plt.style.context(niceplots.get_style()):
     niceplots.horiz_bar(labels, times, header, nd=nd, size=[7, 0.65])
 
     plt.savefig("bar_chart.pdf", bbox_inches="tight")
