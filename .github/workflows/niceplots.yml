@@ -21,9 +21,9 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [3.7, 3.8, 3.9]
-        numpy-version: ["1.16.6", "1.18.5"]
-        mpl-version: ["3.2.*", "3.3.*", "3.4.*"]
+        python-version: [3.8, 3.9, 3.10]
+        numpy-version: ["1.18.5", "1.24.1"]
+        mpl-version: ["3.4.*", "3.6.*"]
     steps:
       - uses: actions/checkout@v2
       - name: Set up Python ${{ matrix.python-version }}
@@ -34,6 +34,7 @@ jobs:
         run: |
           sudo apt-get install fonts-cmu
           curl https://codeload.github.com/google/fonts/tar.gz/main | tar -xz --strip=2 fonts-main/ofl/prompt
+          mkdir ~/.fonts
           cp prompt/*.ttf ~/.fonts
       - name: Install dependencies
         run: |
