@@ -12,6 +12,11 @@ build:
     python: "3.9"
   apt_packages:
     - fonts-cmu
+  # Install the fonts for the james style
+  commands:
+    - curl https://codeload.github.com/google/fonts/tar.gz/main | tar -xz --strip=2 fonts-main/ofl/prompt
+    - mkdir ~/.fonts
+    - cp prompt/*.ttf ~/.fonts
 
 # Build documentation in the docs/ directory with Sphinx
 sphinx:
