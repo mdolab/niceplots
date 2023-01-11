@@ -29,4 +29,5 @@ setup(
         "numpy>=1.16",
         "matplotlib>=2.2",
     ],
+    package_data={"": ["*.mplstyle"]},
 )
