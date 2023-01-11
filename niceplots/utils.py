@@ -30,7 +30,7 @@ def setStyle(styleName="doumount-light"):
         are human-readable names and the keys are the hex codes.
     """
     curDir = os.path.dirname(os.path.abspath(__file__))
-    styleFile = os.path.join(curDir, "styles", style + ".mplstyle")
+    styleFile = os.path.join(curDir, "styles", styleName + ".mplstyle")
 
     # Set the style
     style.use(styleFile)
@@ -94,6 +94,12 @@ def get_available_styles():
         The names of the available styles.
     """
     curDir = os.path.dirname(os.path.abspath(__file__))
+    styleFilenames = os.listdir(os.path.join(curDir, "styles"))
+    styles = []
+    for s in styleFilenames:
+        if s[-9:] == ".mplstyle":
+            styles.append(s[:-9])
+    return styles
 
 
 def handle_close(evt):
