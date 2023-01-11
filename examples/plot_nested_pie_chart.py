@@ -6,7 +6,8 @@ An example of a nested pie chart.
 import matplotlib.pyplot as plt
 import niceplots
 
-colors = niceplots.setStyle("james-dark")
+niceplots.setStyle("james-dark")
+colors = niceplots.get_colors()
 
 data = {
     "Pie": {

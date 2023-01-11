@@ -27,12 +27,6 @@ def setStyle(styleName="doumont-light", afterReset=False):
         If True, will first reset the rcParams to the matplotlib then apply
         the new rcParams. The alternative (when afterReset is False) is to apply
         the new rcParams on top of the current rcParams.
-
-    Returns
-    -------
-    dict
-        Dictionary of the colors for the requested style. The keys
-        are human-readable names and the keys are the hex codes.
     """
     curDir = os.path.dirname(os.path.abspath(__file__))
     styleFile = os.path.join(curDir, "styles", styleName + ".mplstyle")
@@ -42,9 +36,6 @@ def setStyle(styleName="doumont-light", afterReset=False):
 
     # Set the style
     style.use(styleFile)
-
-    # Get the colors and their names from the rcParams
-    return get_colors()
 
 
 @contextlib.contextmanager
