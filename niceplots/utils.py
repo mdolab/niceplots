@@ -37,6 +37,10 @@ def get_style(styleName="doumont-light"):
             - james-dark: a really cool alternative to classic niceplots
             - james-light: a version of james with a light background, naturally
 
+    Returns
+    -------
+    str
+        The style string to be passed to one of matplotlib's style setting functions.
     """
     # If the style is a niceplots style, return the file path
     if styleName in get_available_styles():
