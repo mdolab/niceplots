@@ -15,7 +15,7 @@ def setStyle(styleName="doumont-light", afterReset=False):
 
     Parameters
     ----------
-    styleName : str
+    styleName : str, optional
         Name of desired style. Avaiable styles are:
 
             - doumont-light: the niceplots style you know and love
@@ -58,7 +58,7 @@ def styleContext(styleName="doumont-light", afterReset=False):
 
     Parameters
     ----------
-    styleName : str
+    styleName : str, optional
         Name of desired style. Avaiable styles are:
 
             - doumont-light: the niceplots style you know and love
