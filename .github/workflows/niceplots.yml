@@ -30,9 +30,13 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: ${{ matrix.python-version }}
-      - name: Install dependencies
+      - name: Install fonts
         run: |
           sudo apt-get install fonts-cmu
+          curl https://codeload.github.com/google/fonts/tar.gz/main | tar -xz --strip=2 fonts-main/ofl/prompt
+          cp prompt/*.ttf ~/.fonts
+      - name: Install dependencies
+        run: |
           pip install --upgrade pip wheel
           pip install numpy==${{ matrix.numpy-version }}
           pip install matplotlib==${{ matrix.mpl-version }}
