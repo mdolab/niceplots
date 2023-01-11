@@ -30,5 +30,5 @@ setup(
         "matplotlib>=2.2",
     ],
     include_package_data=True,
-    package_data={"": ["*.mplstyle"]},
+    package_data={"": ["styles/*.mplstyle"]},
 )
