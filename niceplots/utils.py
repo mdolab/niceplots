@@ -49,7 +49,8 @@ def get_style(styleName="doumont-light"):
 
 def get_colors():
     """
-    Get the colors for the current style.
+    Get a dictionary with the colors for the current style. This function
+    only works when niceplots styles are used (not built-in matplotlib ones).
 
     Returns
     -------
@@ -58,7 +59,7 @@ def get_colors():
         are human-readable names and the keys are the hex codes.
     """
     # Get the color codes and their names from the (hopefully) "special" parameter
-    color_codes = plt.rcParams["axes.prop_cycle"].by_key()["color"]
+    color_codes = get_colors_list()
     color_names = plt.rcParams["keymap.help"]
 
     # Ensure that the amount of color names matches the amount of colors
@@ -68,6 +69,19 @@ def get_colors():
 
     # Make the dictionary and return it
     return dict(zip(color_names, color_codes))
+
+
+def get_colors_list():
+    """
+    Get a list with the colors for the current style. This function
+    works with all matplotlib styles.
+
+    Returns
+    -------
+    list
+        List of the colors for the requested style.
+    """
+    return plt.rcParams["axes.prop_cycle"].by_key()["color"]
 
 
 def get_available_styles():

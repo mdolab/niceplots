@@ -28,12 +28,13 @@ TP = [0.5, 0.8, 1.2, 1.6, 2.0]
 for formatting in ["default"] + niceplots.get_available_styles():
     with plt.style.context(niceplots.get_style(formatting)):
         fig, axes = plt.subplots(nrows=len(TP), figsize=(12, 16))
+        colors = niceplots.get_colors_list()
 
         for i in range(len(TP)):
             tp = TP[i]
             ax = axes[i]
             x = MSPulseResponse(t, tp, omega)
-            line = ax.plot(t, x, clip_on=False)
+            line = ax.plot(t, x, clip_on=False, color=colors[i])
             ax.vlines(tp, -3, 1.0 - np.cos(omega * tp), linestyle="--", color="gray", zorder=0)
             ax.set_xticks([0, tp, 3])
             if i == len(TP) - 1:
