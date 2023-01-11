@@ -25,9 +25,9 @@ omega = np.sqrt(k / m)
 t = np.linspace(0, 3.0, 1001)
 TP = [0.5, 0.8, 1.2, 1.6, 2.0]
 
-for formatting in ["default", "niceplots"]:
-    if formatting == "niceplots":
-        niceplots.setRCParams()
+for formatting in (["default"] + niceplots.get_available_styles()):
+    if formatting != "default":
+        niceplots.setStyle(formatting, afterReset=True)
     colors = plt.rcParams["axes.prop_cycle"].by_key()["color"]
 
     fig, axes = plt.subplots(nrows=len(TP), figsize=(12, 16))
@@ -43,7 +43,7 @@ for formatting in ["default", "niceplots"]:
             ax.set_xlabel("t (s)")
         ax.set_ylabel(r"$\frac{x(t)}{x_s}$", ha="right", rotation="horizontal")
         ax.set_ylim(bottom=-2.0, top=2.0)
-        if formatting == "niceplots":
+        if formatting != "default":
             niceplots.adjust_spines(ax, outward=True)
 
     plt.savefig(f"{formatting}PulseResponse.pdf")

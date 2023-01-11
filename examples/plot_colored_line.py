@@ -21,7 +21,7 @@ import niceplots
 # Extension modules
 # ==============================================================================
 
-niceplots.setRCParams()
+niceplots.setStyle()
 
 x = np.linspace(0, 2 * np.pi, 100)
 y = np.sin(x)

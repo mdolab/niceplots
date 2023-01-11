@@ -8,7 +8,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import niceplots
 
-niceplots.setRCParams()
+niceplots.setStyle()
 
 # Set the random seed to get consistent results.
 np.random.seed(314)

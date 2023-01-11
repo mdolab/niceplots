@@ -20,8 +20,8 @@ import niceplots
 # Extension modules
 # ==============================================================================
 
-niceplots.setRCParams()
-niceColors = niceplots.get_niceColors()
+niceplots.setStyle()
+niceColors = niceplots.get_colors()
 
 
 def Rosenbrock(x, y):

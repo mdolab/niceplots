@@ -2,14 +2,14 @@ import contextlib
 import matplotlib.pyplot as plt
 import numpy as np
 from .parula import parula_map
-from matplotlib import patheffects, rc_context, style
+from matplotlib import patheffects, rc_context, style, rcdefaults
 from matplotlib.collections import LineCollection
 import matplotlib.colors as mcolor
 import warnings
 import os
 
 
-def setStyle(styleName="doumount-light"):
+def setStyle(styleName="doumont-light", afterReset=False):
     """
     Set some defaults for generating nice plots.
 
@@ -23,6 +23,11 @@ def setStyle(styleName="doumount-light"):
             - james-dark: a really cool alternative to classic niceplots
             - james-light: a version of james with a light background, naturally
 
+    afterReset : bool, optional
+        If True, will first reset the rcParams to the matplotlib then apply
+        the new rcParams. The alternative (when afterReset is False) is to apply
+        the new rcParams on top of the current rcParams.
+
     Returns
     -------
     dict
@@ -32,6 +37,9 @@ def setStyle(styleName="doumount-light"):
     curDir = os.path.dirname(os.path.abspath(__file__))
     styleFile = os.path.join(curDir, "styles", styleName + ".mplstyle")
 
+    if afterReset:
+        rcdefaults()
+
     # Set the style
     style.use(styleFile)
 
@@ -40,7 +48,7 @@ def setStyle(styleName="doumount-light"):
 
 
 @contextlib.contextmanager
-def styleContext(styleName="doumount-light"):
+def styleContext(styleName="doumont-light", afterReset=False):
     """
     Temporarily change the style of plots. This function is a context manager,
     so is to be used in a with block. For example::
@@ -57,9 +65,14 @@ def styleContext(styleName="doumount-light"):
             - doumont-dark: the dark version of the niceplots style you know and love
             - james-dark: a really cool alternative to classic niceplots
             - james-light: a version of james with a light background, naturally
+
+    afterReset : bool, optional
+        If True, will first reset the rcParams to the matplotlib then apply
+        the new rcParams. The alternative (when afterReset is False) is to apply
+        the new rcParams on top of the current rcParams.
     """
     with rc_context():
-        _ = setStyle(styleName)
+        _ = setStyle(styleName, afterReset)
         yield
 
 

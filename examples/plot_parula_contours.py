@@ -16,8 +16,8 @@ from matplotlib import pyplot as plt
 import niceplots
 
 
-niceplots.setRCParams()
-niceColors = niceplots.get_niceColors()
+niceplots.setStyle()
+niceColors = niceplots.get_colors()
 
 
 def f(x1, x2):

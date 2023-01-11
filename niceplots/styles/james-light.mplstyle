@@ -27,11 +27,11 @@ lines.linewidth : 2.0
 lines.markeredgewidth : 1.0
 lines.markeredgecolor : w
 
-axes.prop_cycle : cycler('color', ['52a1fa', 'f26f6f', '485263', 'ae66de', 'faaa48', '3eb051'])
+axes.prop_cycle : cycler('color', ['52a1fa', 'f26f6f', '485263', 'ae66de', '3eb051', 'faaa48'])
 
 # Use this parameter, which (hopefully) nobody will ever use,
 # to store text the names of the colors in the color cycle
-keymap.help : Blue, Red, Navy, Purple, Orange, Green
+keymap.help : Blue, Red, Navy, Purple, Green, Orange
 
 axes.edgecolor : 3b4c66
 text.color : 273345

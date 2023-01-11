@@ -4,9 +4,9 @@ Nested pie chart
 An example of a nested pie chart.
 """
 import matplotlib.pyplot as plt
-from niceplots import setRCParams, plotNestedPie
+import niceplots
 
-setRCParams()
+niceplots.setStyle()
 
 data = {
     "Pie": {
@@ -29,7 +29,7 @@ data = {
 colors = ["#e86492", "#f0a43a", "#56b2f0"]
 
 fig, ax = plt.subplots(figsize=(13, 8))
-pieObjects = plotNestedPie(data, colors=colors, ax=ax)
+pieObjects = niceplots.plotNestedPie(data, colors=colors, ax=ax)
 ax.set_title("The best pies")
 
 # Customize one of the wedges...
