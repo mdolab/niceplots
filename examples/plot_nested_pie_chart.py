@@ -6,7 +6,7 @@ An example of a nested pie chart.
 import matplotlib.pyplot as plt
 import niceplots
 
-niceplots.setStyle()
+colors = niceplots.setStyle("james-dark")
 
 data = {
     "Pie": {
@@ -25,12 +25,8 @@ data = {
     },
 }
 
-# Custom colors
-colors = ["#e86492", "#f0a43a", "#56b2f0"]
-
-fig, ax = plt.subplots(figsize=(13, 8))
-pieObjects = niceplots.plotNestedPie(data, colors=colors, ax=ax)
-ax.set_title("The best pies")
+fig, ax = plt.subplots(figsize=(8, 8))
+pieObjects = niceplots.plotNestedPie(data, colors=list(colors.values()), ax=ax)
 
 # Customize one of the wedges...
 pieObjects["Pizza"]["Cheese"]["wedge"].set_radius(1.1)

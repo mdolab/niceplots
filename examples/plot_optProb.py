@@ -21,7 +21,6 @@ import niceplots
 # ==============================================================================
 
 niceplots.setStyle()
-niceColors = niceplots.get_colors()
 
 
 def Rosenbrock(x, y):
@@ -72,7 +71,7 @@ for conStyle in ["shaded", "hashed"]:
         optX,
         optY,
         "-o",
-        c=niceColors["Grey"],
+        c="#5a5758",
         markeredgecolor="w",
         linewidth=2.0,
         markersize=8,
