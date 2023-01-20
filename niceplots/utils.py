@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
+from collections import OrderedDict
 from .parula import parula_map
 from matplotlib import patheffects
 from matplotlib.collections import LineCollection
@@ -67,12 +68,13 @@ def get_colors():
     color_names = plt.rcParams["keymap.help"]
 
     # Ensure that the amount of color names matches the amount of colors
-    assert len(color_codes) == len(
-        color_names
-    ), "The colors are not properly named in the stylesheet, please open an issue on GitHub with the details!"
+    if len(color_codes) != len(color_names):
+        raise ValueError(
+            "The colors are not properly named in the stylesheet, please open an issue on GitHub with the details!"
+        )
 
     # Make the dictionary and return it
-    return dict(zip(color_names, color_codes))
+    return OrderedDict(zip(color_names, color_codes))
 
 
 def get_colors_list():
@@ -101,8 +103,9 @@ def get_available_styles():
     styleFilenames = os.listdir(os.path.join(curDir, "styles"))
     styles = []
     for s in styleFilenames:
-        if s[-9:] == ".mplstyle":
-            styles.append(s[:-9])
+        name, ext = os.path.splitext(s)
+        if ext == ".mplstyle":
+            styles.append(name)
     return styles
 
 

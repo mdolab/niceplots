@@ -30,8 +30,8 @@ Niceplots styles use fonts that do not ship with most operating systems, so you'
 If they are not installed, matplotlib will revert back to its default sans-serif font, DejaVu Sans.
 
 The font used by each style is as follows:
-- doumount-light (default niceplots): CMU Bright
-- doumount-dark: CMU Bright
+- doumont-light (default niceplots): CMU Bright
+- doumont-dark: CMU Bright
 - james-dark: Prompt
 - james-light: Prompt
 
