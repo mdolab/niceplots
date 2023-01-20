@@ -28,7 +28,7 @@ x1 = x2 = np.linspace(-5, 5, 201)
 X1, X2 = np.meshgrid(x1, x2)
 minimum = [2.58199, 0]
 
-q2fig, q2ax = plt.subplots()
+q2fig, q2ax = plt.subplots(figsize=(8, 5))
 q2ax.contour(X1, X2, f(X1, X2), cmap=niceplots.parula.parula_map, levels=40)
 q2ax.plot(
     minimum[0],
@@ -47,6 +47,7 @@ q2ax.annotate(
     textcoords="offset points",
     va="bottom",
     ha="center",
+    fontsize="small"
 )
 q2ax.plot(
     -minimum[0],
@@ -66,6 +67,7 @@ q2ax.annotate(
     va="top",
     ha="center",
     color=colors["Axis"],
+    fontsize="small"
 )
 niceplots.adjust_spines(q2ax, outward=True)
 q2ax.set_xlabel("$x_1$")
