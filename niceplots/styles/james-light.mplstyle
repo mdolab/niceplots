@@ -2,9 +2,8 @@ font.family : sans-serif
 font.sans-serif : Prompt
 font.weight : 300
 axes.unicode_minus : True
-font.size : 24
+font.size : 16
 figure.dpi : 100
-figure.figsize : 12, 6.75
 savefig.dpi : 600
 axes.spines.top : False
 axes.spines.right : False

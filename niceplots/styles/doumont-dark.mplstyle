@@ -1,9 +1,8 @@
 font.family : sans-serif
 font.sans-serif : CMU Bright
 axes.unicode_minus : False
-font.size : 24
+font.size : 16
 figure.dpi : 100
-figure.figsize : 12, 6.75
 savefig.dpi : 600
 axes.spines.top : False
 axes.spines.right : False
@@ -36,6 +35,8 @@ axes.labelcolor : ebebeb
 axes.labelweight : 200
 xtick.color : ebebeb
 ytick.color : ebebeb
+xtick.labelsize : small
+ytick.labelsize : small
 axes.facecolor : k
 figure.facecolor : k
 
