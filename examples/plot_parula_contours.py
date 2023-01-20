@@ -41,13 +41,7 @@ q2ax.plot(
     markersize=12,
 )
 q2ax.annotate(
-    "Local Minimum",
-    xy=minimum,
-    xytext=(-5, 10),
-    textcoords="offset points",
-    va="bottom",
-    ha="center",
-    fontsize="small"
+    "Local Minimum", xy=minimum, xytext=(-5, 10), textcoords="offset points", va="bottom", ha="center", fontsize="small"
 )
 q2ax.plot(
     -minimum[0],
@@ -67,7 +61,7 @@ q2ax.annotate(
     va="top",
     ha="center",
     color=colors["Axis"],
-    fontsize="small"
+    fontsize="small",
 )
 niceplots.adjust_spines(q2ax, outward=True)
 q2ax.set_xlabel("$x_1$")
