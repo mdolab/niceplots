@@ -17,7 +17,7 @@ import niceplots
 
 
 plt.style.use(niceplots.get_style())
-grey = "#5a5758"
+colors = niceplots.get_colors()
 
 
 def f(x1, x2):
@@ -35,7 +35,7 @@ q2ax.plot(
     minimum[1],
     clip_on=False,
     marker="o",
-    color=grey,
+    color=colors["Axis"],
     markeredgecolor="w",
     linestyle="",
     markersize=12,
@@ -53,7 +53,7 @@ q2ax.plot(
     minimum[1],
     clip_on=False,
     marker="o",
-    color=grey,
+    color=colors["Axis"],
     markeredgecolor="w",
     linestyle="",
     markersize=12,
@@ -65,7 +65,7 @@ q2ax.annotate(
     textcoords="offset points",
     va="top",
     ha="center",
-    color=grey,
+    color=colors["Axis"],
 )
 niceplots.adjust_spines(q2ax, outward=True)
 q2ax.set_xlabel("$x_1$")

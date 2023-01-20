@@ -21,6 +21,7 @@ import niceplots
 # ==============================================================================
 
 plt.style.use(niceplots.get_style())
+colors = niceplots.get_colors()
 
 
 def Rosenbrock(x, y):
@@ -71,7 +72,7 @@ for conStyle in ["shaded", "hashed"]:
         optX,
         optY,
         "-o",
-        c="#5a5758",
+        c=colors["Axis"],
         markeredgecolor="w",
         linewidth=2.0,
         markersize=8,

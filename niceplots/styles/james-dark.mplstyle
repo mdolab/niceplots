@@ -16,15 +16,11 @@ figure.constrained_layout.use : True
 figure.constrained_layout.h_pad : 0.25
 figure.constrained_layout.w_pad : 0.25
 
-patch.edgecolor : w
-
 axes.autolimit_mode : round_numbers
 axes.xmargin : 0
 axes.ymargin : 0
 
 lines.linewidth : 2.0
-lines.markeredgewidth : 1.0
-lines.markeredgecolor : 00264f
 
 axes.prop_cycle : cycler('color', ['52a1fa', 'f26f6f', 'd6d6d6', 'c678fa', '78b865', 'e6ad53'])
 

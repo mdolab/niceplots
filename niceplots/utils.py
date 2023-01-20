@@ -61,7 +61,13 @@ def get_colors():
     -------
     dict
         Dictionary of the colors for the requested style. The keys
-        are human-readable names and the keys are the hex codes.
+        are human-readable names and the keys are the hex codes. It
+        also adds color names from the rcParams that are generally useful:
+
+            - "Axis": axis spine color
+            - "Background" axis background color
+            - "Text": default text color
+            - "Label": axis label color
     """
     # Get the color codes and their names from the (hopefully) "special" parameter
     color_codes = get_colors_list()
@@ -73,8 +79,13 @@ def get_colors():
             "The colors are not properly named in the stylesheet, please open an issue on GitHub with the details!"
         )
 
-    # Make the dictionary and return it
-    return OrderedDict(zip(color_names, color_codes))
+    colors = OrderedDict(zip(color_names, color_codes))
+    colors["Axis"] = plt.rcParams["axes.edgecolor"]
+    colors["Background"] = plt.rcParams["axes.facecolor"]
+    colors["Text"] = plt.rcParams["text.color"]
+    colors["Label"] = plt.rcParams["axes.labelcolor"]
+
+    return colors
 
 
 def get_colors_list():
@@ -214,8 +225,9 @@ def horiz_bar(labels, times, header, nd=1, size=[5, 0.5], color=None):
 
     # Use the first color if none is specified
     if color is None:
-        color = list(get_colors().values())[0]
-    greyLineColor = "#5a5758"
+        color = get_colors_list()[0]
+    style_colors = get_colors()
+    line_color = style_colors["Axis"]
 
     # Obtain parameters to size the chart correctly
     num = len(times)
@@ -237,7 +249,7 @@ def horiz_bar(labels, times, header, nd=1, size=[5, 0.5], color=None):
     for j, (l, t, ax) in enumerate(zip(labels, times, axarr)):
 
         # Draw the gray line and singular yellow dot
-        ax.axhline(y=1, c=greyLineColor, lw=3, zorder=0, alpha=0.5)
+        ax.axhline(y=1, c=line_color, lw=3, zorder=0, alpha=0.5)
         ax.scatter([t], [1], c=color, lw=0, s=100, zorder=1, clip_on=False)
 
         # Set chart properties
@@ -293,7 +305,7 @@ def stacked_plots(
         data_dict_list = [data_dict_list]
 
     if colors is None:
-        colors = plt.rcParams["axes.prop_cycle"].by_key()["color"]
+        colors = get_colors_list()
 
     data_dict = data_dict_list[0]
     n = len(data_dict)
@@ -456,7 +468,7 @@ def plot_opt_prob(
         cmap = parula_map
 
     if colors is None:
-        colors = plt.rcParams["axes.prop_cycle"].by_key()["color"]
+        colors = get_colors_list()
     nColor = len(colors)
 
     # --- Create grid of points for evaluating functions ---

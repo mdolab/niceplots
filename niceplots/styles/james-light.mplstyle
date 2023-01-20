@@ -16,15 +16,11 @@ figure.constrained_layout.use : True
 figure.constrained_layout.h_pad : 0.25
 figure.constrained_layout.w_pad : 0.25
 
-patch.edgecolor : w
-
 axes.autolimit_mode : round_numbers
 axes.xmargin : 0
 axes.ymargin : 0
 
 lines.linewidth : 2.0
-lines.markeredgewidth : 1.0
-lines.markeredgecolor : w
 
 axes.prop_cycle : cycler('color', ['52a1fa', 'f26f6f', '485263', 'ae66de', '3eb051', 'faaa48'])
 
@@ -40,7 +36,7 @@ xtick.color : 3b4c66
 ytick.color : 3b4c66
 xtick.labelsize : small
 ytick.labelsize : small
-axes.facecolor : w
-figure.facecolor : w
+axes.facecolor : none
+figure.facecolor : none
 
 pgf.rcfonts : True
