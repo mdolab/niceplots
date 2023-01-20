@@ -6,6 +6,10 @@
 
 .vscode/
 
+# Ignore generated doc files
+doc/_build/
+doc/auto_examples/
+
 ### Python ###
 # Byte-compiled / optimized / DLL files
 __pycache__/
