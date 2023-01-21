@@ -25,7 +25,8 @@ import numpy as np
 
 
 def gaussian(x, mu, sig):
-    return 1./(np.sqrt(2.*np.pi)*sig)*np.exp(-np.power((x - mu)/sig, 2.)/2)
+    return 1.0 / (np.sqrt(2.0 * np.pi) * sig) * np.exp(-np.power((x - mu) / sig, 2.0) / 2)
+
 
 plt.style.use(niceplots.get_style("doumont-light"))
 colours = niceplots.get_colors()
@@ -42,9 +43,9 @@ yLine = gaussian(xLine, 0, 1)
 yRand = gaussian(xRand, 0, 1) + np.random.normal(0, 0.02, len(xRand))
 yRand[yRand < 0] += 0.05
 
-ax.set_yticks([0,0.4])
+ax.set_yticks([0, 0.4])
 ax.set_ylim(bottom=0, top=0.4)
-ax.set_xticks([xMin,0,xMax])
+ax.set_xticks([xMin, 0, xMax])
 
 ax.set_xlabel("Some variable, $x$")
 ax.set_ylabel("$\mathbb{E}(x,\\mu=0, \sigma=1)$", rotation="horizontal", ha="right")

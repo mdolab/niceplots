@@ -33,9 +33,12 @@ jobs:
       - name: Install fonts
         run: |
           sudo apt-get install fonts-cmu
-          curl https://codeload.github.com/google/fonts/tar.gz/main | tar -xz --strip=2 fonts-main/ofl/prompt
+          mkdir Prompt
+          cd Prompt
+          wget "https://fonts.google.com/download?family=Prompt" -O Prompt.zip
+          unzip Prompt.zip
           mkdir ~/.fonts
-          cp prompt/*.ttf ~/.fonts
+          cp *.ttf ~/.fonts
       - name: Install dependencies
         run: |
           pip install --upgrade pip wheel
