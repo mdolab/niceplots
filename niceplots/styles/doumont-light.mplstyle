@@ -43,7 +43,6 @@ axes.prop_cycle : cycler('color', ['e29400ff', '1E90FF', 'E21A1A', '00a650ff', '
 keymap.help : Yellow, Blue, Red, Green, Maroon, Orange, Purple, Cyan, Black
 
 lines.markeredgecolor : w
-patch.edgecolor : w
 axes.edgecolor : 5a5758ff
 text.color : 5a5758ff
 axes.labelcolor : 5a5758ff
