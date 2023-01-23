@@ -29,9 +29,9 @@ c = np.cos(x)
 
 fig, ax = plt.subplots()
 niceplots.plot_colored_line(
-    x, y, c, cmap="coolwarm", fig=fig, ax=ax, addColorBar=True, cRange=None, cBarLabel="$dy/dx$"
+    x, y, c, cmap="coolwarm", fig=fig, ax=ax, addColorBar=True, cRange=None, cBarLabel="$dy/dx$", clip_on=False
 )
-niceplots.plot_colored_line(x, c, -y, cmap="coolwarm", fig=fig, ax=ax)
+niceplots.plot_colored_line(x, c, -y, cmap="coolwarm", fig=fig, ax=ax, clip_on=False)
 niceplots.adjust_spines(ax)
 ax.set_xlabel("$x$")
 ax.set_ylabel("$y$", rotation="horizontal", ha="right")
@@ -43,7 +43,9 @@ fig.savefig("coloredLine.pdf")
 
 # Use a custom norm to specify the colormap range
 divnorm = TwoSlopeNorm(vmin=-1.0, vcenter=0.8, vmax=1.0)
-fig, ax = niceplots.plot_colored_line(x, y, c, cmap="coolwarm", norm=divnorm, addColorBar=False, cBarLabel="$dy/dx$")
+fig, ax = niceplots.plot_colored_line(
+    x, y, c, cmap="coolwarm", norm=divnorm, addColorBar=False, cBarLabel="$dy/dx$", clip_on=False
+)
 niceplots.adjust_spines(ax)
 ax.set_xlabel("$x$")
 ax.set_ylabel("$y$", rotation="horizontal", ha="right")
@@ -52,4 +54,3 @@ ax.set_xticklabels([0, r"$\frac{\pi}{2}$", r"$\pi$", r"$\frac{3\pi}{2}$", r"$2\p
 ax.set_xlim(0, 2 * np.pi)
 fig.savefig("coloredLineCustomNorm.png", dpi=400)
 fig.savefig("coloredLineCustomNorm.pdf")
-# plt.show()

@@ -82,4 +82,3 @@ for conStyle in ["shaded", "hashed"]:
     # Save figures
     fig.savefig(f"optProb-{conStyle}.png", dpi=400)
     fig.savefig(f"optProb-{conStyle}.pdf")
-plt.show()
