@@ -13,7 +13,7 @@
 
 ## How do I install?
 
-Niceplots can be pip installed directly from PyPI
+NicePlots can be pip installed directly from PyPI
 
 ```shell
 pip install niceplots
@@ -26,7 +26,7 @@ pip install niceplots
 
 ### Font installation (optional)
 
-Niceplots styles use fonts that do not ship with most operating systems, so you'll need to install them separately.
+NicePlots styles use fonts that do not ship with most operating systems, so you'll need to install them separately.
 If they are not installed, matplotlib will revert back to its default sans-serif font, DejaVu Sans.
 
 The font used by each style is as follows:
@@ -56,12 +56,13 @@ The Prompt font can be download from [Google Fonts](https://fonts.google.com/spe
 ## How do I get set up?
 
 * `import matplotlib.pyplot as plt` and `import niceplots` at the top of a file where you would like to use any function defined in this package.
-* Use `plt.style.use(niceplots.get_style())` to set some defaults for nice looking plots. You can also try passing different styles to `get_style()`, such as niceplots' `james-dark` or any of matplotlib's styles (see the function's documentation for a full list of available niceplots styles).
-* Plot your beautiful data.
+* Use `plt.style.use(niceplots.get_style())` to set some defaults for nice-looking plots. You can also try passing different styles to `get_style()`, such as NicePlots' `"james-dark"` or any of matplotlib's styles (see the function's documentation for a full list of available NicePlots styles).
+* Take advantage of NicePlots' helper functions, including (but not limited to) `adjust_spines`, `horiz_bar`, and `plot_nested_pie`, which are all documented in the [examples gallery](https://mdolab-niceplots.readthedocs-hosted.com/en/latest/auto_examples/index.html).
+* Admire your beautiful data.
 
 ## Do you have docs?
 
-Sort of, you can find our examples gallery and api documentation [here](https://mdolab-niceplots.readthedocs-hosted.com/en/latest)
+Sort of, you can find our examples gallery and API documentation [here](https://mdolab-niceplots.readthedocs-hosted.com/en/latest)
 
 ## Contribution guidelines
 
