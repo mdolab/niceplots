@@ -1,12 +1,12 @@
 """
 ==============================================================================
-Niceplots Style Test
+Niceplots Style Demo
 ==============================================================================
-@Description : This script demonstrates the styles available in niceplots and
-compares them to the default matplotlib style. The script generates a plot of
-a Gaussian distributions with some random "measured" data points and a shaded
-area indicating a +/- 1 std dev region. The plot is loosely based on the plot
-shown on page 147 of Jean Luc Doumont's "Trees, maps, and theorems" book.
+This script demonstrates the styles available in niceplots and compares them
+to the default matplotlib style. The script generates a plot ofa Gaussian
+distributions with some random "measured" data points and a shaded area
+indicating a +/- 1 std dev region. The plot is loosely based on the plot shown
+on page 147 of Jean Luc Doumont's "Trees, maps, and theorems" book.
 """
 
 # ==============================================================================
