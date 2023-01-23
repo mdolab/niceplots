@@ -8,7 +8,6 @@ on:
     tags:
       - v*.*.*
   pull_request:
-  pull_request_target:
 
 jobs:
   black:
@@ -30,7 +29,10 @@ jobs:
           - python-version: "3.10"
             numpy-version: "1.19.*"
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
+        with:
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+          ref: ${{ github.head_ref }}
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v2
         with:
@@ -61,11 +63,6 @@ jobs:
         with:
           commit_message: Update example figures
           file_pattern: 'examples/*.png'
-        # uses: EndBug/add-and-commit@v9.1.1
-        # with:
-        #   default_author: github_actions
-        #   add: "examples/*.png"
-        #   message: "Update example figures"
 
   # --- publish to PyPI
   pypi:
