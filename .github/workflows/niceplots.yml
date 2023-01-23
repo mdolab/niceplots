@@ -62,8 +62,7 @@ jobs:
         if: ${{ success() && matrix.python-version == '3.10' && matrix.numpy-version == '1.24.*' && matrix.mpl-version == '3.6.*' }}
         uses: EndBug/add-and-commit@v9.1.1
         with:
-          author_name: "GitHub Actions Bot"
-          author_email: "<>"
+          default_author: user_info
           add: "examples/*.png"
           message: "Update example figures"
 
