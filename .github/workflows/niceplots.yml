@@ -30,7 +30,9 @@ jobs:
           - python-version: "3.10"
             numpy-version: "1.19.*"
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v2
         with:
@@ -55,6 +57,15 @@ jobs:
           # this is very janky for now
           cd examples
           bash testExamples.sh
+      - name: Update example pictures
+        if: ${{ matrix.python-version }} == '3.10' && ${{ matrix.numpy-version }} == '1.24.*' && ${{ matrix.mpl-version }} == '3.6.*'
+        uses: EndBug/add-and-commit@v9.1.1
+        with:
+          author_name: "GitHub Actions Bot"
+          author_email: "<>"
+          message: "Update example pictures"
+          add: "examples/*.png"
+          branch: ${{ github.event.pull_request.head.ref }}
 
   # --- publish to PyPI
   pypi:
