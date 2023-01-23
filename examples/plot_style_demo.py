@@ -82,6 +82,8 @@ for formatting in ["default"] + niceplots.get_available_styles():
         ax.annotate("68.27%", xy=(0, 0.075), ha="center", va="bottom", color=fill_color)
         plt.annotate("", xy=(-1, 0.07), xytext=(1.0, 0.07), arrowprops=dict(arrowstyle="<|-|>", color=fill_color))
 
+        fig.suptitle(f"{formatting} style")
+
         # Plotting tip #3, use the niceplots adjust_spines function to space the axes out nicely
         if formatting != "default":
             niceplots.adjust_spines(ax)
