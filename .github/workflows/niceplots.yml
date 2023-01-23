@@ -59,14 +59,13 @@ jobs:
           cd examples
           bash testExamples.sh
       - name: Update example pictures
-        if: ${{ matrix.python-version }} == '3.10' && ${{ matrix.numpy-version }} == '1.24.*' && ${{ matrix.mpl-version }} == '3.6.*'
+        if: ${{ success() && matrix.python-version == '3.10' && matrix.numpy-version == '1.24.*' && matrix.mpl-version == '3.6.*' }}
         uses: EndBug/add-and-commit@v9.1.1
         with:
           author_name: "GitHub Actions Bot"
           author_email: "<>"
-          message: "Update example pictures"
           add: "examples/*.png"
-          branch: ${{ github.event.pull_request.head.ref }}
+          message: "Update example figures"
 
   # --- publish to PyPI
   pypi:
