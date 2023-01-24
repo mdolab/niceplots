@@ -7,7 +7,7 @@ Whatever is before `.mplstyle` will be the string used to reference the style wh
 
 ### File contents
 
-There are only two niceplots-specific stylesheet requirements:
+There are only two NicePlots-specific stylesheet requirements:
 
 1. The color cycle is specified using the `axes.prop_cycle` rcParam.
 2. The name of each color in the color cycle is specified in the `keymap.help` rcParam.
