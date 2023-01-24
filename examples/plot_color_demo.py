@@ -25,7 +25,7 @@ styles = niceplots.get_available_styles()
 
 plt.style.use(niceplots.get_style("james-light"))
 
-fig, axs = plt.subplots(1, len(styles), figsize=(3 * len(styles), 8), tight_layout=True)
+fig, axs = plt.subplots(1, len(styles), figsize=(3 * len(styles), 8))
 axs = axs.flatten()
 
 for i, style in enumerate(styles):

@@ -11,6 +11,7 @@ mathtext.default: regular
 
 legend.columnspacing : 0.2
 legend.frameon : False
+figure.constrained_layout.use : True
 
 lines.linewidth : 2.0
 
