@@ -58,7 +58,6 @@ jobs:
           pip install .
       - name: Test examples
         run: |
-          # this is very janky for now
           cd examples
           bash testExamples.sh
       - name: Compare against reference images
@@ -72,12 +71,12 @@ jobs:
         with:
           name: Examples
           path: examples/
-      - name: Upload new reference images
-        if: ${{ github.event_name == 'push' && success() && matrix.python-version == '3.10' && matrix.numpy-version == '1.24.*' && matrix.mpl-version == '3.6.*' }}
-        uses: stefanzweifel/git-auto-commit-action@v4
-        with:
-          file_pattern: 'examples/ref/*.png'
-          commit_message: Update reference images
+      # - name: Upload new reference images
+      #   if: ${{ github.event_name == 'push' && success() && matrix.python-version == '3.10' && matrix.numpy-version == '1.24.*' && matrix.mpl-version == '3.6.*' }}
+      #   uses: stefanzweifel/git-auto-commit-action@v4
+      #   with:
+      #     file_pattern: 'examples/ref/*.png'
+      #     commit_message: Update reference images
 
 
   # --- publish to PyPI
