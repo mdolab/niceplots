@@ -117,6 +117,7 @@ def get_available_styles():
         name, ext = os.path.splitext(s)
         if ext == ".mplstyle":
             styles.append(name)
+    styles.sort()  # alphabetize
     return styles
 
 
