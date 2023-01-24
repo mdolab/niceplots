@@ -39,8 +39,6 @@ jobs:
         with:
           packages: fonts-cmu nodejs npm
           version: 1.0
-        run: |
-          sudo apt-get install fonts-cmu
       - name: Install node dependencies
         run: |
           sudo npm install -g odiff-bin
