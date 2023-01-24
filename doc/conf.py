@@ -7,8 +7,8 @@ from pathlib import PurePosixPath
 
 
 class svgScraper(object):
-    """This is a custom scraper for sphinx-gallery that allows us to use svg files in our examples. It is almost
-    entirely copied from the PNGScraper shown at:
+    """This is a custom scraper for sphinx-gallery that allows us to use the svg files written by our examples. It is
+    almost entirely copied from the PNGScraper shown at:
     https://sphinx-gallery.github.io/dev/advanced.html#example-2-detecting-image-files-on-disk
     """
 

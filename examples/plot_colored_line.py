@@ -39,6 +39,7 @@ ax.set_xticks(np.linspace(0, 2, 5) * np.pi)
 ax.set_xticklabels([0, r"$\frac{\pi}{2}$", r"$\pi$", r"$\frac{3\pi}{2}$", r"$2\pi$"])
 ax.set_xlim(0, 2 * np.pi)
 fig.savefig("colored_line.png")
+fig.savefig("colored_line.svg")
 
 # Use a custom norm to specify the colormap range
 divnorm = TwoSlopeNorm(vmin=-1.0, vcenter=0.8, vmax=1.0)
