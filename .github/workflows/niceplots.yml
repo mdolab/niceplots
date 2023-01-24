@@ -63,6 +63,7 @@ jobs:
         with:
           commit_message: Update example figures
           file_pattern: 'examples/*.svg'
+          add_options: '--force'
 
   # --- publish to PyPI
   pypi:

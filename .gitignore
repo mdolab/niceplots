@@ -1,8 +1,7 @@
-# Ignore any pdf's or png's except in the examples folder
+# Ignore any figures
 *.pdf
-!examples/*.pdf
 *.png
-!examples/*.png
+*.svg
 
 .vscode/
 
