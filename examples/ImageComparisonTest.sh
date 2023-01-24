@@ -4,6 +4,16 @@
 
 test_passed=true # Kepp track of whether any tests fail
 
+# First check that there aren't any images produced by the examples that don't have a reference image
+for f in *.png
+do
+    if ! test -f "ref/$f"; then
+        echo ""
+        echo "$f doesn't have a reference image to compare to"
+        test_passed=false
+    fi
+done
+
 # For each image in the ref directory, check that there is a corresponding image in the current directory and then compare them
 for f in ref/*.png
 do
@@ -12,23 +22,13 @@ do
 
     if test -f "$base_name"; then
         filename_no_ext="${base_name%.*}"
-        echo "Comparing $f and ref/$f"
-        odiff $base_name $f ${filename_no_ext}-diff.png
+        echo "Comparing $base_name and $f"
+        odiff --aa $base_name $f ${filename_no_ext}-diff.png
         if [ $? -ne 0 ]; then
             test_passed=false
         fi
     else
         echo "Couldn't find image to compare against $f"
-        test_passed=false
-    fi
-done
-
-# Finally we should also check that there aren't any image produced by the examples that don't have a reference image
-for f in *.png
-do
-    if ! test -f "ref/$f"; then
-        echo ""
-        echo "$f doesn't have a reference image to compare to"
         test_passed=false
     fi
 done
