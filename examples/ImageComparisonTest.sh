@@ -23,7 +23,7 @@ do
     if test -f "$base_name"; then
         filename_no_ext="${base_name%.*}"
         echo "Comparing $base_name and $f"
-        odiff --aa --threshold=0.9 $base_name $f ${filename_no_ext}-diff.png
+        odiff --aa --threshold=0.5 $base_name $f ${filename_no_ext}-diff.png
         if [ $? -ne 0 ]; then
             test_passed=false
         fi
