@@ -65,6 +65,11 @@ The Prompt font can be download from [Google Fonts](https://fonts.google.com/spe
 
 Sort of, you can find our examples gallery and API documentation [here](https://mdolab-niceplots.readthedocs-hosted.com/en/latest)
 
+## Help, my old NicePlots code doesn't work anymore!
+
+We made a couple of changes to the API in version 2.0.0, most of them can be fixed with a simple find and replace.
+Check the [release notes](https://github.com/mdolab/niceplots/releases/tag/v2.0.0) for more details.
+
 ## Contribution guidelines
 
 * Make any changes you see fit. Please fork your own version and submit a pull request.
