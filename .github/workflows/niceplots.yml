@@ -34,16 +34,25 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: ${{ matrix.python-version }}
-      - name: Install fonts
+      - name: Install apt dependencies
+        uses: awalsh128/cache-apt-pkgs-action@latest
+        with:
+          packages: fonts-cmu nodejs npm
+          version: 1.0
         run: |
           sudo apt-get install fonts-cmu
+      - name: Install node dependencies
+        run: |
+          sudo npm install -g odiff-bin
+      - name: Install Prompt font
+        run: |
           mkdir Prompt
           cd Prompt
           wget "https://fonts.google.com/download?family=Prompt" -O Prompt.zip
           unzip Prompt.zip
           mkdir ~/.fonts
           cp *.ttf ~/.fonts
-      - name: Install dependencies
+      - name: Install python dependencies
         run: |
           pip install --upgrade pip wheel
           pip install numpy==${{ matrix.numpy-version }}
