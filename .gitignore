@@ -1,6 +1,7 @@
-# Ignore any figures
+# Ignore any figures, except the reference images used for testing
 *.pdf
 *.png
+!examples/ref/*.png
 *.svg
 
 .vscode/
