@@ -7,18 +7,11 @@ figure.dpi : 100
 savefig.dpi : 600
 axes.spines.top : False
 axes.spines.right : False
-axes.labelpad : 8.0
 mathtext.default: regular
 
 legend.columnspacing : 0.2
 legend.frameon : False
 figure.constrained_layout.use : True
-figure.constrained_layout.h_pad : 0.25
-figure.constrained_layout.w_pad : 0.25
-
-axes.autolimit_mode : round_numbers
-axes.xmargin : 0
-axes.ymargin : 0
 
 lines.linewidth : 2.0
 
