@@ -66,8 +66,9 @@ jobs:
         run: |
           cd examples
           bash ImageComparisonTest.sh
-      - uses: actions/upload-artifact@v3
-        if: ${{ always() && matrix.python-version == '3.10' && matrix.numpy-version == '1.24.*' && matrix.mpl-version == '3.6.*' }}
+      - name: Upload examples if failed
+        uses: actions/upload-artifact@v3
+        if: ${{ failure() && matrix.python-version == '3.10' && matrix.numpy-version == '1.24.*' && matrix.mpl-version == '3.6.*' }}
         with:
           name: Examples
           path: examples/
