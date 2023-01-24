@@ -7,9 +7,10 @@
 [![PyPI - Downloads](https://img.shields.io/pypi/dm/niceplots)](https://pypi.org/project/niceplots/)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
-<img src="https://raw.githubusercontent.com/mdolab/niceplots/main/examples/parula_contours.svg" width="61%" /> <img src="https://raw.githubusercontent.com/mdolab/niceplots/main/examples/opt_prob-shaded.svg" width="38.2%" />
-<img src="https://raw.githubusercontent.com/mdolab/niceplots/main/examples/bar_chart.svg" width="61%" /> <img src="https://raw.githubusercontent.com/mdolab/niceplots/main/examples/james-dark_style_demo.svg" width="38.2%" />
+<img src="https://mdolab-niceplots.readthedocs-hosted.com/en/latest/_images/sphx_glr_plot_parula_contours_001.svg" width="61%" /> <img src="https://mdolab-niceplots.readthedocs-hosted.com/en/latest/_images/sphx_glr_plot_opt_prob_002.svg" width="38.2%" />
+<img src="https://mdolab-niceplots.readthedocs-hosted.com/en/latest/_images/sphx_glr_plot_bar_chart_001.svg" width="61%" /> <img src="https://mdolab-niceplots.readthedocs-hosted.com/en/latest/_images/sphx_glr_plot_style_demo_004.svg" width="38.2%" />
 
+<!-- https://mdolab-niceplots.readthedocs-hosted.com/en/latest/_images/ -->
 
 ## How do I install?
 
