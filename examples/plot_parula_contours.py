@@ -70,4 +70,6 @@ q2ax.set_xlim(left=min(x1), right=max(x1))
 q2ax.set_ylim(bottom=min(x2), top=max(x2))
 q2ax.set_yticks([min(x2), 0, minimum[-1], max(x2)])
 q2ax.set_ylabel("$x_2$", rotation="horizontal", ha="right")
-plt.savefig("ParulaContours.png", dpi=400)
+
+plt.savefig("parula_contours.png")
+plt.savefig("parula_contours.svg")

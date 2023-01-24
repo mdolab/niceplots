@@ -38,8 +38,7 @@ ax.set_ylabel("$y$", rotation="horizontal", ha="right")
 ax.set_xticks(np.linspace(0, 2, 5) * np.pi)
 ax.set_xticklabels([0, r"$\frac{\pi}{2}$", r"$\pi$", r"$\frac{3\pi}{2}$", r"$2\pi$"])
 ax.set_xlim(0, 2 * np.pi)
-fig.savefig("coloredLine.png", dpi=400)
-fig.savefig("coloredLine.pdf")
+fig.savefig("colored_line.png")
 
 # Use a custom norm to specify the colormap range
 divnorm = TwoSlopeNorm(vmin=-1.0, vcenter=0.8, vmax=1.0)
@@ -52,5 +51,6 @@ ax.set_ylabel("$y$", rotation="horizontal", ha="right")
 ax.set_xticks(np.linspace(0, 2, 5) * np.pi)
 ax.set_xticklabels([0, r"$\frac{\pi}{2}$", r"$\pi$", r"$\frac{3\pi}{2}$", r"$2\pi$"])
 ax.set_xlim(0, 2 * np.pi)
-fig.savefig("coloredLineCustomNorm.png", dpi=400)
-fig.savefig("coloredLineCustomNorm.pdf")
+
+fig.savefig("colored_line_custom_norm.png")
+fig.savefig("colored_line_custom_norm.svg")

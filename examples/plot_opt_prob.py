@@ -80,5 +80,5 @@ for conStyle in ["shaded", "hashed"]:
     )
 
     # Save figures
-    fig.savefig(f"optProb-{conStyle}.png", dpi=400)
-    fig.savefig(f"optProb-{conStyle}.pdf")
+    fig.savefig(f"opt_prob-{conStyle}.png")
+    fig.savefig(f"opt_prob-{conStyle}.svg")

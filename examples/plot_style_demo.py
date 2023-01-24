@@ -90,5 +90,5 @@ for formatting in ["default"] + niceplots.get_available_styles():
         else:
             plt.tight_layout()
 
-        fig.savefig(f"{formatting}-Gaussian.pdf")
-        fig.savefig(f"{formatting}-Gaussian.png")
+        fig.savefig(f"{formatting}_style_demo.svg")
+        fig.savefig(f"{formatting}_style_demo.png")
