@@ -37,7 +37,6 @@ class svgScraper(object):
                 image_path = PurePosixPath(this_image_path)
                 image_path = image_path.with_suffix(".svg")
                 image_names.append(image_path)
-                shutil.move(svg, image_path)
         # Use the `figure_rst` helper function to generate rST for image files
         return figure_rst(image_names, gallery_conf["src_dir"])
 

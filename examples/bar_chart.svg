@@ -1,0 +1,1053 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="504pt" height="234pt" viewBox="0 0 504 234" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2023-01-23T20:42:51.920746</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.6.2, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 234 
+L 504 234 
+L 504 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 156.670865 70.420367 
+L 411.216398 70.420367 
+L 411.216398 36.275999 
+L 156.670865 36.275999 
+z
+" style="fill: #ffffff"/>
+   </g>
+   <g id="line2d_1">
+    <path d="M 156.670865 53.348183 
+L 411.216398 53.348183 
+" clip-path="url(#p658e4b3c2e)" style="fill: none; stroke: #5a5758; stroke-opacity: 0.5; stroke-width: 3; stroke-linecap: square"/>
+   </g>
+   <g id="PathCollection_1">
+    <defs>
+     <path id="ma02c52a0ea" d="M 0 5 
+C 1.326016 5 2.597899 4.473168 3.535534 3.535534 
+C 4.473168 2.597899 5 1.326016 5 0 
+C 5 -1.326016 4.473168 -2.597899 3.535534 -3.535534 
+C 2.597899 -4.473168 1.326016 -5 0 -5 
+C -1.326016 -5 -2.597899 -4.473168 -3.535534 -3.535534 
+C -4.473168 -2.597899 -5 -1.326016 -5 0 
+C -5 1.326016 -4.473168 2.597899 -3.535534 3.535534 
+C -2.597899 4.473168 -1.326016 5 0 5 
+z
+"/>
+    </defs>
+    <g>
+     <use xlink:href="#ma02c52a0ea" x="208.570155" y="53.348183" style="fill: #e29400"/>
+    </g>
+   </g>
+   <g id="matplotlib.axis_1">
+    <g id="xtick_1"/>
+    <g id="xtick_2"/>
+    <g id="xtick_3"/>
+    <g id="xtick_4"/>
+    <g id="xtick_5"/>
+   </g>
+   <g id="matplotlib.axis_2">
+    <g id="ytick_1"/>
+    <g id="ytick_2"/>
+    <g id="ytick_3"/>
+    <g id="text_1">
+     <!-- Analytic Forward -->
+     <g style="fill: #5a5758" transform="translate(17.540865 58.099902) scale(0.18 -0.18)">
+      <defs>
+       <path id="CMUBright-SemiBold-41" d="M 186 0 
+L 800 0 
+L 1184 1088 
+L 3046 1088 
+L 3430 0 
+L 4128 0 
+L 2522 4499 
+L 1798 4499 
+L 186 0 
+z
+M 1370 1594 
+C 1523 2042 2010 3373 2118 3827 
+C 2163 3597 2477 2701 2867 1594 
+L 1370 1594 
+z
+" transform="scale(0.015625)"/>
+       <path id="CMUBright-SemiBold-6e" d="M 410 0 
+L 1024 0 
+L 1024 1728 
+C 1024 1946 1075 2592 1651 2592 
+C 2259 2592 2272 2227 2272 2022 
+L 2272 0 
+L 2886 0 
+L 2886 2016 
+C 2886 2394 2867 3072 1971 3072 
+C 1389 3072 1107 2669 1005 2496 
+L 998 2714 
+L 998 3021 
+L 410 3021 
+L 410 0 
+z
+" transform="scale(0.015625)"/>
+       <path id="CMUBright-SemiBold-61" d="M 250 851 
+C 250 474 493 -51 1043 -51 
+C 1421 -51 1869 90 2125 410 
+L 2131 230 
+L 2131 0 
+L 2733 0 
+L 2733 1933 
+L 2726 2144 
+C 2688 2650 2240 3104 1581 3104 
+C 1139 3104 832 2995 512 2829 
+L 557 2291 
+C 909 2547 1120 2637 1568 2650 
+C 1658 2650 1901 2643 2048 2355 
+C 2118 2221 2112 2125 2112 1971 
+L 2112 1747 
+C 1101 1715 250 1446 250 851 
+z
+M 845 864 
+C 845 1216 1350 1414 2112 1446 
+L 2112 1043 
+C 2112 954 2112 864 2074 781 
+C 1971 557 1683 429 1408 429 
+C 1101 429 845 602 845 864 
+z
+" transform="scale(0.015625)"/>
+       <path id="CMUBright-SemiBold-6c" d="M 416 0 
+L 1018 0 
+L 1018 4448 
+L 416 4448 
+L 416 0 
+z
+" transform="scale(0.015625)"/>
+       <path id="CMUBright-SemiBold-79" d="M 90 3021 
+L 1261 0 
+C 1146 -326 1069 -640 691 -640 
+C 480 -640 307 -589 154 -544 
+L 205 -1075 
+C 301 -1088 493 -1120 685 -1120 
+C 1306 -1120 1555 -602 1722 -128 
+L 2835 3021 
+L 2240 3021 
+C 1850 1888 1536 1011 1510 614 
+C 1446 1094 1254 1574 704 3021 
+L 90 3021 
+z
+" transform="scale(0.015625)"/>
+       <path id="CMUBright-SemiBold-74" d="M 122 2541 
+L 634 2541 
+L 634 1005 
+C 634 589 685 -51 1197 -51 
+C 1510 -51 1869 13 2234 211 
+L 2106 672 
+C 2003 595 1830 448 1555 448 
+C 1357 448 1222 608 1222 1075 
+L 1222 2541 
+L 2118 2541 
+L 2118 3021 
+L 1222 3021 
+L 1222 3885 
+L 646 3885 
+L 646 3021 
+L 122 3021 
+L 122 2541 
+z
+" transform="scale(0.015625)"/>
+       <path id="CMUBright-SemiBold-69" d="M 416 3840 
+L 1018 3840 
+L 1018 4442 
+L 416 4442 
+L 416 3840 
+z
+M 416 0 
+L 1018 0 
+L 1018 3021 
+L 416 3021 
+L 416 0 
+z
+" transform="scale(0.015625)"/>
+       <path id="CMUBright-SemiBold-63" d="M 224 1517 
+C 224 704 819 -51 1702 -51 
+C 2157 -51 2490 83 2797 269 
+L 2752 800 
+C 2534 653 2227 448 1696 448 
+C 1350 448 838 659 838 1510 
+C 838 2438 1363 2605 1715 2605 
+C 2163 2605 2336 2522 2669 2304 
+L 2758 2829 
+C 2381 3027 2182 3104 1715 3104 
+C 819 3104 224 2349 224 1517 
+z
+" transform="scale(0.015625)"/>
+       <path id="CMUBright-SemiBold-20" transform="scale(0.015625)"/>
+       <path id="CMUBright-SemiBold-46" d="M 512 0 
+L 1184 0 
+L 1184 1958 
+L 3245 1958 
+L 3245 2470 
+L 1184 2470 
+L 1184 3923 
+L 3526 3923 
+L 3526 4429 
+L 512 4429 
+L 512 0 
+z
+" transform="scale(0.015625)"/>
+       <path id="CMUBright-SemiBold-6f" d="M 186 1504 
+C 186 582 902 -51 1677 -51 
+C 2477 -51 3168 608 3168 1498 
+C 3168 2330 2541 3098 1677 3098 
+C 883 3098 186 2413 186 1504 
+z
+M 800 1594 
+C 800 2509 1357 2618 1677 2618 
+C 2131 2618 2554 2387 2554 1606 
+C 2554 1274 2528 928 2291 685 
+C 2125 512 1894 448 1677 448 
+C 1434 448 1197 531 1037 717 
+C 832 960 800 1280 800 1594 
+z
+" transform="scale(0.015625)"/>
+       <path id="CMUBright-SemiBold-72" d="M 416 0 
+L 1018 0 
+L 1018 1517 
+C 1018 2330 1715 2522 2112 2528 
+L 2112 3072 
+C 1434 3059 1107 2579 992 2368 
+L 992 3021 
+L 416 3021 
+L 416 0 
+z
+" transform="scale(0.015625)"/>
+       <path id="CMUBright-SemiBold-77" d="M 90 3021 
+L 954 -19 
+L 1568 -19 
+C 1856 1011 2144 2022 2170 2406 
+L 2189 2259 
+L 2272 1862 
+L 2381 1414 
+L 2778 -19 
+L 3462 -19 
+L 4326 3021 
+L 3744 3021 
+C 3405 1824 3136 858 3110 614 
+C 3059 890 2982 1165 2912 1440 
+L 2470 3021 
+L 1920 3021 
+C 1549 1722 1318 851 1306 614 
+L 1280 781 
+L 1178 1210 
+L 685 3021 
+L 90 3021 
+z
+" transform="scale(0.015625)"/>
+       <path id="CMUBright-SemiBold-64" d="M 224 1517 
+C 224 672 698 -51 1344 -51 
+C 1779 -51 2061 160 2272 378 
+L 2272 0 
+L 2886 0 
+L 2886 4448 
+L 2285 4448 
+L 2285 2701 
+C 2035 2918 1722 3072 1350 3072 
+C 685 3072 224 2342 224 1517 
+z
+M 838 1427 
+L 838 1562 
+C 838 1837 883 2131 1082 2336 
+C 1267 2528 1536 2592 1741 2592 
+C 1984 2592 2131 2496 2272 2349 
+L 2272 774 
+C 2195 672 2029 429 1670 429 
+C 1427 429 1171 531 1024 730 
+C 877 928 845 1184 838 1427 
+z
+" transform="scale(0.015625)"/>
+      </defs>
+      <use xlink:href="#CMUBright-SemiBold-41"/>
+      <use xlink:href="#CMUBright-SemiBold-6e" x="67.499985"/>
+      <use xlink:href="#CMUBright-SemiBold-61" x="119.199982"/>
+      <use xlink:href="#CMUBright-SemiBold-6c" x="168.399979"/>
+      <use xlink:href="#CMUBright-SemiBold-79" x="190.899963"/>
+      <use xlink:href="#CMUBright-SemiBold-74" x="236.699951"/>
+      <use xlink:href="#CMUBright-SemiBold-69" x="274.599945"/>
+      <use xlink:href="#CMUBright-SemiBold-63" x="297.09993"/>
+      <use xlink:href="#CMUBright-SemiBold-20" x="343.799927"/>
+      <use xlink:href="#CMUBright-SemiBold-46" x="377.099915"/>
+      <use xlink:href="#CMUBright-SemiBold-6f" x="436.699905"/>
+      <use xlink:href="#CMUBright-SemiBold-72" x="489.19989"/>
+      <use xlink:href="#CMUBright-SemiBold-77" x="523.799881"/>
+      <use xlink:href="#CMUBright-SemiBold-61" x="592.999863"/>
+      <use xlink:href="#CMUBright-SemiBold-72" x="642.19986"/>
+      <use xlink:href="#CMUBright-SemiBold-64" x="676.79985"/>
+     </g>
+    </g>
+   </g>
+   <g id="text_2">
+    <!-- 0.0046 -->
+    <g style="fill: #5a5758" transform="translate(417.216398 58.099902) scale(0.18 -0.18)">
+     <defs>
+      <path id="CMUBright-Roman-30" d="M 333 1984 
+C 333 218 1139 -109 1677 -109 
+C 2022 -109 2528 38 2803 685 
+C 3008 1165 3021 1626 3021 2214 
+C 3021 3974 2214 4301 1677 4301 
+C 1555 4301 1414 4288 1261 4230 
+C 358 3898 333 2694 333 2086 
+L 333 1984 
+z
+M 742 2413 
+C 742 2701 768 3302 1005 3642 
+C 1139 3834 1389 3981 1677 3981 
+C 1933 3981 2182 3866 2336 3661 
+C 2592 3328 2611 2701 2611 2406 
+C 2611 2342 2605 2298 2605 2272 
+L 2605 2163 
+C 2605 1613 2598 934 2330 557 
+C 2195 371 1958 218 1677 218 
+C 1427 218 1190 339 1037 538 
+C 755 909 749 1594 749 2150 
+L 749 2272 
+C 749 2298 742 2349 742 2413 
+z
+" transform="scale(0.015625)"/>
+      <path id="CMUBright-Roman-2e" d="M 678 0 
+L 1178 0 
+L 1178 499 
+L 678 499 
+L 678 0 
+z
+" transform="scale(0.015625)"/>
+      <path id="CMUBright-Roman-34" d="M 186 1158 
+L 2035 1158 
+L 2035 0 
+L 2438 0 
+L 2438 1158 
+L 3168 1158 
+L 3168 1498 
+L 2438 1498 
+L 2438 4250 
+L 1952 4250 
+L 186 1504 
+L 186 1158 
+z
+M 602 1498 
+L 1606 3085 
+C 1901 3552 1990 3712 2054 3885 
+L 2054 1498 
+L 602 1498 
+z
+" transform="scale(0.015625)"/>
+      <path id="CMUBright-Roman-36" d="M 346 2061 
+C 346 269 1152 -109 1690 -109 
+C 2125 -109 2394 70 2618 326 
+C 2899 646 3008 954 3008 1408 
+C 3008 1837 2931 2138 2682 2483 
+C 2502 2726 2298 2886 1952 2886 
+C 1382 2886 960 2522 774 2125 
+C 774 2150 768 2182 768 2208 
+C 768 3264 1286 3981 2061 3981 
+L 2074 3981 
+C 2349 3981 2515 3936 2797 3846 
+L 2797 4179 
+C 2522 4269 2349 4301 2086 4301 
+L 2074 4301 
+C 1203 4301 346 3469 346 2061 
+z
+M 794 1389 
+L 806 1389 
+C 800 1440 800 1504 800 1555 
+C 800 2080 1171 2566 1728 2566 
+C 1926 2566 2106 2522 2253 2400 
+C 2573 2131 2586 1754 2586 1434 
+C 2586 1069 2579 819 2381 550 
+C 2221 333 2016 224 1690 224 
+C 966 224 838 934 794 1389 
+z
+" transform="scale(0.015625)"/>
+     </defs>
+     <use xlink:href="#CMUBright-Roman-30"/>
+     <use xlink:href="#CMUBright-Roman-2e" x="52.499985"/>
+     <use xlink:href="#CMUBright-Roman-30" x="81.699982"/>
+     <use xlink:href="#CMUBright-Roman-30" x="134.199966"/>
+     <use xlink:href="#CMUBright-Roman-34" x="186.699951"/>
+     <use xlink:href="#CMUBright-Roman-36" x="239.199936"/>
+    </g>
+   </g>
+   <g id="text_3">
+    <!-- Method -->
+    <g style="fill: #5a5758" transform="translate(85.56299 19.203815) scale(0.216 -0.216)">
+     <defs>
+      <path id="CMUBright-SemiBold-4d" d="M 550 0 
+L 1152 0 
+L 1152 3827 
+C 1216 3565 1363 3181 1600 2541 
+L 2528 109 
+L 3104 109 
+L 4051 2586 
+C 4211 2995 4365 3392 4493 3827 
+L 4493 0 
+L 5094 0 
+L 5094 4448 
+L 4211 4448 
+C 3027 1395 2848 877 2822 723 
+C 2797 877 2618 1395 1434 4448 
+L 550 4448 
+L 550 0 
+z
+" transform="scale(0.015625)"/>
+      <path id="CMUBright-SemiBold-65" d="M 186 1530 
+C 186 710 794 -51 1709 -51 
+C 2144 -51 2496 90 2784 275 
+L 2739 794 
+C 2598 691 2240 429 1709 429 
+C 1197 429 762 890 762 1536 
+L 762 1600 
+L 2822 1600 
+C 2816 2848 2093 3104 1606 3104 
+C 832 3104 186 2413 186 1530 
+z
+M 838 1978 
+C 973 2387 1293 2618 1600 2618 
+C 2067 2618 2234 2240 2298 1978 
+L 838 1978 
+z
+" transform="scale(0.015625)"/>
+      <path id="CMUBright-SemiBold-68" d="M 410 0 
+L 1024 0 
+L 1024 1728 
+C 1024 1946 1075 2592 1651 2592 
+C 2259 2592 2272 2227 2272 2022 
+L 2272 0 
+L 2886 0 
+L 2886 2016 
+C 2886 2400 2867 3072 1971 3072 
+C 1491 3072 1190 2790 1018 2515 
+L 1011 2784 
+L 1011 4448 
+L 410 4448 
+L 410 0 
+z
+" transform="scale(0.015625)"/>
+     </defs>
+     <use xlink:href="#CMUBright-SemiBold-4d"/>
+     <use xlink:href="#CMUBright-SemiBold-65" x="88.299988"/>
+     <use xlink:href="#CMUBright-SemiBold-74" x="135.399979"/>
+     <use xlink:href="#CMUBright-SemiBold-68" x="173.299973"/>
+     <use xlink:href="#CMUBright-SemiBold-6f" x="224.999969"/>
+     <use xlink:href="#CMUBright-SemiBold-64" x="277.499954"/>
+    </g>
+   </g>
+   <g id="text_4">
+    <!-- Time (sec) -->
+    <g style="fill: #5a5758" transform="translate(399.095182 19.203815) scale(0.216 -0.216)">
+     <defs>
+      <path id="CMUBright-SemiBold-54" d="M 237 3910 
+L 1978 3910 
+L 1978 0 
+L 2650 0 
+L 2650 3910 
+L 4390 3910 
+L 4390 4416 
+L 237 4416 
+L 237 3910 
+z
+" transform="scale(0.015625)"/>
+      <path id="CMUBright-SemiBold-6d" d="M 410 0 
+L 1024 0 
+L 1024 1728 
+C 1024 2413 1382 2592 1645 2592 
+C 2304 2592 2266 2176 2272 1984 
+L 2272 0 
+L 2893 0 
+L 2893 1728 
+C 2893 2413 3245 2592 3507 2592 
+C 4166 2592 4134 2176 4141 1984 
+L 4141 0 
+L 4755 0 
+L 4755 2016 
+C 4755 2419 4723 3072 3840 3072 
+C 3341 3072 3021 2771 2854 2470 
+C 2810 2598 2714 3072 1971 3072 
+C 1491 3072 1178 2790 1005 2496 
+L 998 2714 
+L 998 3021 
+L 410 3021 
+L 410 0 
+z
+" transform="scale(0.015625)"/>
+      <path id="CMUBright-SemiBold-28" d="M 499 1690 
+C 499 -173 1312 -1050 1747 -1421 
+L 2234 -1421 
+C 1914 -1101 1114 -307 1114 1690 
+C 1114 3686 1914 4480 2234 4800 
+L 1747 4800 
+C 1312 4429 499 3558 499 1690 
+z
+" transform="scale(0.015625)"/>
+      <path id="CMUBright-SemiBold-73" d="M 186 250 
+C 531 58 890 -51 1325 -51 
+C 2227 -51 2419 512 2419 890 
+C 2419 1299 2157 1568 1914 1702 
+C 1632 1856 1242 1882 1062 1939 
+C 883 1997 781 2138 781 2272 
+C 781 2413 870 2624 1261 2624 
+C 1651 2624 1901 2541 2227 2362 
+L 2323 2886 
+C 1952 3046 1715 3104 1331 3104 
+C 390 3104 224 2534 224 2202 
+C 224 1734 595 1453 902 1350 
+C 1248 1229 1862 1261 1862 838 
+C 1862 685 1760 448 1318 448 
+C 806 448 493 653 282 800 
+L 186 250 
+z
+" transform="scale(0.015625)"/>
+      <path id="CMUBright-SemiBold-29" d="M 371 -1421 
+L 851 -1421 
+C 1286 -1050 2106 -173 2106 1690 
+C 2106 3558 1286 4429 851 4800 
+L 371 4800 
+C 640 4518 1491 3744 1491 1690 
+C 1491 -307 685 -1101 371 -1421 
+z
+" transform="scale(0.015625)"/>
+     </defs>
+     <use xlink:href="#CMUBright-SemiBold-54"/>
+     <use xlink:href="#CMUBright-SemiBold-69" x="72.499985"/>
+     <use xlink:href="#CMUBright-SemiBold-6d" x="94.999969"/>
+     <use xlink:href="#CMUBright-SemiBold-65" x="175.799957"/>
+     <use xlink:href="#CMUBright-SemiBold-20" x="222.899948"/>
+     <use xlink:href="#CMUBright-SemiBold-28" x="256.199936"/>
+     <use xlink:href="#CMUBright-SemiBold-73" x="296.999924"/>
+     <use xlink:href="#CMUBright-SemiBold-65" x="337.199921"/>
+     <use xlink:href="#CMUBright-SemiBold-63" x="384.299911"/>
+     <use xlink:href="#CMUBright-SemiBold-29" x="430.999908"/>
+    </g>
+   </g>
+  </g>
+  <g id="axes_2">
+   <g id="patch_3">
+    <path d="M 156.670865 110.565215 
+L 411.216398 110.565215 
+L 411.216398 76.420847 
+L 156.670865 76.420847 
+z
+" style="fill: #ffffff"/>
+   </g>
+   <g id="line2d_2">
+    <path d="M 156.670865 93.493031 
+L 411.216398 93.493031 
+" clip-path="url(#pbb5334076d)" style="fill: none; stroke: #5a5758; stroke-opacity: 0.5; stroke-width: 3; stroke-linecap: square"/>
+   </g>
+   <g id="PathCollection_2">
+    <g>
+     <use xlink:href="#ma02c52a0ea" x="253.071521" y="93.493031" style="fill: #e29400"/>
+    </g>
+   </g>
+   <g id="matplotlib.axis_3">
+    <g id="xtick_6"/>
+    <g id="xtick_7"/>
+    <g id="xtick_8"/>
+    <g id="xtick_9"/>
+    <g id="xtick_10"/>
+   </g>
+   <g id="matplotlib.axis_4">
+    <g id="ytick_4"/>
+    <g id="ytick_5"/>
+    <g id="ytick_6"/>
+    <g id="text_5">
+     <!-- Analytic Adjoint -->
+     <g style="fill: #5a5758" transform="translate(25.131802 98.24475) scale(0.18 -0.18)">
+      <defs>
+       <path id="CMUBright-SemiBold-6a" d="M -480 -928 
+C -173 -1062 102 -1114 352 -1114 
+C 608 -1114 1190 -1005 1216 -288 
+L 1216 3027 
+L 614 3027 
+L 614 -307 
+C 614 -352 614 -397 595 -435 
+C 531 -563 288 -608 147 -608 
+C -51 -608 -179 -550 -352 -442 
+L -480 -928 
+z
+M 608 3846 
+L 1210 3846 
+L 1210 4448 
+L 608 4448 
+L 608 3846 
+z
+" transform="scale(0.015625)"/>
+      </defs>
+      <use xlink:href="#CMUBright-SemiBold-41"/>
+      <use xlink:href="#CMUBright-SemiBold-6e" x="67.499985"/>
+      <use xlink:href="#CMUBright-SemiBold-61" x="119.199982"/>
+      <use xlink:href="#CMUBright-SemiBold-6c" x="168.399979"/>
+      <use xlink:href="#CMUBright-SemiBold-79" x="190.899963"/>
+      <use xlink:href="#CMUBright-SemiBold-74" x="236.699951"/>
+      <use xlink:href="#CMUBright-SemiBold-69" x="274.599945"/>
+      <use xlink:href="#CMUBright-SemiBold-63" x="297.09993"/>
+      <use xlink:href="#CMUBright-SemiBold-20" x="343.799927"/>
+      <use xlink:href="#CMUBright-SemiBold-41" x="377.099915"/>
+      <use xlink:href="#CMUBright-SemiBold-64" x="444.599899"/>
+      <use xlink:href="#CMUBright-SemiBold-6a" x="496.299896"/>
+      <use xlink:href="#CMUBright-SemiBold-6f" x="521.69989"/>
+      <use xlink:href="#CMUBright-SemiBold-69" x="574.199875"/>
+      <use xlink:href="#CMUBright-SemiBold-6e" x="596.69986"/>
+      <use xlink:href="#CMUBright-SemiBold-74" x="648.399857"/>
+     </g>
+    </g>
+   </g>
+   <g id="text_6">
+    <!-- 0.0085 -->
+    <g style="fill: #5a5758" transform="translate(417.216398 98.24475) scale(0.18 -0.18)">
+     <defs>
+      <path id="CMUBright-Roman-38" d="M 275 1158 
+C 275 518 851 -109 1670 -109 
+C 2470 -109 3072 493 3072 1158 
+C 3072 1792 2509 2163 2099 2266 
+L 2285 2323 
+C 2675 2483 2982 2803 2982 3213 
+C 2982 3808 2400 4301 1677 4301 
+C 909 4301 371 3763 371 3206 
+C 371 2682 864 2362 1248 2266 
+C 563 2054 275 1600 275 1158 
+z
+M 698 1158 
+C 698 1882 1235 2106 1670 2106 
+C 2195 2106 2650 1805 2650 1165 
+C 2650 557 2259 224 1670 224 
+C 1126 224 698 525 698 1158 
+z
+M 755 3206 
+C 755 3514 915 3981 1683 3981 
+C 2432 3981 2592 3514 2592 3206 
+C 2592 2720 2234 2426 1670 2426 
+C 1011 2426 755 2822 755 3206 
+z
+" transform="scale(0.015625)"/>
+      <path id="CMUBright-Roman-35" d="M 301 518 
+C 794 -83 1376 -109 1574 -109 
+C 2387 -109 3021 531 3021 1306 
+C 3021 2080 2451 2701 1779 2701 
+C 1459 2701 1197 2586 973 2381 
+L 973 3853 
+L 2797 3853 
+L 2797 4192 
+L 582 4192 
+L 582 1901 
+L 941 1901 
+C 1043 2080 1274 2374 1773 2374 
+C 2093 2374 2566 2189 2566 1312 
+C 2566 442 2003 224 1581 224 
+C 1382 224 864 269 486 819 
+L 301 518 
+z
+" transform="scale(0.015625)"/>
+     </defs>
+     <use xlink:href="#CMUBright-Roman-30"/>
+     <use xlink:href="#CMUBright-Roman-2e" x="52.499985"/>
+     <use xlink:href="#CMUBright-Roman-30" x="81.699982"/>
+     <use xlink:href="#CMUBright-Roman-30" x="134.199966"/>
+     <use xlink:href="#CMUBright-Roman-38" x="186.699951"/>
+     <use xlink:href="#CMUBright-Roman-35" x="239.199936"/>
+    </g>
+   </g>
+  </g>
+  <g id="axes_3">
+   <g id="patch_4">
+    <path d="M 156.670865 150.710064 
+L 411.216398 150.710064 
+L 411.216398 116.565695 
+L 156.670865 116.565695 
+z
+" style="fill: #ffffff"/>
+   </g>
+   <g id="line2d_3">
+    <path d="M 156.670865 133.63788 
+L 411.216398 133.63788 
+" clip-path="url(#p233cec56fd)" style="fill: none; stroke: #5a5758; stroke-opacity: 0.5; stroke-width: 3; stroke-linecap: square"/>
+   </g>
+   <g id="PathCollection_3">
+    <g>
+     <use xlink:href="#ma02c52a0ea" x="281.866522" y="133.63788" style="fill: #e29400"/>
+    </g>
+   </g>
+   <g id="matplotlib.axis_5">
+    <g id="xtick_11"/>
+    <g id="xtick_12"/>
+    <g id="xtick_13"/>
+    <g id="xtick_14"/>
+    <g id="xtick_15"/>
+   </g>
+   <g id="matplotlib.axis_6">
+    <g id="ytick_7"/>
+    <g id="ytick_8"/>
+    <g id="ytick_9"/>
+    <g id="text_7">
+     <!-- FD Forward Diff. -->
+     <g style="fill: #5a5758" transform="translate(14.99274 138.389598) scale(0.18 -0.18)">
+      <defs>
+       <path id="CMUBright-SemiBold-44" d="M 518 0 
+L 2221 0 
+C 2336 0 2451 0 2566 13 
+C 3501 122 4390 960 4390 2189 
+C 4390 3270 3648 4448 2272 4448 
+L 518 4448 
+L 518 0 
+z
+M 1171 512 
+L 1171 3757 
+L 1178 3936 
+L 2093 3936 
+C 3411 3936 3738 3002 3738 2189 
+C 3738 1402 3411 506 2099 506 
+C 2035 506 1978 512 1914 512 
+L 1171 512 
+z
+" transform="scale(0.015625)"/>
+       <path id="CMUBright-SemiBold-66" d="M 179 2541 
+L 627 2541 
+L 627 0 
+L 1229 0 
+L 1229 2541 
+L 1920 2541 
+L 1920 3021 
+L 1216 3021 
+L 1216 3610 
+C 1216 3936 1555 4013 1779 4013 
+C 2029 4013 2195 3949 2323 3904 
+L 2323 4448 
+C 2061 4493 1901 4499 1792 4499 
+C 1536 4499 1242 4435 1005 4237 
+C 672 3968 627 3699 627 3360 
+L 627 3021 
+L 179 3021 
+L 179 2541 
+z
+" transform="scale(0.015625)"/>
+       <path id="CMUBright-SemiBold-2e" d="M 557 0 
+L 1306 0 
+L 1306 749 
+L 557 749 
+L 557 0 
+z
+" transform="scale(0.015625)"/>
+      </defs>
+      <use xlink:href="#CMUBright-SemiBold-46"/>
+      <use xlink:href="#CMUBright-SemiBold-44" x="59.599991"/>
+      <use xlink:href="#CMUBright-SemiBold-20" x="134.199982"/>
+      <use xlink:href="#CMUBright-SemiBold-46" x="167.499969"/>
+      <use xlink:href="#CMUBright-SemiBold-6f" x="227.09996"/>
+      <use xlink:href="#CMUBright-SemiBold-72" x="279.599945"/>
+      <use xlink:href="#CMUBright-SemiBold-77" x="314.199936"/>
+      <use xlink:href="#CMUBright-SemiBold-61" x="383.399918"/>
+      <use xlink:href="#CMUBright-SemiBold-72" x="432.599915"/>
+      <use xlink:href="#CMUBright-SemiBold-64" x="467.199905"/>
+      <use xlink:href="#CMUBright-SemiBold-20" x="518.899902"/>
+      <use xlink:href="#CMUBright-SemiBold-44" x="552.19989"/>
+      <use xlink:href="#CMUBright-SemiBold-69" x="626.799881"/>
+      <use xlink:href="#CMUBright-SemiBold-66" x="649.299866"/>
+      <use xlink:href="#CMUBright-SemiBold-66" x="681.399857"/>
+      <use xlink:href="#CMUBright-SemiBold-2e" x="713.499847"/>
+     </g>
+    </g>
+   </g>
+   <g id="text_8">
+    <!-- 0.0110 -->
+    <g style="fill: #5a5758" transform="translate(417.216398 138.389598) scale(0.18 -0.18)">
+     <defs>
+      <path id="CMUBright-Roman-31" d="M 672 3558 
+C 1197 3558 1472 3706 1549 3744 
+L 1549 320 
+L 710 320 
+L 710 0 
+L 2803 0 
+L 2803 320 
+L 1965 320 
+L 1965 4301 
+L 1862 4301 
+C 1696 4141 1389 3885 672 3885 
+L 672 3558 
+z
+" transform="scale(0.015625)"/>
+     </defs>
+     <use xlink:href="#CMUBright-Roman-30"/>
+     <use xlink:href="#CMUBright-Roman-2e" x="52.499985"/>
+     <use xlink:href="#CMUBright-Roman-30" x="81.699982"/>
+     <use xlink:href="#CMUBright-Roman-31" x="134.199966"/>
+     <use xlink:href="#CMUBright-Roman-31" x="186.699951"/>
+     <use xlink:href="#CMUBright-Roman-30" x="239.199936"/>
+    </g>
+   </g>
+  </g>
+  <g id="axes_4">
+   <g id="patch_5">
+    <path d="M 156.670865 190.854912 
+L 411.216398 190.854912 
+L 411.216398 156.710544 
+L 156.670865 156.710544 
+z
+" style="fill: #ffffff"/>
+   </g>
+   <g id="line2d_4">
+    <path d="M 156.670865 173.782728 
+L 411.216398 173.782728 
+" clip-path="url(#pf6c8d0c10e)" style="fill: none; stroke: #5a5758; stroke-opacity: 0.5; stroke-width: 3; stroke-linecap: square"/>
+   </g>
+   <g id="PathCollection_4">
+    <g>
+     <use xlink:href="#ma02c52a0ea" x="399.095182" y="173.782728" style="fill: #e29400"/>
+    </g>
+   </g>
+   <g id="matplotlib.axis_7">
+    <g id="xtick_16"/>
+    <g id="xtick_17"/>
+    <g id="xtick_18"/>
+    <g id="xtick_19"/>
+    <g id="xtick_20"/>
+   </g>
+   <g id="matplotlib.axis_8">
+    <g id="ytick_10"/>
+    <g id="ytick_11"/>
+    <g id="ytick_12"/>
+    <g id="text_9">
+     <!-- FD Central Diff. -->
+     <g style="fill: #5a5758" transform="translate(22.426177 178.534446) scale(0.18 -0.18)">
+      <defs>
+       <path id="CMUBright-SemiBold-43" d="M 410 2221 
+C 410 1018 1306 -109 2643 -109 
+C 3315 -109 3584 38 3955 250 
+L 3904 806 
+C 3565 589 3328 403 2643 403 
+C 1702 403 1082 1274 1082 2221 
+C 1082 3206 1741 4045 2637 4045 
+C 3194 4045 3469 3859 3763 3667 
+L 3878 4333 
+C 3462 4480 3123 4550 2618 4550 
+C 1414 4550 410 3533 410 2221 
+z
+" transform="scale(0.015625)"/>
+      </defs>
+      <use xlink:href="#CMUBright-SemiBold-46"/>
+      <use xlink:href="#CMUBright-SemiBold-44" x="59.599991"/>
+      <use xlink:href="#CMUBright-SemiBold-20" x="134.199982"/>
+      <use xlink:href="#CMUBright-SemiBold-43" x="167.499969"/>
+      <use xlink:href="#CMUBright-SemiBold-65" x="234.59996"/>
+      <use xlink:href="#CMUBright-SemiBold-6e" x="281.699951"/>
+      <use xlink:href="#CMUBright-SemiBold-74" x="333.399948"/>
+      <use xlink:href="#CMUBright-SemiBold-72" x="371.299942"/>
+      <use xlink:href="#CMUBright-SemiBold-61" x="405.899933"/>
+      <use xlink:href="#CMUBright-SemiBold-6c" x="455.09993"/>
+      <use xlink:href="#CMUBright-SemiBold-20" x="477.599915"/>
+      <use xlink:href="#CMUBright-SemiBold-44" x="510.899902"/>
+      <use xlink:href="#CMUBright-SemiBold-69" x="585.499893"/>
+      <use xlink:href="#CMUBright-SemiBold-66" x="607.999878"/>
+      <use xlink:href="#CMUBright-SemiBold-66" x="640.099869"/>
+      <use xlink:href="#CMUBright-SemiBold-2e" x="672.19986"/>
+     </g>
+    </g>
+   </g>
+   <g id="text_10">
+    <!-- 0.0213 -->
+    <g style="fill: #5a5758" transform="translate(417.216398 178.534446) scale(0.18 -0.18)">
+     <defs>
+      <path id="CMUBright-Roman-32" d="M 275 3226 
+L 512 2938 
+C 653 3475 864 3962 1498 3962 
+C 2106 3962 2592 3571 2592 2982 
+C 2592 2413 2214 2022 1683 1562 
+L 333 339 
+L 333 0 
+L 3021 0 
+L 3021 358 
+L 698 358 
+C 1773 1325 1638 1210 2061 1549 
+C 2438 1856 3021 2304 3021 2989 
+C 3021 3744 2419 4294 1594 4301 
+L 1587 4301 
+C 800 4301 442 3782 275 3226 
+z
+" transform="scale(0.015625)"/>
+      <path id="CMUBright-Roman-33" d="M 282 653 
+C 282 512 864 -109 1690 -109 
+C 2541 -109 3072 544 3072 1158 
+C 3072 1606 2771 2093 2106 2272 
+C 2720 2554 2886 3027 2886 3360 
+C 2886 3872 2374 4301 1702 4301 
+C 1434 4301 800 4230 371 3539 
+L 570 3258 
+C 666 3430 979 3981 1702 3981 
+C 2163 3981 2464 3731 2464 3360 
+C 2464 2925 2131 2630 1862 2528 
+C 1728 2477 1715 2470 1114 2426 
+L 1114 2106 
+L 1555 2106 
+L 1773 2099 
+C 2234 2067 2624 1734 2624 1165 
+C 2624 621 2259 224 1683 224 
+C 1472 224 819 275 339 941 
+C 294 710 282 678 282 653 
+z
+" transform="scale(0.015625)"/>
+     </defs>
+     <use xlink:href="#CMUBright-Roman-30"/>
+     <use xlink:href="#CMUBright-Roman-2e" x="52.499985"/>
+     <use xlink:href="#CMUBright-Roman-30" x="81.699982"/>
+     <use xlink:href="#CMUBright-Roman-32" x="134.199966"/>
+     <use xlink:href="#CMUBright-Roman-31" x="186.699951"/>
+     <use xlink:href="#CMUBright-Roman-33" x="239.199936"/>
+    </g>
+   </g>
+  </g>
+  <g id="axes_5">
+   <g id="patch_6">
+    <path d="M 156.670865 230.99976 
+L 411.216398 230.99976 
+L 411.216398 196.855392 
+L 156.670865 196.855392 
+z
+" style="fill: #ffffff"/>
+   </g>
+   <g id="line2d_5">
+    <path d="M 156.670865 213.927576 
+L 411.216398 213.927576 
+" clip-path="url(#p8fa30adae4)" style="fill: none; stroke: #5a5758; stroke-opacity: 0.5; stroke-width: 3; stroke-linecap: square"/>
+   </g>
+   <g id="PathCollection_5">
+    <g>
+     <use xlink:href="#ma02c52a0ea" x="281.866522" y="213.927576" style="fill: #e29400"/>
+    </g>
+   </g>
+   <g id="matplotlib.axis_9">
+    <g id="xtick_21"/>
+    <g id="xtick_22"/>
+    <g id="xtick_23"/>
+    <g id="xtick_24"/>
+    <g id="xtick_25"/>
+   </g>
+   <g id="matplotlib.axis_10">
+    <g id="ytick_13"/>
+    <g id="ytick_14"/>
+    <g id="ytick_15"/>
+    <g id="text_11">
+     <!-- FD Backward Diff. -->
+     <g style="fill: #5a5758" transform="translate(3.00024 218.679295) scale(0.18 -0.18)">
+      <defs>
+       <path id="CMUBright-SemiBold-42" d="M 525 0 
+L 2234 0 
+C 2342 0 2464 0 2573 13 
+C 3379 96 4019 608 4019 1229 
+C 4019 1734 3533 2195 2758 2330 
+C 3078 2426 3085 2419 3283 2528 
+C 3661 2739 3834 3021 3834 3309 
+C 3834 3648 3590 3994 3174 4211 
+C 2842 4390 2515 4448 2061 4448 
+L 525 4448 
+L 525 0 
+z
+M 1165 512 
+L 1165 1850 
+L 1171 2074 
+L 1952 2074 
+C 2061 2074 2163 2074 2272 2061 
+C 2995 1990 3386 1587 3386 1235 
+C 3386 960 3078 506 2086 506 
+C 2035 506 1990 512 1939 512 
+L 1165 512 
+z
+M 1165 2554 
+L 1165 3731 
+L 1171 3936 
+L 1907 3936 
+C 2643 3936 3213 3680 3213 3296 
+C 3213 2931 2746 2554 1939 2554 
+L 1165 2554 
+z
+" transform="scale(0.015625)"/>
+       <path id="CMUBright-SemiBold-6b" d="M 429 0 
+L 986 0 
+L 986 1024 
+L 1395 1466 
+L 2349 0 
+L 3002 0 
+L 1786 1869 
+L 2848 3021 
+L 2118 3021 
+L 998 1818 
+L 998 4448 
+L 429 4448 
+L 429 0 
+z
+" transform="scale(0.015625)"/>
+      </defs>
+      <use xlink:href="#CMUBright-SemiBold-46"/>
+      <use xlink:href="#CMUBright-SemiBold-44" x="59.599991"/>
+      <use xlink:href="#CMUBright-SemiBold-20" x="134.199982"/>
+      <use xlink:href="#CMUBright-SemiBold-42" x="167.499969"/>
+      <use xlink:href="#CMUBright-SemiBold-61" x="236.199951"/>
+      <use xlink:href="#CMUBright-SemiBold-63" x="285.399948"/>
+      <use xlink:href="#CMUBright-SemiBold-6b" x="332.099945"/>
+      <use xlink:href="#CMUBright-SemiBold-77" x="380.799942"/>
+      <use xlink:href="#CMUBright-SemiBold-61" x="449.999924"/>
+      <use xlink:href="#CMUBright-SemiBold-72" x="499.199921"/>
+      <use xlink:href="#CMUBright-SemiBold-64" x="533.799911"/>
+      <use xlink:href="#CMUBright-SemiBold-20" x="585.499908"/>
+      <use xlink:href="#CMUBright-SemiBold-44" x="618.799896"/>
+      <use xlink:href="#CMUBright-SemiBold-69" x="693.399887"/>
+      <use xlink:href="#CMUBright-SemiBold-66" x="715.899872"/>
+      <use xlink:href="#CMUBright-SemiBold-66" x="747.999863"/>
+      <use xlink:href="#CMUBright-SemiBold-2e" x="780.099854"/>
+     </g>
+    </g>
+   </g>
+   <g id="text_12">
+    <!-- 0.0110 -->
+    <g style="fill: #5a5758" transform="translate(417.216398 218.679295) scale(0.18 -0.18)">
+     <use xlink:href="#CMUBright-Roman-30"/>
+     <use xlink:href="#CMUBright-Roman-2e" x="52.499985"/>
+     <use xlink:href="#CMUBright-Roman-30" x="81.699982"/>
+     <use xlink:href="#CMUBright-Roman-31" x="134.199966"/>
+     <use xlink:href="#CMUBright-Roman-31" x="186.699951"/>
+     <use xlink:href="#CMUBright-Roman-30" x="239.199936"/>
+    </g>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p658e4b3c2e">
+   <rect x="156.670865" y="36.275999" width="254.545533" height="34.144368"/>
+  </clipPath>
+  <clipPath id="pbb5334076d">
+   <rect x="156.670865" y="76.420847" width="254.545533" height="34.144368"/>
+  </clipPath>
+  <clipPath id="p233cec56fd">
+   <rect x="156.670865" y="116.565695" width="254.545533" height="34.144368"/>
+  </clipPath>
+  <clipPath id="pf6c8d0c10e">
+   <rect x="156.670865" y="156.710544" width="254.545533" height="34.144368"/>
+  </clipPath>
+  <clipPath id="p8fa30adae4">
+   <rect x="156.670865" y="196.855392" width="254.545533" height="34.144368"/>
+  </clipPath>
+ </defs>
+</svg>
