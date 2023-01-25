@@ -8,7 +8,6 @@ on:
     tags:
       - v*.*.*
   pull_request:
-    branches: [main]
 
 jobs:
   black:
@@ -21,27 +20,64 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [3.7, 3.8, 3.9]
-        numpy-version: ["1.16.6", "1.18.5"]
-        mpl-version: ["3.2.*", "3.3.*", "3.4.*"]
+        python-version: ["3.8", "3.9", "3.10"]
+        numpy-version: ["1.19.*", "1.21.*", "1.24.*"]
+        mpl-version: ["3.4.*", "3.6.*"]
+        exclude:
+          - python-version: "3.9"
+            numpy-version: "1.19.*"
+          - python-version: "3.10"
+            numpy-version: "1.19.*"
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v2
         with:
           python-version: ${{ matrix.python-version }}
-      - name: Install dependencies
+      - name: Install apt dependencies
+        uses: awalsh128/cache-apt-pkgs-action@latest
+        with:
+          packages: fonts-cmu nodejs npm
+          version: 1.0
+      - name: Install node dependencies
         run: |
-          sudo apt-get install fonts-cmu
+          sudo npm install -g odiff-bin
+      - name: Install Prompt font
+        run: |
+          mkdir Prompt
+          cd Prompt
+          wget "https://fonts.google.com/download?family=Prompt" -O Prompt.zip
+          unzip Prompt.zip
+          mkdir ~/.fonts
+          cp *.ttf ~/.fonts
+      - name: Install python dependencies
+        run: |
           pip install --upgrade pip wheel
           pip install numpy==${{ matrix.numpy-version }}
           pip install matplotlib==${{ matrix.mpl-version }}
           pip install .
       - name: Test examples
         run: |
-          # this is very janky for now
           cd examples
           bash testExamples.sh
+      - name: Compare against reference images
+        if: ${{ success() && matrix.python-version == '3.10' && matrix.numpy-version == '1.24.*' && matrix.mpl-version == '3.6.*' }}
+        run: |
+          cd examples
+          bash ImageComparisonTest.sh
+      - name: Upload examples if failed
+        uses: actions/upload-artifact@v3
+        if: ${{ failure() && matrix.python-version == '3.10' && matrix.numpy-version == '1.24.*' && matrix.mpl-version == '3.6.*' }}
+        with:
+          name: Examples
+          path: examples/
+      # - name: Upload new reference images
+      #   if: ${{ github.event_name == 'push' && success() && matrix.python-version == '3.10' && matrix.numpy-version == '1.24.*' && matrix.mpl-version == '3.6.*' }}
+      #   uses: stefanzweifel/git-auto-commit-action@v4
+      #   with:
+      #     file_pattern: 'examples/ref/*.png'
+      #     commit_message: Update reference images
+
 
   # --- publish to PyPI
   pypi:

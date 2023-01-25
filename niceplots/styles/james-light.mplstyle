@@ -1,0 +1,35 @@
+font.family : sans-serif
+font.sans-serif : Prompt
+font.weight : 300
+axes.unicode_minus : True
+font.size : 16
+figure.dpi : 100
+savefig.dpi : 600
+axes.spines.top : False
+axes.spines.right : False
+mathtext.default: regular
+
+legend.columnspacing : 0.2
+legend.frameon : False
+figure.constrained_layout.use : True
+
+lines.linewidth : 2.0
+
+axes.prop_cycle : cycler('color', ['52a1fa', 'f26f6f', '485263', 'ae66de', '3eb051', 'faaa48'])
+
+# Use this parameter, which (hopefully) nobody will ever use,
+# to store text the names of the colors in the color cycle
+keymap.help : Blue, Red, Navy, Purple, Green, Orange
+
+axes.edgecolor : 3b4c66
+text.color : 273345
+axes.labelcolor : 273345
+axes.labelweight : 500
+xtick.color : 3b4c66
+ytick.color : 3b4c66
+xtick.labelsize : small
+ytick.labelsize : small
+axes.facecolor : none
+figure.facecolor : none
+
+pgf.rcfonts : True

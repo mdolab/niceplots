@@ -1,0 +1,50 @@
+# Figure settings
+savefig.dpi : 600
+figure.constrained_layout.use : True
+
+
+# Axes settings
+axes.spines.top : False
+axes.spines.right : False
+axes.labelpad : 8.0
+axes.xmargin : 0
+axes.ymargin : 0
+
+
+# Font settings
+font.family : sans-serif
+font.sans-serif : CMU Bright
+axes.unicode_minus : False
+font.size : 18
+
+axes.labelweight : bold
+
+xtick.labelsize : small
+ytick.labelsize : small
+
+text.latex.preamble : r"\usepackage{cmbright}"
+mathtext.default: regular
+pgf.rcfonts : True
+
+
+# Legend settings
+legend.columnspacing : 0.2
+legend.frameon : False
+
+
+# Line settings
+lines.linewidth : 2.0
+lines.markeredgewidth : 1.0
+
+# Color settings
+axes.prop_cycle : cycler('color', ['e29400ff', '1E90FF', 'E21A1A', '00a650ff', '800000ff', 'ff8f00', '800080ff', '00A6D6', '000000ff'])
+
+# Use this parameter, which (hopefully) nobody will ever use, to store text the names of the colors in the color cycle
+keymap.help : Yellow, Blue, Red, Green, Maroon, Orange, Purple, Cyan, Black
+
+lines.markeredgecolor : w
+axes.edgecolor : 5a5758ff
+text.color : 5a5758ff
+axes.labelcolor : 5a5758ff
+xtick.color : 5a5758ff
+ytick.color : 5a5758ff

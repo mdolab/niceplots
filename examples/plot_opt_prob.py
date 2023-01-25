@@ -1,7 +1,7 @@
 """
 Plotting optimization problem
 =============================
-An example of how to use the :func:`niceplots.utils.plotOptProb` function to plot a constrained 2D optimization problem.
+An example of how to use the :func:`niceplots.utils.plot_opt_prob` function to plot a constrained 2D optimization problem.
 This example plots the 2D Rosenbrock function with a quadratic equality constraint and 3 circular inequality
 constraints, which has an optimum at (1, 1).
 """
@@ -20,8 +20,8 @@ import niceplots
 # Extension modules
 # ==============================================================================
 
-niceplots.setRCParams()
-niceColors = niceplots.get_niceColors()
+plt.style.use(niceplots.get_style())
+colors = niceplots.get_colors()
 
 
 def Rosenbrock(x, y):
@@ -51,7 +51,7 @@ optY = [1.4, 1.3, 1.0626373624736707, 0.9999644713547426, 1.0]
 for conStyle in ["shaded", "hashed"]:
     fig, ax = plt.subplots(figsize=(8, 8))
     ax.set_aspect("equal")
-    niceplots.plotOptProb(
+    niceplots.plot_opt_prob(
         Rosenbrock,
         xRange=[0, 1.5],
         yRange=[0, 1.5],
@@ -72,7 +72,7 @@ for conStyle in ["shaded", "hashed"]:
         optX,
         optY,
         "-o",
-        c=niceColors["Grey"],
+        c=colors["Axis"],
         markeredgecolor="w",
         linewidth=2.0,
         markersize=8,
@@ -80,6 +80,5 @@ for conStyle in ["shaded", "hashed"]:
     )
 
     # Save figures
-    fig.savefig(f"optProb-{conStyle}.png", dpi=400)
-    fig.savefig(f"optProb-{conStyle}.pdf")
-plt.show()
+    fig.savefig(f"opt_prob-{conStyle}.png")
+    fig.savefig(f"opt_prob-{conStyle}.svg")

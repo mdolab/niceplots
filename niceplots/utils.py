@@ -1,127 +1,124 @@
 import matplotlib.pyplot as plt
 import numpy as np
-from cycler import cycler
 from collections import OrderedDict
 from .parula import parula_map
 from matplotlib import patheffects
 from matplotlib.collections import LineCollection
 import matplotlib.colors as mcolor
 import warnings
+import os
 
 
-def setRCParams(dark_mode=False, set_dark_background=False):
+def get_style(styleName="doumont-light"):
     """
-    Set some defaults for generating nice, Doumont-esque plots.
+    Get the stylesheet to pass to matplotlib's style setting functions. This function
+    works both with niceplots styles and matplotlib's built-in styles. Usage examples::
+
+        import matplotlib.pyplot as plt
+        import niceplots
+
+        plt.style.use(niceplots.get_style())
+        plt.plot([0, 1], [0, 1])
+
+        # Or you can use it within a context manager
+        with plt.style.context(niceplots.get_style()):
+            plt.plot([0, 1], [0, 1])
+
+        # Also try different styles
+        plt.style.use(niceplots.get_style("james-dark"))  # niceplots james dark style
+        plt.style.use(niceplots.get_style("default"))  # matplotlib default style
 
     Parameters
     ----------
-    dark_mode (optional) : bool
-        If true, sets axes, labels, etc. to white so the plot
-        can be used on a dark background.
-        NOTE: Unless you are explicitly saving the plot with
-        a transparent background (e.g. as a png with
-        transparent=True), also set the
-        set_dark_background option.
-    set_dark_background (optional) : bool or str
-        If true, sets the axis and figure backgrounds to black.
-        This option can also be set to a color string, such as
-        "#aaaaaa", to use a color other than black.
+    styleName : str, optional
+        Name of desired style. By default uses doumont-light style. Avaiable styles are:
+
+            - doumont-light: the niceplots style you know and love
+            - doumont-dark: the dark version of the niceplots style you know and love
+            - james-dark: a really cool alternative to classic niceplots
+            - james-light: a version of james with a light background, naturally
+
+    Returns
+    -------
+    str
+        The style string to be passed to one of matplotlib's style setting functions.
     """
-    plt.rcParams["font.family"] = "sans-serif"
-    plt.rcParams["font.sans-serif"] = ["CMU Bright"]
-    plt.rcParams["axes.unicode_minus"] = False
-    plt.rcParams["font.size"] = 24
-    plt.rcParams["figure.dpi"] = 100
-    plt.rcParams["figure.figsize"] = [12, 6.75]
-    plt.rcParams["savefig.dpi"] = 600
-    plt.rcParams["axes.spines.top"] = False
-    plt.rcParams["axes.spines.right"] = False
-    plt.rcParams["axes.labelpad"] = 8.0
-    plt.rcParams["text.latex.preamble"] = r"\usepackage{cmbright}"
+    # If the style is a niceplots style, return the file path
+    if styleName in get_available_styles():
+        curDir = os.path.dirname(os.path.abspath(__file__))
+        return os.path.join(curDir, "styles", styleName + ".mplstyle")
 
-    plt.rcParams["legend.columnspacing"] = 0.2
-    plt.rcParams["legend.frameon"] = False
-    plt.rcParams["figure.constrained_layout.use"] = True
-
-    plt.rcParams["patch.edgecolor"] = "w"
-
-    plt.rcParams["axes.spines.top"] = False
-    plt.rcParams["axes.spines.right"] = False
-
-    plt.rcParams["axes.autolimit_mode"] = "round_numbers"
-    plt.rcParams["axes.xmargin"] = 0
-    plt.rcParams["axes.ymargin"] = 0
-
-    plt.rcParams["lines.linewidth"] = 2.0
-    plt.rcParams["lines.markeredgewidth"] = 1.0
-    plt.rcParams["lines.markeredgecolor"] = "w"
-
-    niceColors = get_niceColors()
-    plt.rcParams["axes.prop_cycle"] = cycler("color", list(niceColors.values())[:-2])
-
-    # Color for axes, labels, ticks, text, etc.
-    color = niceColors["Grey"]
-    if dark_mode:
-        plt.rcParams["patch.edgecolor"] = "#000000"
-        color = "#ffffff"  # white
-
-    plt.rcParams["axes.edgecolor"] = color
-    plt.rcParams["text.color"] = color
-    plt.rcParams["axes.labelcolor"] = color
-    plt.rcParams["axes.labelweight"] = 200
-    plt.rcParams["xtick.color"] = color
-    plt.rcParams["ytick.color"] = color
-
-    # Set the axis and figure background color if necessary
-    if isinstance(set_dark_background, bool):
-        if set_dark_background:
-            # Set background to black
-            plt.rcParams["axes.facecolor"] = "#000000"
-            plt.rcParams["figure.facecolor"] = "#000000"
-    elif isinstance(set_dark_background, str):
-        # Set background to set_dark_background
-        plt.rcParams["axes.facecolor"] = set_dark_background
-        plt.rcParams["figure.facecolor"] = set_dark_background
-        plt.rcParams["patch.edgecolor"] = set_dark_background
-    else:
-        raise TypeError(f"set_dark_background value of {set_dark_background} is invalid")
+    # Otherwise assume it's a matplotlib style and just return the style name
+    return styleName
 
 
-def get_niceColors():
-    # Define an ordered dictionary of some nice Doumont style colors to use as the default color cycle
-    niceColors = OrderedDict()
-    niceColors["Yellow"] = "#e29400ff"  # '#f8a30dff'
-    niceColors["Blue"] = "#1E90FF"
-    niceColors["Red"] = "#E21A1A"
-    niceColors["Green"] = "#00a650ff"
-    niceColors["Maroon"] = "#800000ff"
-    niceColors["Orange"] = "#ff8f00"
-    niceColors["Purple"] = "#800080ff"
-    niceColors["Cyan"] = "#00A6D6"
-    niceColors["Black"] = "#000000ff"
-    # The 2 colours below are not used in the colour cycle as they are too close to the other colours.
-    # Grey is kept in the dictionary as it is used as the default axis/tick colour.
-    # RedOrange is the old Orange, and is kept because I think it looks nice.
-    niceColors["Grey"] = "#5a5758ff"
-    niceColors["RedOrange"] = "#E21A1A"
+def get_colors():
+    """
+    Get a dictionary with the colors for the current style. This function
+    only works when niceplots styles are used (not built-in matplotlib ones).
 
-    return niceColors
+    Returns
+    -------
+    dict
+        Dictionary of the colors for the requested style. The keys
+        are human-readable names and the keys are the hex codes. It
+        also adds color names from the rcParams that are generally useful:
+
+            - "Axis": axis spine color
+            - "Background" axis background color
+            - "Text": default text color
+            - "Label": axis label color
+    """
+    # Get the color codes and their names from the (hopefully) "special" parameter
+    color_codes = get_colors_list()
+    color_names = plt.rcParams["keymap.help"]
+
+    # Ensure that the amount of color names matches the amount of colors
+    if len(color_codes) != len(color_names):
+        raise ValueError(
+            "The colors are not properly named in the stylesheet, please open an issue on GitHub with the details!"
+        )
+
+    colors = OrderedDict(zip(color_names, color_codes))
+    colors["Axis"] = plt.rcParams["axes.edgecolor"]
+    colors["Background"] = plt.rcParams["axes.facecolor"]
+    colors["Text"] = plt.rcParams["text.color"]
+    colors["Label"] = plt.rcParams["axes.labelcolor"]
+
+    return colors
 
 
-def get_delftColors():
-    # Define an ordered dictionary of the official TU Delft colors to use as the default color cycle
-    delftColors = OrderedDict()
-    delftColors["Cyan"] = "#00A6D6"  # '#f8a30dff'
-    delftColors["Yellow"] = "#E1C400"
-    delftColors["Purple"] = "#6D177F"
-    delftColors["Red"] = "#E21A1A"
-    delftColors["Green"] = "#A5CA1A"
-    delftColors["Blue"] = "#1D1C73"
-    delftColors["Orange"] = "#E64616"
-    delftColors["Grey"] = "#5a5758ff"
-    delftColors["Black"] = "#000000ff"
+def get_colors_list():
+    """
+    Get a list with the colors for the current style. This function
+    works with all matplotlib styles.
 
-    return delftColors
+    Returns
+    -------
+    list
+        List of the colors for the requested style.
+    """
+    return plt.rcParams["axes.prop_cycle"].by_key()["color"]
+
+
+def get_available_styles():
+    """
+    Get a list of the names of styles available.
+
+    Returns
+    -------
+    list
+        The names of the available styles.
+    """
+    curDir = os.path.dirname(os.path.abspath(__file__))
+    styleFilenames = os.listdir(os.path.join(curDir, "styles"))
+    styles = []
+    for s in styleFilenames:
+        name, ext = os.path.splitext(s)
+        if ext == ".mplstyle":
+            styles.append(name)
+    styles.sort()  # alphabetize
+    return styles
 
 
 def handle_close(evt):
@@ -227,10 +224,11 @@ def horiz_bar(labels, times, header, nd=1, size=[5, 0.5], color=None):
         Axes on which data is plotted
     """
 
-    # Use niceColours yellow if no colour specified
-    niceColours = get_niceColors()
+    # Use the first color if none is specified
     if color is None:
-        color = niceColours["Yellow"]
+        color = get_colors_list()[0]
+    style_colors = get_colors()
+    line_color = style_colors["Axis"]
 
     # Obtain parameters to size the chart correctly
     num = len(times)
@@ -252,7 +250,7 @@ def horiz_bar(labels, times, header, nd=1, size=[5, 0.5], color=None):
     for j, (l, t, ax) in enumerate(zip(labels, times, axarr)):
 
         # Draw the gray line and singular yellow dot
-        ax.axhline(y=1, c=niceColours["Grey"], lw=3, zorder=0, alpha=0.5)
+        ax.axhline(y=1, c=line_color, lw=3, zorder=0, alpha=0.5)
         ax.scatter([t], [1], c=color, lw=0, s=100, zorder=1, clip_on=False)
 
         # Set chart properties
@@ -308,7 +306,7 @@ def stacked_plots(
         data_dict_list = [data_dict_list]
 
     if colors is None:
-        colors = plt.rcParams["axes.prop_cycle"].by_key()["color"]
+        colors = get_colors_list()
 
     data_dict = data_dict_list[0]
     n = len(data_dict)
@@ -377,7 +375,7 @@ def stacked_plots(
     return f, axarr
 
 
-def plotOptProb(
+def plot_opt_prob(
     obj,
     xRange,
     yRange,
@@ -471,7 +469,7 @@ def plotOptProb(
         cmap = parula_map
 
     if colors is None:
-        colors = plt.rcParams["axes.prop_cycle"].by_key()["color"]
+        colors = get_colors_list()
     nColor = len(colors)
 
     # --- Create grid of points for evaluating functions ---
@@ -533,7 +531,7 @@ def plotOptProb(
         return
 
 
-def plotColoredLine(
+def plot_colored_line(
     x, y, c, cmap=None, fig=None, ax=None, addColorBar=False, cRange=None, cBarLabel=None, norm=None, **kwargs
 ):
     """Plot an XY line whose color is determined by some other variable C
@@ -611,7 +609,7 @@ def plotColoredLine(
         return
 
 
-def plotNestedPie(
+def plot_nested_pie(
     data,
     colors=None,
     alphas=None,
@@ -641,7 +639,8 @@ def plotNestedPie(
     colors : str or list of str with hex colors, optional
         Colors to use for the inner wedges. Can either specify a qualitative matplotlib colormap (it will assume
         this is the case if a string is specified), or a list of colors specified with hex codes (e.g., "#F4A103"),
-        by default will use nice colors (niceplots default)
+        by default will use nice colors (niceplots default). Loops through the colors if more categories than
+        colors are specified.
     alphas : iterable of floats at least as long as the max number of subcategories for a given category
         Transparencies to use to vary the color in the outer categories
     ax : matplotlib axes object, optional
@@ -682,12 +681,13 @@ def plotNestedPie(
     ax : matplotlib axes object
         Axis with the colored line. Returned only if no input ax object is specified
     """
-    # If colors is not specified, turn the niceColors into a list of hex colors
+    # If colors is not specified, turn the style's colors into a list of hex colors
     if colors is None:
-        colors = [c for c in get_niceColors().values()]
+        colors = [c for c in get_colors().values()]
     # If colors is given as a qualitative matplotlib colormap, turn it into a list of hex colors
     elif isinstance(colors, str):
         colors = [mcolor.rgb2hex(plt.colormaps[colors](i)) for i in range(len(data))]
+    numColors = len(colors)
 
     # Go through the colors and only take the color information (not transparency)
     for i in range(len(colors)):
@@ -720,13 +720,13 @@ def plotNestedPie(
     if alphas is None:
         alphas = np.linspace(0.75, 0.95, maxSubcat)[-1::-1]
 
-    innerColors = [colors[i] for i in range(len(data))]
+    innerColors = [colors[i % numColors] for i in range(len(data))]
     outerColors = []
     iCat = 0
     for catVals in data.values():
         numSubcats = len(catVals)
         for iSubcat in range(numSubcats):
-            outerColors.append(colors[iCat] + float.hex(alphas[iSubcat])[4:6])
+            outerColors.append(colors[iCat % numColors] + float.hex(alphas[iSubcat])[4:6])
         iCat += 1
 
     # Nested plot fitting params

@@ -1,10 +1,14 @@
-# Ignore any pdf's or png's except in the examples folder
+# Ignore any figures, except the reference images used for testing
 *.pdf
-!examples/*.pdf
 *.png
-!examples/*.png
+!examples/ref/*.png
+*.svg
 
 .vscode/
+
+# Ignore generated doc files
+doc/_build/
+doc/auto_examples/
 
 ### Python ###
 # Byte-compiled / optimized / DLL files
