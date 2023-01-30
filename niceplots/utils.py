@@ -220,21 +220,30 @@ def label_line_ends(ax, lines=None, labels=None, colors=None, **kwargs):
     """
     if lines is None:
         lines = ax.get_lines()
+
     if labels is None:
         labels = [line.get_label() for line in lines]
+    numLines = len(lines)
+    if len(labels) != numLines:
+        raise ValueError(f"Number of labels ({len(labels)}) doesn't match number of lines ({numLines})")
+
     if colors is None:
         colors = [line.get_color() for line in lines]
     if not isinstance(colors, list):
         colors = [colors] * len(lines)
+    if len(colors) != numLines:
+        raise ValueError(f"Number of colors ({len(colors)}) doesn't match number of lines ({numLines})")
 
     for line, label, color in zip(lines, labels, colors):
-        y = line.get_ydata()[-1]
+        # Get the x, y coordinates of the right-most point on the line
+        maxXIndex = np.argmax(line.get_xdata())
+        x = line.get_xdata()[maxXIndex]
+        y = line.get_ydata()[maxXIndex]
         ax.annotate(
             label,
-            xy=(1, y),
+            xy=(x, y),
             xytext=(6, 0),
             color=color,
-            xycoords=ax.get_yaxis_transform(),
             textcoords="offset points",
             va="center",
             **kwargs,
