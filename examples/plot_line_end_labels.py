@@ -1,11 +1,8 @@
 """
 ==============================================================================
-Line end labelling example
+Line end labelling
 ==============================================================================
-@File    :   plot_line_end_labels.py
-@Date    :   2023/01/30
-@Author  :   Alasdair Christison Gray
-@Description : An example demonstrating the use of label_line_ends to
+An example demonstrating the use of label_line_ends to
 automatically label the ends of lines nicely.
 """
 
