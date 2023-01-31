@@ -197,6 +197,74 @@ def draggable_legend(axis=None, color_on=True, **kwargs):
         legend[idx].draggable()
 
 
+def label_line_ends(ax, lines=None, labels=None, colors=None, x_offset_pts=6, y_offset_pts=0, **kwargs):
+    """Place a label just to the right of each line in the axes
+
+    Note: Because the labels are placed outside of the axes, this function works best for plots where all lines end as
+    close to the right edge of the axes as possible. Additionally you need to either use constrained_layout=True
+    (as NicePlots styles do), or call plt.tight_layout() after calling this function.
+
+    Parameters
+    ----------
+    ax : Matplotlib axes
+        axes to label the lines of
+    lines : iterable of matplotlib line objects, optional
+        Lines to label, by default all lines in the axes
+    labels : list of strings, optional
+        Labels for each line, by default uses each line's label attribute
+    colors : single or list of colors, optional
+        Color(s) to use for each line, can be a single color for all lines or a list containing an entry for each line,
+        by default uses each line's color
+    x_offset_pts : int, float, optional
+        Horizontal offset of label from the right end of the line, in points, by default 6
+    y_offset_pts : int, float, optional
+        Vertical offset of label from the right end of the line, in points, by default 0
+    **kwargs :
+        Any valid keywords for matplotlib's annotate function, except ``xy``, ``xytext``, ``color``, ``textcoords``,
+        ``va``
+
+    Returns
+    -------
+    list of matplotlib annotation objects
+        The annotations created
+    """
+    if lines is None:
+        lines = ax.get_lines()
+
+    if labels is None:
+        labels = [line.get_label() for line in lines]
+    numLines = len(lines)
+    if len(labels) != numLines:
+        raise ValueError(f"Number of labels ({len(labels)}) doesn't match number of lines ({numLines})")
+
+    if colors is None:
+        colors = [line.get_color() for line in lines]
+    if not isinstance(colors, list):
+        colors = [colors] * len(lines)
+    if len(colors) != numLines:
+        raise ValueError(f"Number of colors ({len(colors)}) doesn't match number of lines ({numLines})")
+
+    annotations = []
+
+    for line, label, color in zip(lines, labels, colors):
+        # Get the x, y coordinates of the right-most point on the line
+        maxXIndex = np.argmax(line.get_xdata())
+        x = line.get_xdata()[maxXIndex]
+        y = line.get_ydata()[maxXIndex]
+        annote = ax.annotate(
+            label,
+            xy=(x, y),
+            xytext=(x_offset_pts, y_offset_pts),
+            color=color,
+            textcoords="offset points",
+            va="center",
+            **kwargs,
+        )
+        annotations.append(annote)
+
+    return annotations
+
+
 def horiz_bar(labels, times, header, nd=1, size=[5, 0.5], color=None):
     """Creates a horizontal bar chart to compare positive numbers.
 
