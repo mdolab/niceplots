@@ -221,6 +221,11 @@ def label_line_ends(ax, lines=None, labels=None, colors=None, x_offset_pts=6, y_
         Vertical offset of label from the right end of the line, in points, by default 0
     **kwargs :
         Any valid keywords for matplotlib's annotate function, except `xy`, `xytext`, `color`, `textcoords`, `va`
+
+    Returns
+    -------
+    list of matplotlib annotation objects
+        The annotations created
     """
     if lines is None:
         lines = ax.get_lines()
@@ -238,12 +243,14 @@ def label_line_ends(ax, lines=None, labels=None, colors=None, x_offset_pts=6, y_
     if len(colors) != numLines:
         raise ValueError(f"Number of colors ({len(colors)}) doesn't match number of lines ({numLines})")
 
+    annotations = []
+
     for line, label, color in zip(lines, labels, colors):
         # Get the x, y coordinates of the right-most point on the line
         maxXIndex = np.argmax(line.get_xdata())
         x = line.get_xdata()[maxXIndex]
         y = line.get_ydata()[maxXIndex]
-        ax.annotate(
+        annote = ax.annotate(
             label,
             xy=(x, y),
             xytext=(x_offset_pts, y_offset_pts),
@@ -252,6 +259,9 @@ def label_line_ends(ax, lines=None, labels=None, colors=None, x_offset_pts=6, y_
             va="center",
             **kwargs,
         )
+        annotations.append(annote)
+
+    return annotations
 
 
 def horiz_bar(labels, times, header, nd=1, size=[5, 0.5], color=None):
