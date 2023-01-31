@@ -40,5 +40,5 @@ ax.set_ylabel("$\sigma$", rotation="horizontal", ha="right")
 niceplots.adjust_spines(ax)
 niceplots.label_line_ends(ax)
 
-fig.savefig(f"line_end_labels.svg")
-fig.savefig(f"line_end_labels.png")
+fig.savefig("line_end_labels.svg")
+fig.savefig("line_end_labels.png")
