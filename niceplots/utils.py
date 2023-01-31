@@ -220,7 +220,8 @@ def label_line_ends(ax, lines=None, labels=None, colors=None, x_offset_pts=6, y_
     y_offset_pts : int, float, optional
         Vertical offset of label from the right end of the line, in points, by default 0
     **kwargs :
-        Any valid keywords for matplotlib's annotate function, except `xy`, `xytext`, `color`, `textcoords`, `va`
+        Any valid keywords for matplotlib's annotate function, except ``xy``, ``xytext``, ``color``, ``textcoords``,
+        ``va``
 
     Returns
     -------
