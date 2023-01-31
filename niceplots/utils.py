@@ -216,7 +216,7 @@ def label_line_ends(ax, lines=None, labels=None, colors=None, **kwargs):
         Color(s) to use for each line, can be a single color for all lines or a list containing an entry for each line,
         by default uses each line's color
     **kwargs :
-        Any valid keywords for matplotlib's annotate function
+        Any valid keywords for matplotlib's annotate function, except `xy`, `xytext`, `color`, `textcoords`, `va`
     """
     if lines is None:
         lines = ax.get_lines()
