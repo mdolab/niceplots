@@ -197,7 +197,7 @@ def draggable_legend(axis=None, color_on=True, **kwargs):
         legend[idx].draggable()
 
 
-def label_line_ends(ax, lines=None, labels=None, colors=None, **kwargs):
+def label_line_ends(ax, lines=None, labels=None, colors=None, x_offset_pts=6, y_offset_pts=0, **kwargs):
     """Place a label just to the right of each line in the axes
 
     Note: Because the labels are placed outside of the axes, this function works best for plots where all lines end as
@@ -215,6 +215,10 @@ def label_line_ends(ax, lines=None, labels=None, colors=None, **kwargs):
     colors : single or list of colors, optional
         Color(s) to use for each line, can be a single color for all lines or a list containing an entry for each line,
         by default uses each line's color
+    x_offset_pts : int, float, optional
+        Horizontal offset of label from the right end of the line, in points, by default 6
+    y_offset_pts : int, float, optional
+        Vertical offset of label from the right end of the line, in points, by default 0
     **kwargs :
         Any valid keywords for matplotlib's annotate function, except `xy`, `xytext`, `color`, `textcoords`, `va`
     """
@@ -242,7 +246,7 @@ def label_line_ends(ax, lines=None, labels=None, colors=None, **kwargs):
         ax.annotate(
             label,
             xy=(x, y),
-            xytext=(6, 0),
+            xytext=(x_offset_pts, y_offset_pts),
             color=color,
             textcoords="offset points",
             va="center",
