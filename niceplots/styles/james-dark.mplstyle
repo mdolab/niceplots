@@ -21,12 +21,12 @@ axes.prop_cycle : cycler('color', ['52a1fa', 'f26f6f', 'd6d6d6', 'c678fa', '78b8
 # to store text the names of the colors in the color cycle
 keymap.help : Blue, Red, White, Purple, Green, Orange
 
-axes.edgecolor : 486585
+axes.edgecolor : 6f8bab
 text.color : f5f5f5
 axes.labelcolor : f5f5f5
 axes.labelweight : 500
-xtick.color : 486585
-ytick.color : 486585
+xtick.color : 6f8bab
+ytick.color : 6f8bab
 xtick.labelsize : small
 ytick.labelsize : small
 xtick.labelcolor : bfd0e3

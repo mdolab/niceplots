@@ -75,7 +75,7 @@ for formatting in ["default"] + niceplots.get_available_styles():
         if formatting == "default":
             fill_color = "gray"
         else:
-            fill_color = colours["Axis"]
+            fill_color = colours["Label"]
 
         ax.fill_between(xLine, yLine, 0, where=np.abs(xLine) <= 1, facecolor=fill_color, alpha=0.2, zorder=0)
         ax.annotate("68.27%", xy=(0, 0.075), ha="center", va="bottom", color=fill_color)
