@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
+from scipy.interpolate import make_interp_spline, Akima1DInterpolator
 from collections import OrderedDict
 from .parula import parula_map
 from matplotlib import patheffects
@@ -180,7 +181,6 @@ def draggable_legend(axis=None, color_on=True, **kwargs):
 
     # Loop over each line in the plot and create a label
     for idx, line in enumerate(axis.lines):
-
         # Set the starting coordinates of the label
         coords[0] = xs[idx]
         coords[1] = ys[idx]
@@ -316,7 +316,6 @@ def horiz_bar(labels, times, header, nd=1, size=[5, 0.5], color=None):
 
     # Actual loop that draws each bar
     for j, (l, t, ax) in enumerate(zip(labels, times, axarr)):
-
         # Draw the gray line and singular yellow dot
         ax.axhline(y=1, c=line_color, lw=3, zorder=0, alpha=0.5)
         ax.scatter([t], [1], c=color, lw=0, s=100, zorder=1, clip_on=False)
@@ -368,7 +367,6 @@ def stacked_plots(
     xlim=None,
     dpi=200,
 ):
-
     # If it's a dictionary, make it into a list so we can generically loop over it
     if isinstance(data_dict_list, dict):
         data_dict_list = [data_dict_list]
@@ -863,6 +861,66 @@ def plot_nested_pie(
         return pieObjects, fig, ax
     else:
         return pieObjects
+
+
+def plot_spline(x, y, ax=None, spline_type="non-overshoot", num_interp_pts=100, spline_options={}, **plot_kwargs):
+    """
+    Fits a spline to the data points and plots the spline.
+
+    Parameters
+    ----------
+    x : array-like
+        X-coordinates of points to interpolate and plot
+    y : array-like
+        X-coordinates of points to interpolate and plot
+    ax : matplotlib Axis object, optional
+        Axes on which to plot, by default creates and returns new figure and axis
+    spline_type : str, optional
+        Type of spline from the following list of options (by default non-overshoot):
+
+            - "non-overshoot": Cubic spline that does not overshoot data (SciPy's Akima1DInterpolator)
+            - "b-spline": B-spline (SciPy's make_interp_spline)
+
+    num_interp_pts : int, optional
+        Number of points at which to evaluate the spline (linearly spaced between
+        min and max x values), by default 100
+    spline_options : dict, optional
+        Options to pass to the spline, by default none if spline_type is non-overshoot or sets the
+        spline order to the minimum of 3 and one less than the length of x if b-spline
+    plot_kwargs
+        Keyword arguments to pass to matplotlib's plot function
+
+    Returns
+    -------
+    fig, ax
+        If ax is not provided, generates and returns new matplotlib figure and axis
+    """
+    return_fig = False
+    if ax is None:
+        fig, ax = plt.subplots()
+        return_fig = True
+
+    # Make the spline
+    if spline_type == "b-spline":
+        spline_option_defaults = {"k": min(len(x) - 1, 3)}
+    else:
+        spline_option_defaults = {}
+
+    options = spline_option_defaults | spline_options
+
+    if spline_type == "non-overshoot":
+        spline = Akima1DInterpolator(x, y, **options)
+    elif spline_type == "b-spline":
+        spline = make_interp_spline(x, y, **options)
+    else:
+        raise ValueError(f"Unknown spline_type {spline_type}")
+
+    # Interpolate and plot
+    x_interp = np.linspace(np.min(x), np.max(x), num_interp_pts)
+    ax.plot(x_interp, spline(x_interp), **plot_kwargs)
+
+    if return_fig:
+        return fig, ax
 
 
 def All():

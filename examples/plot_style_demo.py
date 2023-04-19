@@ -46,7 +46,6 @@ yRand[yRand < 0] += 0.05
 # Create a version of the plot with each niceplots style and the default matplotlib style
 for formatting in ["default"] + niceplots.get_available_styles():
     with plt.style.context(niceplots.get_style(formatting)):
-
         # If using a niceplots style, we can get a nice dictionary of the style's colors
         if formatting != "default":
             colours = niceplots.get_colors()
