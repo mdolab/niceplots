@@ -887,7 +887,12 @@ def plot_spline(x, y, ax=None, spline_type="non-overshoot", num_interp_pts=100, 
         min and max x values), by default 100
     spline_options : dict, optional
         Options to pass to the spline, by default none if spline_type is non-overshoot or sets the
-        spline order to the minimum of 3 and one less than the length of x if b-spline
+        spline order to the minimum of 3 and one less than the length of x if b-spline. The available
+        options can be found here:
+        
+            - "non-overshoot": https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.Akima1DInterpolator.html
+            - "b-spline": https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.make_interp_spline.html
+
     plot_kwargs
         Keyword arguments to pass to matplotlib's plot function
 
