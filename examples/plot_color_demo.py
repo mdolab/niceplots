@@ -14,7 +14,6 @@ This script demonstrates colors available in each style.
 # ==============================================================================
 import matplotlib.pyplot as plt
 import niceplots
-import numpy as np
 
 # ==============================================================================
 # Extension modules
