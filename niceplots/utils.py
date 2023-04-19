@@ -526,7 +526,8 @@ def plot_opt_prob(
             patheffects.withTickedStroke
         except AttributeError:
             warnings.warn(
-                "matplotlib >= 3.4 is required for hashed inequality constrain boundaries, switching to shaded inequality constraint style"
+                "matplotlib >= 3.4 is required for hashed inequality constrain boundaries, switching to shaded inequality constraint style",
+                stacklevel=2,
             )
             conStyle = "shaded"
 
