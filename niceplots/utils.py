@@ -80,6 +80,7 @@ def get_colors(styleName=None):
             - "Text": default text color
             - "Label": axis label color
     """
+
     def get_colors_from_current_style():
         # Get the color codes and their names from the (hopefully) "special" parameter
         color_codes = get_colors_list()
