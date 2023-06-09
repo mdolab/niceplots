@@ -180,7 +180,6 @@ def draggable_legend(axis=None, color_on=True, **kwargs):
 
     # Loop over each line in the plot and create a label
     for idx, line in enumerate(axis.lines):
-
         # Set the starting coordinates of the label
         coords[0] = xs[idx]
         coords[1] = ys[idx]
@@ -316,7 +315,6 @@ def horiz_bar(labels, times, header, nd=1, size=[5, 0.5], color=None):
 
     # Actual loop that draws each bar
     for j, (l, t, ax) in enumerate(zip(labels, times, axarr)):
-
         # Draw the gray line and singular yellow dot
         ax.axhline(y=1, c=line_color, lw=3, zorder=0, alpha=0.5)
         ax.scatter([t], [1], c=color, lw=0, s=100, zorder=1, clip_on=False)
@@ -342,7 +340,12 @@ def horiz_bar(labels, times, header, nd=1, size=[5, 0.5], color=None):
         ax.set_ylabel(l, rotation="horizontal", ha="right", va="center")
         string = "{number:.{digits}f}".format(number=t, digits=nd)
         ax.annotate(
-            string, xy=(1, 1), xytext=(6, 0), xycoords=ax.get_yaxis_transform(), textcoords="offset points", va="center"
+            string,
+            xy=(1, 1),
+            xytext=(6, 0),
+            xycoords=ax.get_yaxis_transform(),
+            textcoords="offset points",
+            va="center",
         )
 
         # Create the top bar line
@@ -368,7 +371,6 @@ def stacked_plots(
     xlim=None,
     dpi=200,
 ):
-
     # If it's a dictionary, make it into a list so we can generically loop over it
     if isinstance(data_dict_list, dict):
         data_dict_list = [data_dict_list]
@@ -541,7 +543,10 @@ def plot_opt_prob(
     nColor = len(colors)
 
     # --- Create grid of points for evaluating functions ---
-    X, Y = np.meshgrid(np.linspace(xRange[0], xRange[1], nPoints), np.linspace(yRange[0], yRange[1], nPoints))
+    X, Y = np.meshgrid(
+        np.linspace(xRange[0], xRange[1], nPoints),
+        np.linspace(yRange[0], yRange[1], nPoints),
+    )
 
     # --- Evaluate objective and constraint functions ---
     Fobj = obj(X, Y)
@@ -567,9 +572,19 @@ def plot_opt_prob(
     for conValue in g:
         contour = ax.contour(X, Y, conValue, levels=[0.0], colors=colors[colorIndex % nColor])
         if conStyle.lower() == "hashed":
-            plt.setp(contour.collections, path_effects=[patheffects.withTickedStroke(angle=60, length=2)])
+            plt.setp(
+                contour.collections,
+                path_effects=[patheffects.withTickedStroke(angle=60, length=2)],
+            )
         elif conStyle.lower() == "shaded":
-            ax.contourf(X, Y, conValue, levels=[0.0, np.inf], colors=colors[colorIndex % nColor], alpha=0.4)
+            ax.contourf(
+                X,
+                Y,
+                conValue,
+                levels=[0.0, np.inf],
+                colors=colors[colorIndex % nColor],
+                alpha=0.4,
+            )
 
         colorIndex += 1
 
@@ -600,7 +615,17 @@ def plot_opt_prob(
 
 
 def plot_colored_line(
-    x, y, c, cmap=None, fig=None, ax=None, addColorBar=False, cRange=None, cBarLabel=None, norm=None, **kwargs
+    x,
+    y,
+    c,
+    cmap=None,
+    fig=None,
+    ax=None,
+    addColorBar=False,
+    cRange=None,
+    cBarLabel=None,
+    norm=None,
+    **kwargs,
 ):
     """Plot an XY line whose color is determined by some other variable C
 
@@ -863,6 +888,35 @@ def plot_nested_pie(
         return pieObjects, fig, ax
     else:
         return pieObjects
+
+
+def save_figs(fig, name, formats, **kwargs):
+    """Save a figure in multiple formats
+
+    Parameters
+    ----------
+    fig : Matplotlib figure
+        The figure to save
+    name : str
+        Output path for the files, e.g "path/to/file/file_name", no file extension required
+    formats : str, list[str]
+        file formats to save the figure in, e.g. "png", "pdf", "svg"
+    kwargs :
+        Any keyword arguments to pass to `plt.savefig()`
+    """
+
+    # --- Strip any extension from the name ---
+    fileName = os.path.splitext(name)[0]
+
+    # --- Convert the file format to a list if only one given ---
+    if not hasattr(formats, "__iter__"):
+        formats = [formats]
+
+    # --- Save the figures ---
+    for ext in formats:
+        if ext[0] == ".":
+            ext = ext[1:]
+        plt.savefig(fileName + "." + ext, **kwargs)
 
 
 def All():
