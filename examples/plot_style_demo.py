@@ -46,7 +46,6 @@ yRand[yRand < 0] += 0.05
 # Create a version of the plot with each niceplots style and the default matplotlib style
 for formatting in ["default"] + niceplots.get_available_styles():
     with plt.style.context(niceplots.get_style(formatting)):
-
         # If using a niceplots style, we can get a nice dictionary of the style's colors
         if formatting != "default":
             colours = niceplots.get_colors()
@@ -76,7 +75,7 @@ for formatting in ["default"] + niceplots.get_available_styles():
         if formatting == "default":
             fill_color = "gray"
         else:
-            fill_color = colours["Axis"]
+            fill_color = colours["Label"]
 
         ax.fill_between(xLine, yLine, 0, where=np.abs(xLine) <= 1, facecolor=fill_color, alpha=0.2, zorder=0)
         ax.annotate("68.27%", xy=(0, 0.075), ha="center", va="bottom", color=fill_color)

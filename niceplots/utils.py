@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
+from scipy.interpolate import make_interp_spline, Akima1DInterpolator
 from collections import OrderedDict
 from .parula import parula_map
 from matplotlib import patheffects
@@ -52,10 +53,20 @@ def get_style(styleName="doumont-light"):
     return styleName
 
 
-def get_colors():
+def get_colors(styleName=None):
     """
     Get a dictionary with the colors for the current style. This function
     only works when niceplots styles are used (not built-in matplotlib ones).
+
+    Parameters
+    ----------
+    styleName : str, optional
+        Name of desired style. By default gets the colors for the current style. Avaiable styles are:
+
+            - doumont-light: the niceplots style you know and love
+            - doumont-dark: the dark version of the niceplots style you know and love
+            - james-dark: a really cool alternative to classic niceplots
+            - james-light: a version of james with a light background, naturally
 
     Returns
     -------
@@ -69,36 +80,58 @@ def get_colors():
             - "Text": default text color
             - "Label": axis label color
     """
-    # Get the color codes and their names from the (hopefully) "special" parameter
-    color_codes = get_colors_list()
-    color_names = plt.rcParams["keymap.help"]
 
-    # Ensure that the amount of color names matches the amount of colors
-    if len(color_codes) != len(color_names):
-        raise ValueError(
-            "The colors are not properly named in the stylesheet, please open an issue on GitHub with the details!"
-        )
+    def get_colors_from_current_style():
+        # Get the color codes and their names from the (hopefully) "special" parameter
+        color_codes = get_colors_list()
+        color_names = plt.rcParams["keymap.help"]
 
-    colors = OrderedDict(zip(color_names, color_codes))
-    colors["Axis"] = plt.rcParams["axes.edgecolor"]
-    colors["Background"] = plt.rcParams["axes.facecolor"]
-    colors["Text"] = plt.rcParams["text.color"]
-    colors["Label"] = plt.rcParams["axes.labelcolor"]
+        # Ensure that the amount of color names matches the amount of colors
+        if len(color_codes) != len(color_names):
+            raise ValueError(
+                "The colors are not properly named in the stylesheet, please open an issue on GitHub with the details!"
+            )
 
-    return colors
+        colors = OrderedDict(zip(color_names, color_codes))
+        colors["Axis"] = plt.rcParams["axes.edgecolor"]
+        colors["Background"] = plt.rcParams["axes.facecolor"]
+        colors["Text"] = plt.rcParams["text.color"]
+        colors["Label"] = plt.rcParams["axes.labelcolor"]
+
+        return colors
+
+    if styleName:
+        with plt.style.context(get_style(styleName)):
+            return get_colors_from_current_style()
+    else:
+        return get_colors_from_current_style()
 
 
-def get_colors_list():
+def get_colors_list(styleName=None):
     """
     Get a list with the colors for the current style. This function
     works with all matplotlib styles.
+
+    Parameters
+    ----------
+    styleName : str, optional
+        Name of desired style. By default gets the colors for the current style. Avaiable styles are:
+
+            - doumont-light: the niceplots style you know and love
+            - doumont-dark: the dark version of the niceplots style you know and love
+            - james-dark: a really cool alternative to classic niceplots
+            - james-light: a version of james with a light background, naturally
 
     Returns
     -------
     list
         List of the colors for the requested style.
     """
-    return plt.rcParams["axes.prop_cycle"].by_key()["color"]
+    if styleName:
+        with plt.style.context(get_style(styleName)):
+            return plt.rcParams["axes.prop_cycle"].by_key()["color"]
+    else:
+        return plt.rcParams["axes.prop_cycle"].by_key()["color"]
 
 
 def get_available_styles():
@@ -218,7 +251,7 @@ def label_line_ends(ax, lines=None, labels=None, colors=None, x_offset_pts=6, y_
         Horizontal offset of label from the right end of the line, in points, by default 6
     y_offset_pts : int, float, optional
         Vertical offset of label from the right end of the line, in points, by default 0
-    **kwargs :
+    kwargs
         Any valid keywords for matplotlib's annotate function, except ``xy``, ``xytext``, ``color``, ``textcoords``,
         ``va``
 
@@ -530,7 +563,8 @@ def plot_opt_prob(
             patheffects.withTickedStroke
         except AttributeError:
             warnings.warn(
-                "matplotlib >= 3.4 is required for hashed inequality constrain boundaries, switching to shaded inequality constraint style"
+                "matplotlib >= 3.4 is required for hashed inequality constrain boundaries, switching to shaded inequality constraint style",
+                stacklevel=2,
             )
             conStyle = "shaded"
 
@@ -888,6 +922,71 @@ def plot_nested_pie(
         return pieObjects, fig, ax
     else:
         return pieObjects
+
+
+def plot_spline(x, y, ax=None, spline_type="non-overshoot", num_interp_pts=100, spline_options={}, **plot_kwargs):
+    """
+    Fits a spline to the data points and plots the spline.
+
+    Parameters
+    ----------
+    x : array-like
+        X-coordinates of points to interpolate and plot
+    y : array-like
+        X-coordinates of points to interpolate and plot
+    ax : matplotlib Axis object, optional
+        Axes on which to plot, by default creates and returns new figure and axis
+    spline_type : str, optional
+        Type of spline from the following list of options (by default non-overshoot):
+
+            - "non-overshoot": Cubic spline that does not overshoot data (SciPy's Akima1DInterpolator)
+            - "b-spline": B-spline (SciPy's make_interp_spline)
+
+    num_interp_pts : int, optional
+        Number of points at which to evaluate the spline (linearly spaced between
+        min and max x values), by default 100
+    spline_options : dict, optional
+        Options to pass to the spline, by default none if spline_type is non-overshoot or sets the
+        spline order to the minimum of 3 and one less than the length of x if b-spline. The available
+        options can be found here:
+
+            - "non-overshoot": https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.Akima1DInterpolator.html
+            - "b-spline": https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.make_interp_spline.html
+
+    plot_kwargs
+        Keyword arguments to pass to matplotlib's plot function
+
+    Returns
+    -------
+    fig, ax
+        If ax is not provided, generates and returns new matplotlib figure and axis
+    """
+    return_fig = False
+    if ax is None:
+        fig, ax = plt.subplots()
+        return_fig = True
+
+    # Make the spline
+    if spline_type == "b-spline":
+        spline_option_defaults = {"k": min(len(x) - 1, 3)}
+    else:
+        spline_option_defaults = {}
+
+    options = spline_option_defaults | spline_options
+
+    if spline_type == "non-overshoot":
+        spline = Akima1DInterpolator(x, y, **options)
+    elif spline_type == "b-spline":
+        spline = make_interp_spline(x, y, **options)
+    else:
+        raise ValueError(f"Unknown spline_type {spline_type}")
+
+    # Interpolate and plot
+    x_interp = np.linspace(np.min(x), np.max(x), num_interp_pts)
+    ax.plot(x_interp, spline(x_interp), **plot_kwargs)
+
+    if return_fig:
+        return fig, ax
 
 
 def save_figs(fig, name, formats, **kwargs):
