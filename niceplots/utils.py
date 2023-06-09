@@ -1015,7 +1015,7 @@ def save_figs(fig, name, formats, **kwargs):
     for ext in formats:
         if ext[0] == ".":
             ext = ext[1:]
-        plt.savefig(fileName + "." + ext, **kwargs)
+        fig.savefig(fileName + "." + ext, **kwargs)
 
 
 def All():
