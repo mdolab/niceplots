@@ -1,13 +1,32 @@
-import matplotlib.pyplot as plt
-import numpy as np
-from scipy.interpolate import make_interp_spline, Akima1DInterpolator
+"""
+==============================================================================
+NicePlots: A collection of stylesheets and helper functions for matplotlib
+==============================================================================
+"""
+
+# ==============================================================================
+# Standard Python modules
+# ==============================================================================
+import warnings
+import os
+import copy
+from collections.abc import Iterable
 from collections import OrderedDict
-from .parula import parula_map
+
+# ==============================================================================
+# External Python modules
+# ==============================================================================
 from matplotlib import patheffects
 from matplotlib.collections import LineCollection
 import matplotlib.colors as mcolor
-import warnings
-import os
+import matplotlib.pyplot as plt
+import numpy as np
+from scipy.interpolate import make_interp_spline, Akima1DInterpolator
+
+# ==============================================================================
+# Extension modules
+# ==============================================================================
+from .parula import parula_map
 
 
 def get_style(styleName="doumont-light"):
@@ -373,7 +392,12 @@ def horiz_bar(labels, times, header, nd=1, size=[5, 0.5], color=None):
         ax.set_ylabel(l, rotation="horizontal", ha="right", va="center")
         string = "{number:.{digits}f}".format(number=t, digits=nd)
         ax.annotate(
-            string, xy=(1, 1), xytext=(6, 0), xycoords=ax.get_yaxis_transform(), textcoords="offset points", va="center"
+            string,
+            xy=(1, 1),
+            xytext=(6, 0),
+            xycoords=ax.get_yaxis_transform(),
+            textcoords="offset points",
+            va="center",
         )
 
         # Create the top bar line
@@ -572,7 +596,10 @@ def plot_opt_prob(
     nColor = len(colors)
 
     # --- Create grid of points for evaluating functions ---
-    X, Y = np.meshgrid(np.linspace(xRange[0], xRange[1], nPoints), np.linspace(yRange[0], yRange[1], nPoints))
+    X, Y = np.meshgrid(
+        np.linspace(xRange[0], xRange[1], nPoints),
+        np.linspace(yRange[0], yRange[1], nPoints),
+    )
 
     # --- Evaluate objective and constraint functions ---
     Fobj = obj(X, Y)
@@ -598,9 +625,19 @@ def plot_opt_prob(
     for conValue in g:
         contour = ax.contour(X, Y, conValue, levels=[0.0], colors=colors[colorIndex % nColor])
         if conStyle.lower() == "hashed":
-            plt.setp(contour.collections, path_effects=[patheffects.withTickedStroke(angle=60, length=2)])
+            plt.setp(
+                contour.collections,
+                path_effects=[patheffects.withTickedStroke(angle=60, length=2)],
+            )
         elif conStyle.lower() == "shaded":
-            ax.contourf(X, Y, conValue, levels=[0.0, np.inf], colors=colors[colorIndex % nColor], alpha=0.4)
+            ax.contourf(
+                X,
+                Y,
+                conValue,
+                levels=[0.0, np.inf],
+                colors=colors[colorIndex % nColor],
+                alpha=0.4,
+            )
 
         colorIndex += 1
 
@@ -631,7 +668,17 @@ def plot_opt_prob(
 
 
 def plot_colored_line(
-    x, y, c, cmap=None, fig=None, ax=None, addColorBar=False, cRange=None, cBarLabel=None, norm=None, **kwargs
+    x,
+    y,
+    c,
+    cmap=None,
+    fig=None,
+    ax=None,
+    addColorBar=False,
+    cRange=None,
+    cBarLabel=None,
+    norm=None,
+    **kwargs,
 ):
     """Plot an XY line whose color is determined by some other variable C
 
@@ -959,6 +1006,42 @@ def plot_spline(x, y, ax=None, spline_type="non-overshoot", num_interp_pts=100, 
 
     if return_fig:
         return fig, ax
+
+
+def save_figs(fig, name, formats, format_kwargs=None, **kwargs):
+    """Save a figure in multiple formats
+
+    Parameters
+    ----------
+    fig : Matplotlib figure
+        The figure to save
+    name : str
+        Output path for the files, e.g "path/to/file/file_name", no file extension required
+    formats : str, list[str]
+        file formats to save the figure in, e.g. "png", "pdf", "svg"
+    format_kwargs : dict, optional
+        A dictionary of dictionaries, where the keys are the file formats and the values are any keyword arguments that
+        should only be applied to that format. These kwargs will be added to ones passed to all formats, by default None
+    kwargs :
+        Any keyword arguments to pass to `plt.savefig()` for all formats
+    """
+
+    # --- Strip any extension from the name ---
+    fileName = os.path.splitext(name)[0]
+
+    # --- Convert the file format to a list if only one given ---
+    if not isinstance(formats, Iterable):
+        formats = [formats]
+
+    # --- Save the figures ---
+    for ext in formats:
+        if ext[0] == ".":
+            ext = ext[1:]
+        # Add any format-specific kwargs
+        ext_kwargs = copy.deepcopy(kwargs)
+        if format_kwargs is not None and ext in format_kwargs:
+            ext_kwargs.update(format_kwargs[ext])
+        fig.savefig(fileName + "." + ext, **ext_kwargs)
 
 
 def All():

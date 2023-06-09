@@ -37,5 +37,4 @@ pieObjects["Pizza"]["Cheese"]["wedge"].set_width(0.4)
 pieObjects["Pizza"]["Cheese"]["text"].set_weight("bold")
 pieObjects["Pizza"]["Cheese"]["text"].set_x(-0.82)
 
-plt.savefig("nested_pie_chart.png")
-plt.savefig("nested_pie_chart.svg")
+niceplots.save_figs(fig, "nested_pie_chart", ["png", "svg"])

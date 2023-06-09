@@ -80,5 +80,4 @@ for conStyle in ["shaded", "hashed"]:
     )
 
     # Save figures
-    fig.savefig(f"opt_prob-{conStyle}.png")
-    fig.savefig(f"opt_prob-{conStyle}.svg")
+    niceplots.save_figs(fig, f"opt_prob-{conStyle}", ["png", "svg"])
