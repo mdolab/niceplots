@@ -1,13 +1,32 @@
-import matplotlib.pyplot as plt
-import numpy as np
-from scipy.interpolate import make_interp_spline, Akima1DInterpolator
+"""
+==============================================================================
+NicePlots: A collection of stylesheets and helper functions for matplotlib
+==============================================================================
+"""
+
+# ==============================================================================
+# Standard Python modules
+# ==============================================================================
+import warnings
+import os
+import copy
+from collections.abc import Iterable
 from collections import OrderedDict
-from .parula import parula_map
+
+# ==============================================================================
+# External Python modules
+# ==============================================================================
 from matplotlib import patheffects
 from matplotlib.collections import LineCollection
 import matplotlib.colors as mcolor
-import warnings
-import os
+import matplotlib.pyplot as plt
+import numpy as np
+from scipy.interpolate import make_interp_spline, Akima1DInterpolator
+
+# ==============================================================================
+# Extension modules
+# ==============================================================================
+from .parula import parula_map
 
 
 def get_style(styleName="doumont-light"):
@@ -989,7 +1008,7 @@ def plot_spline(x, y, ax=None, spline_type="non-overshoot", num_interp_pts=100, 
         return fig, ax
 
 
-def save_figs(fig, name, formats, **kwargs):
+def save_figs(fig, name, formats, format_kwargs=None, **kwargs):
     """Save a figure in multiple formats
 
     Parameters
@@ -1000,22 +1019,29 @@ def save_figs(fig, name, formats, **kwargs):
         Output path for the files, e.g "path/to/file/file_name", no file extension required
     formats : str, list[str]
         file formats to save the figure in, e.g. "png", "pdf", "svg"
+    format_kwargs : dict, optional
+        A dictionary of dictionaries, where the keys are the file formats and the values are any keyword arguments that
+        should only be applied to that format. These kwargs will be added to ones passed to all formats, by default None
     kwargs :
-        Any keyword arguments to pass to `plt.savefig()`
+        Any keyword arguments to pass to `plt.savefig()` for all formats
     """
 
     # --- Strip any extension from the name ---
     fileName = os.path.splitext(name)[0]
 
     # --- Convert the file format to a list if only one given ---
-    if not hasattr(formats, "__iter__"):
+    if not isinstance(formats, Iterable):
         formats = [formats]
 
     # --- Save the figures ---
     for ext in formats:
         if ext[0] == ".":
             ext = ext[1:]
-        fig.savefig(fileName + "." + ext, **kwargs)
+        # Add any format-specific kwargs
+        ext_kwargs = copy.deepcopy(kwargs)
+        if format_kwargs is not None and ext in format_kwargs:
+            ext_kwargs.update(format_kwargs[ext])
+        fig.savefig(fileName + "." + ext, **ext_kwargs)
 
 
 def All():
