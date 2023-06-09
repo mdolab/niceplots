@@ -89,5 +89,4 @@ for formatting in ["default"] + niceplots.get_available_styles():
         else:
             plt.tight_layout()
 
-        fig.savefig(f"{formatting}_style_demo.svg")
-        fig.savefig(f"{formatting}_style_demo.png")
+        niceplots.save_figs(fig, f"{formatting}_style_demo", ["png", "svg"])
