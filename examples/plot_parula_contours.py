@@ -73,3 +73,4 @@ q2ax.set_ylabel("$x_2$", rotation="horizontal", ha="right")
 
 plt.savefig("parula_contours.png")
 plt.savefig("parula_contours.svg")
+niceplots.save_figs(q2fig, "parula_contours", ["png", "svg"])

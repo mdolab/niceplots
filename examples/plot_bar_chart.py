@@ -19,7 +19,5 @@ times = [0.00456, 0.00847, 0.0110, 0.0213, 0.011]
 nd = 4
 
 with plt.style.context(niceplots.get_style()):
-    niceplots.horiz_bar(labels, times, header, nd=nd, size=[7, 0.65])
-
-    plt.savefig("bar_chart.png")
-    plt.savefig("bar_chart.svg")
+    fig, ax = niceplots.horiz_bar(labels, times, header, nd=nd, size=[7, 0.65])
+    niceplots.save_figs(fig, "bar_chart", ["png", "svg"])

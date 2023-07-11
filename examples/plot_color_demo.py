@@ -61,5 +61,4 @@ for i, style in enumerate(styles):
         ax.set_xticks(())
         ax.set_yticks(())
 
-fig.savefig("style_color_demo.png")
-fig.savefig("style_color_demo.svg")
+niceplots.save_figs(fig, "style_color_demo", ["png", "svg"])

@@ -1,5 +1,5 @@
 # NicePlots
-## A collection of small tweaks to improve Python / plotting
+## A collection of nice styles and helper functions for matplotlib
 
 ![Build Status](https://github.com/mdolab/niceplots/workflows/niceplots/badge.svg)
 [![Documentation Status](https://readthedocs.com/projects/mdolab-niceplots/badge/?version=latest)](https://mdolab-niceplots.readthedocs-hosted.com/en/latest)
