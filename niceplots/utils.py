@@ -339,7 +339,7 @@ def horiz_bar(labels, times, header, nd=1, size=[5, 0.5], color=None):
     -------
     fig: matplotlib Figure
         Figure created
-    ax: array of matplotlib Axes
+    axes: array of matplotlib Axes
         The subplot axes, one for each bar
     """
 
@@ -356,7 +356,7 @@ def horiz_bar(labels, times, header, nd=1, size=[5, 0.5], color=None):
     t_max = max(times)
 
     # Create the corresponding number of subplots for each individual timing
-    fig, axarr = plt.subplots(num, 1, figsize=[width, height])
+    fig, axes = plt.subplots(num, 1, figsize=[width, height])
 
     # Loop over each time and get the max number of digits
     t_max_digits = 0
@@ -366,7 +366,7 @@ def horiz_bar(labels, times, header, nd=1, size=[5, 0.5], color=None):
             t_max_digits = tm
 
     # Actual loop that draws each bar
-    for j, (l, t, ax) in enumerate(zip(labels, times, axarr)):
+    for j, (l, t, ax) in enumerate(zip(labels, times, axes)):
         # Draw the gray line and singular yellow dot
         ax.axhline(y=1, c=line_color, lw=3, zorder=0, alpha=0.5)
         ax.scatter([t], [1], c=color, lw=0, s=100, zorder=1, clip_on=False)
@@ -405,7 +405,7 @@ def horiz_bar(labels, times, header, nd=1, size=[5, 0.5], color=None):
             ax.text(0, 1.02, header[0], ha="right", fontweight="bold", fontsize="large")
             ax.text(t_max, 1.02, header[1], ha="left", fontweight="bold", fontsize="large")
 
-    return fig, axarr
+    return fig, axes
 
 
 def stacked_plots(
