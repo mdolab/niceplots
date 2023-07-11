@@ -339,8 +339,8 @@ def horiz_bar(labels, times, header, nd=1, size=[5, 0.5], color=None):
     -------
     fig: matplotlib Figure
         Figure created
-    ax: matplotlib Axes
-        Axes on which data is plotted
+    ax: array of matplotlib Axes
+        The subplot axes, one for each bar
     """
 
     # Use the first color if none is specified
@@ -405,7 +405,7 @@ def horiz_bar(labels, times, header, nd=1, size=[5, 0.5], color=None):
             ax.text(0, 1.02, header[0], ha="right", fontweight="bold", fontsize="large")
             ax.text(t_max, 1.02, header[1], ha="left", fontweight="bold", fontsize="large")
 
-    return fig, ax
+    return fig, axarr
 
 
 def stacked_plots(
