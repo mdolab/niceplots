@@ -282,7 +282,7 @@ def label_line_ends(ax, lines=None, labels=None, colors=None, x_offset_pts=6, y_
 
     # By default label all lines in the plot whose labels don't begin with an underscore
     if lines is None:
-        lines = [line for line in ax.get_lines()]
+        lines = ax.get_lines()
 
     if labels is None:
         # If we're not given labels, use the lines' label attributes, but ignore any lines that are still using the
