@@ -260,7 +260,7 @@ def label_line_ends(ax, lines=None, labels=None, colors=None, x_offset_pts=6, y_
     ax : Matplotlib axes
         axes to label the lines of
     lines : iterable of matplotlib line objects, optional
-        Lines to label, by default all lines in the axes
+        Lines to label, by default all lines in the axes whose labels don't begin with an underscore
     labels : list of strings, optional
         Labels for each line, by default uses each line's label attribute
     colors : single or list of colors, optional
@@ -279,11 +279,13 @@ def label_line_ends(ax, lines=None, labels=None, colors=None, x_offset_pts=6, y_
     list of matplotlib annotation objects
         The annotations created
     """
+    # By default label all lines in the plot whose labels don't begin with an underscore
     if lines is None:
-        lines = ax.get_lines()
+        lines = [line for line in ax.get_lines() if line.get_label()[0] != "_"]
 
     if labels is None:
         labels = [line.get_label() for line in lines]
+    
     numLines = len(lines)
     if len(labels) != numLines:
         raise ValueError(f"Number of labels ({len(labels)}) doesn't match number of lines ({numLines})")
