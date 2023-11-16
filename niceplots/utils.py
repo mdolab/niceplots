@@ -285,7 +285,7 @@ def label_line_ends(ax, lines=None, labels=None, colors=None, x_offset_pts=6, y_
         lines = [line for line in ax.get_lines()]
 
     if labels is None:
-        # If we're not given labels, use the liness label attribute, but ignore any lines that are still using the
+        # If we're not given labels, use the lines' label attributes, but ignore any lines that are still using the
         # matplotlib default label which starts with an underscore
         lines = [line for line in lines if not line.get_label().startswith("_")]
         labels = [line.get_label() for line in lines]
