@@ -280,7 +280,7 @@ def label_line_ends(ax, lines=None, labels=None, colors=None, x_offset_pts=6, y_
         The annotations created
     """
 
-    # By default label all lines in the plot whose labels don't begin with an underscore
+    # By default label all lines in the plot
     if lines is None:
         lines = ax.get_lines()
 
