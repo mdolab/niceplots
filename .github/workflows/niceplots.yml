@@ -19,17 +19,12 @@ jobs:
   test:
     runs-on: ubuntu-latest
     strategy:
-      matrix:
-        python-version: ["3.8", "3.9", "3.10"]
-        numpy-version: ["1.19.*", "1.21.*", "1.24.*"]
-        mpl-version: ["3.4.*", "3.6.*"]
-        exclude:
-          - python-version: "3.9"
-            numpy-version: "1.19.*"
-          - python-version: "3.10"
-            numpy-version: "1.19.*"
+      matrix: # Test 3 versions of python, and the latest and oldest supported versions of numpy and matplotlib, according to https://scientific-python.org/specs/spec-0000/
+        python-version: ["3.9", "3.10", "3.11"]
+        numpy-version: ["1.23.*", "1.26.*"]
+        mpl-version: ["3.6.*", "3.8.*"]
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v4
         with:
@@ -61,13 +56,13 @@ jobs:
           cd examples
           bash testExamples.sh
       - name: Compare against reference images
-        if: ${{ success() && matrix.python-version == '3.10' && matrix.numpy-version == '1.24.*' && matrix.mpl-version == '3.6.*' }}
+        if: ${{ success() && matrix.python-version == '3.11' && matrix.numpy-version == '1.26.*' && matrix.mpl-version == '3.8.*' }}
         run: |
           cd examples
           bash ImageComparisonTest.sh
       - name: Upload examples if failed
         uses: actions/upload-artifact@v3
-        if: ${{ failure() && matrix.python-version == '3.10' && matrix.numpy-version == '1.24.*' && matrix.mpl-version == '3.6.*' }}
+        if: ${{ failure() && matrix.python-version == '3.11' && matrix.numpy-version == '1.26.*' && matrix.mpl-version == '3.8.*' }}
         with:
           name: Examples
           path: examples/
