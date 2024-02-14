@@ -33,7 +33,7 @@ do
         else
             outputArray=(${output//;/ }) # Split the output by the semicolon
             diffPixels=${outputArray[0]}
-            diffPercentage=${outputArray[1]}
+            diffPercentage=$(printf "%.8f\n" ${outputArray[1]}) # use printf to convert scientific notation to decimal
             echo "Difference = $diffPixels pixels ($diffPercentage %)"
             if (( $(echo "$diffPercentage > $tolerance" | bc -l) )); then
                 echo "Difference is greater than $tolerance % so test failed"
