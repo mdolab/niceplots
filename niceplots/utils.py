@@ -10,7 +10,6 @@ NicePlots: A collection of stylesheets and helper functions for matplotlib
 import warnings
 import os
 import copy
-from collections.abc import Iterable
 from collections import OrderedDict
 
 # ==============================================================================
@@ -1036,7 +1035,7 @@ def save_figs(fig, name, formats, format_kwargs=None, **kwargs):
     fileName = os.path.splitext(name)[0]
 
     # --- Convert the file format to a list if only one given ---
-    if not isinstance(formats, Iterable):
+    if isinstance(formats, str):
         formats = [formats]
 
     # --- Save the figures ---
