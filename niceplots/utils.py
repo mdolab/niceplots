@@ -10,7 +10,6 @@ NicePlots: A collection of stylesheets and helper functions for matplotlib
 import warnings
 import os
 import copy
-from collections.abc import Iterable
 from collections import OrderedDict
 
 # ==============================================================================
