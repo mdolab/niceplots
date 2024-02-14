@@ -279,11 +279,17 @@ def label_line_ends(ax, lines=None, labels=None, colors=None, x_offset_pts=6, y_
     list of matplotlib annotation objects
         The annotations created
     """
+
+    # By default label all lines in the plot
     if lines is None:
         lines = ax.get_lines()
 
     if labels is None:
+        # If we're not given labels, use the lines' label attributes, but ignore any lines that are still using the
+        # matplotlib default label which starts with an underscore
+        lines = [line for line in lines if not line.get_label().startswith("_")]
         labels = [line.get_label() for line in lines]
+
     numLines = len(lines)
     if len(labels) != numLines:
         raise ValueError(f"Number of labels ({len(labels)}) doesn't match number of lines ({numLines})")
