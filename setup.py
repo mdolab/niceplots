@@ -26,7 +26,7 @@ setup(
         "niceplots",
     ],
     install_requires=[
-        "numpy>=1.16",
+        "numpy>=1.21",
         "matplotlib>=2.2",
         "scipy>=1.7",
     ],
