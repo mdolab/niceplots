@@ -630,10 +630,7 @@ def plot_opt_prob(
     for conValue in g:
         contour = ax.contour(X, Y, conValue, levels=[0.0], colors=colors[colorIndex % nColor])
         if conStyle.lower() == "hashed":
-            plt.setp(
-                contour.collections,
-                path_effects=[patheffects.withTickedStroke(angle=60, length=2)],
-            )
+            contour.set(path_effects=[patheffects.withTickedStroke(angle=60, length=2)])
         elif conStyle.lower() == "shaded":
             ax.contourf(
                 X,
