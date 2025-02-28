@@ -5,7 +5,6 @@ __version__ = "2.5.1"
 
 
 def addFonts():
-
     font_dirs = [os.path.join(os.path.dirname(__file__), "fonts")]
     font_files = font_manager.findSystemFonts(fontpaths=font_dirs)
 
