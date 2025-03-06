@@ -25,34 +25,9 @@ pip install niceplots
 * Clone this repository, then enter the folder in the command line terminal.
 * Enter `pip install -e .` within the `niceplots` folder.
 
-### Font installation (optional)
+### Font installation
 
-NicePlots styles use fonts that do not ship with most operating systems, so you'll need to install them separately.
-If they are not installed, matplotlib will revert back to its default sans-serif font, DejaVu Sans.
-
-The font used by each style is as follows:
-- doumont-light (default niceplots): CMU Bright
-- doumont-dark: CMU Bright
-- james-dark: Prompt
-- james-light: Prompt
-
-Install the fonts on your system and then delete Matplotlib's font cache, which is located in `~/.cache/matplotlib` by default on most operating systems.
-Matplotlib will rebuild the font cache next time it is run and (hopefully) find the new fonts.
-
-#### CMU Bright (doumont-light and doumont-dark)
-
-The computer modern bright font can be downloaded from [this link](https://tug.org/FontCatalogue/computermodernbright/).
-Alternatively, on Ubuntu, the font can be installed with the following commands:
-
-```
-sudo apt-get update
-sudo apt-get install fonts-cmu
-```
-Arch linux users can get the font by installing the `otf-cm-unicode` package from AUR.
-
-#### Prompt (james-dark and james-light)
-
-The Prompt font can be download from [Google Fonts](https://fonts.google.com/specimen/Prompt).
+As of v2.6.0, NicePlots now comes packaged with the fonts required for its custom styles, so you don't need to install them yourself.
 
 ## How do I get set up?
 
@@ -72,10 +47,8 @@ Check the [release notes](https://github.com/mdolab/niceplots/releases/tag/v2.0.
 
 ## Contribution guidelines
 
-* Make any changes you see fit. Please fork your own version and submit a pull request.
+Make any changes you see fit. Please fork your own version and submit a pull request.
 
 ## Who do I talk to?
 
-* Alasdair Gray, alachris@umich.edu
-* Eytan Adler, eytana@umich.edu
-* Eirikur Jonsson eirikurj@umich.edu
+Please questions and suggestions to either the [issues](https://github.com/mdolab/niceplots/issues) (if it's concerning a bug) or [discussions](https://github.com/mdolab/niceplots/discussions) tab on the NicePlots GitHub repo.
