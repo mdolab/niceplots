@@ -51,4 +51,4 @@ Make any changes you see fit. Please fork your own version and submit a pull req
 
 ## Who do I talk to?
 
-Please questions and suggestions to either the [issues](https://github.com/mdolab/niceplots/issues) (if it's concerning a bug) or [discussions](https://github.com/mdolab/niceplots/discussions) tab on the NicePlots GitHub repo.
+Please post questions and suggestions to either the [issues](https://github.com/mdolab/niceplots/issues) (if it's concerning a bug) or [discussions](https://github.com/mdolab/niceplots/discussions) tab on the NicePlots GitHub repo.
