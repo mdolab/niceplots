@@ -3,6 +3,7 @@ Nested pie chart
 ================
 An example of a nested pie chart.
 """
+
 import matplotlib.pyplot as plt
 import niceplots
 
