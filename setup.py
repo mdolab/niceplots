@@ -22,14 +22,12 @@ setup(
     author_email="",
     url="https://github.com/mdolab/niceplots",
     license="Apache License, Version 2.0",
-    packages=[
-        "niceplots",
-    ],
+    packages=["niceplots", "niceplots.styles", "niceplots.fonts"],
     install_requires=[
         "numpy>=1.16",
         "matplotlib>=2.2",
         "scipy>=1.7",
     ],
     include_package_data=True,
-    package_data={"": ["styles/*.mplstyle"]},
+    package_data={"": ["styles/*.mplstyle", "fonts/*.ttf"]},
 )

@@ -3,6 +3,7 @@ Bar chart
 =========
 An example of a bar chart.
 """
+
 import matplotlib.pyplot as plt
 import niceplots
 
