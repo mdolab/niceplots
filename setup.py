@@ -24,7 +24,7 @@ setup(
     license="Apache License, Version 2.0",
     packages=["niceplots", "niceplots.styles", "niceplots.fonts"],
     install_requires=[
-        "numpy>=1.16",
+        "numpy>=1.21",
         "matplotlib>=2.2",
         "scipy>=1.7",
     ],
