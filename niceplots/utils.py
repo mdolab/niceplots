@@ -303,16 +303,22 @@ def label_line_ends(ax, lines=None, labels=None, colors=None, x_offset_pts=6, y_
     annotations = []
 
     for line, label, color in zip(lines, labels, colors):
-        # Get the x, y coordinates of the right-most point on the line, or the right xlim of the axes if that is lower
+        # Get the x, y coordinates of the right-most point on the line that is within the axis limits
         xData = line.get_xdata()
         yData = line.get_ydata()
+        xlim = ax.get_xlim()
+        ylim = ax.get_ylim()
+
+        pointsInXLimits = np.logical_and(xData >= xlim[0], xData <= xlim[1])
+        pointsInYLimits = np.logical_and(yData >= ylim[0], yData <= ylim[1])
+        pointsInLimits = np.logical_and(pointsInXLimits, pointsInYLimits)
+        xData = xData[pointsInLimits]
+        yData = yData[pointsInLimits]
+
         maxXIndex = np.argmax(xData)
         x = xData[maxXIndex]
         y = yData[maxXIndex]
-        rightXlim = ax.get_xlim()[1]
-        if x > rightXlim:
-            x = rightXlim
-            y = yData[np.argmax(xData >= x)]
+
         annote = ax.annotate(
             label,
             xy=(x, y),
