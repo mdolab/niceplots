@@ -250,9 +250,8 @@ def draggable_legend(axis=None, color_on=True, **kwargs):
 def label_line_ends(ax, lines=None, labels=None, colors=None, x_offset_pts=6, y_offset_pts=0, **kwargs):
     """Place a label just to the right of each line in the axes
 
-    Note: Because the labels are placed outside of the axes, this function works best for plots where all lines end as
-    close to the right edge of the axes as possible. Additionally you need to either use constrained_layout=True
-    (as NicePlots styles do), or call plt.tight_layout() after calling this function.
+    Note: If any of the lines you are labelling go beyond the axis limits, make sure to call this function after setting
+    the axis limits, otherwise the labels will not be placed correctly
 
     Parameters
     ----------
