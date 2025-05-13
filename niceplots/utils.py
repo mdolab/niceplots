@@ -311,16 +311,46 @@ def label_line_ends(ax, lines=None, labels=None, colors=None, x_offset_pts=6, y_
         pointsInXLimits = np.logical_and(xData >= xlim[0], xData <= xlim[1])
         pointsInYLimits = np.logical_and(yData >= ylim[0], yData <= ylim[1])
         pointsInLimits = np.logical_and(pointsInXLimits, pointsInYLimits)
-        xData = xData[pointsInLimits]
-        yData = yData[pointsInLimits]
 
-        maxXIndex = np.argmax(xData)
-        x = xData[maxXIndex]
-        y = yData[maxXIndex]
+        # If the entre line is outside the axis limits, skip it
+        if not np.any(pointsInLimits):
+            continue
+        elif pointsInLimits[-1]:
+            # If the last point is within the limits, use that one
+            labelCoord = (xData[-1], yData[-1])
+        else:
+            # If the last point is outside the limits, but part of the line is within the limits, put the label at the
+            # point where the line intersects the limits
+
+            # get the index of the last point within the limits
+            lastIndex = np.where(pointsInLimits)[0][-1]
+            # get the x and y coordinates of the last point within the limits and the first point outside the limits
+            innerPoint = np.array([xData[lastIndex], yData[lastIndex]])
+            outerPoint = np.array([xData[lastIndex + 1], yData[lastIndex + 1]])
+
+            # Find the intersection point with the x and y limits as a fraction of the line segment, need to check upper
+            # and lower limits
+            if not pointsInXLimits[lastIndex + 1]:
+                if outerPoint[0] > innerPoint[0]:
+                    xIntersect = (xlim[1] - innerPoint[0]) / (outerPoint[0] - innerPoint[0])
+                else:
+                    xIntersect = (xlim[0] - innerPoint[0]) / (outerPoint[0] - innerPoint[0])
+            else:
+                xIntersect = np.inf
+            if not pointsInYLimits[lastIndex + 1]:
+                if outerPoint[1] > innerPoint[1]:
+                    yIntersect = (ylim[1] - innerPoint[1]) / (outerPoint[1] - innerPoint[1])
+                else:
+                    yIntersect = (ylim[0] - innerPoint[1]) / (outerPoint[1] - innerPoint[1])
+            else:
+                yIntersect = np.inf
+
+            # Place label at the first intersection
+            labelCoord = innerPoint + (outerPoint - innerPoint) * min(xIntersect, yIntersect)
 
         annote = ax.annotate(
             label,
-            xy=(x, y),
+            xy=labelCoord,
             xytext=(x_offset_pts, y_offset_pts),
             color=color,
             textcoords="offset points",
