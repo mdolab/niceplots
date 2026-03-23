@@ -50,7 +50,7 @@ for formatting in ["default"] + niceplots.get_available_styles():
         if formatting != "default":
             colours = niceplots.get_colors()
 
-        fig, ax = plt.subplots()
+        fig, ax = plt.subplots(figsize=(7, 5))
 
         # Plotting tip #1, only add axis ticks at important values
         ax.set_yticks([0, 0.4])
