@@ -728,6 +728,7 @@ def plot_colored_line(
     addColorBar=False,
     cRange=None,
     cBarLabel=None,
+    cBarTicks=None,
     norm=None,
     **kwargs,
 ):
@@ -796,7 +797,9 @@ def plot_colored_line(
     if addColorBar:
         cBar = fig.colorbar(line, ax=ax)
         if cBarLabel is not None:
-            cBar.set_label(cBarLabel)
+            cBar.set_label(cBarLabel, rotation=0)#SB
+        if cBarTicks is not None:
+            cBar.set_ticks(cBarTicks)
 
     ax.autoscale()
 
