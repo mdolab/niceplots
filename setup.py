@@ -23,8 +23,9 @@ setup(
     url="https://github.com/mdolab/niceplots",
     license="Apache License, Version 2.0",
     packages=["niceplots", "niceplots.styles", "niceplots.fonts"],
+    python_requires=">=3.11",
     install_requires=[
-        "numpy>=1.21",
+        "numpy>=1.25",
         "matplotlib>=2.2",
         "scipy>=1.7",
     ],

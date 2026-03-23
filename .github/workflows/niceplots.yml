@@ -17,9 +17,9 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix: # Test 3 versions of python, and the latest and oldest supported versions of numpy and matplotlib, according to https://scientific-python.org/specs/spec-0000/
-        python-version: ["3.10", "3.11", "3.12"]
-        numpy-version: ["<2", ">=2.2"]
-        mpl-version: ["==3.8.*", "==3.10.*"]
+        python-version: ["3.11", "3.12", "3.13"]
+        numpy-version: ["<2", ">=2.4"]
+        mpl-version: ["==3.8.*", ">=3.10"]
     steps:
       - uses: actions/checkout@v4
       - name: Set up Python ${{ matrix.python-version }}
@@ -45,18 +45,18 @@ jobs:
           cd examples
           bash testExamples.sh
       - name: Compare against reference images
-        if: ${{ success() && matrix.python-version == '3.11' && matrix.numpy-version == '1.26.*' && matrix.mpl-version == '3.8.*' }}
+        if: ${{ success() && matrix.python-version == '3.11' && matrix.numpy-version == '<2' && matrix.mpl-version == '==3.8.*' }}
         run: |
           cd examples
           bash ImageComparisonTest.sh
       - name: Upload examples if failed
         uses: actions/upload-artifact@v4
-        if: ${{ failure() && matrix.python-version == '3.11' && matrix.numpy-version == '1.26.*' && matrix.mpl-version == '3.8.*' }}
+        if: ${{ failure() && matrix.python-version == '3.11' && matrix.numpy-version == '<2' && matrix.mpl-version == '==3.8.*' }}
         with:
           name: Examples
           path: examples/
       # - name: Upload new reference images
-      #   if: ${{ github.event_name == 'push' && success() && matrix.python-version == '3.10' && matrix.numpy-version == '1.24.*' && matrix.mpl-version == '3.6.*' }}
+      #   if: ${{ github.event_name == 'push' && success() && matrix.python-version == '3.11' && matrix.numpy-version == '<2' && matrix.mpl-version == '==3.8.*' }}
       #   uses: stefanzweifel/git-auto-commit-action@v4
       #   with:
       #     file_pattern: 'examples/ref/*.png'
