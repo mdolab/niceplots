@@ -180,7 +180,8 @@ def handle_close(evt):
 
 def adjust_spines(ax=None, spines=["left", "bottom"], outward=True):
     """Function to shift the axes/spines so they have that offset
-    Doumont look."""
+    Doumont look.
+    """
     if ax is None:
         ax = plt.gca()
 
@@ -412,7 +413,7 @@ def horiz_bar(labels, times, header, nd=1, size=[5, 0.5], color=None):
             t_max_digits = tm
 
     # Actual loop that draws each bar
-    for j, (l, t, ax) in enumerate(zip(labels, times, axes)):
+    for j, (label, t, ax) in enumerate(zip(labels, times, axes)):
         # Draw the gray line and singular yellow dot
         ax.axhline(y=1, c=line_color, lw=3, zorder=0, alpha=0.5)
         ax.scatter([t], [1], c=color, lw=0, s=100, zorder=1, clip_on=False)
@@ -435,7 +436,7 @@ def horiz_bar(labels, times, header, nd=1, size=[5, 0.5], color=None):
         ax.spines["left"].set_visible(False)
         ax.spines["right"].set_visible(False)
         ax.spines["bottom"].set_visible(False)
-        ax.set_ylabel(l, rotation="horizontal", ha="right", va="center")
+        ax.set_ylabel(label, rotation="horizontal", ha="right", va="center")
         string = "{number:.{digits}f}".format(number=t, digits=nd)
         ax.annotate(
             string,
@@ -482,7 +483,7 @@ def stacked_plots(
     f, axarr = plt.subplots(n, figsize=figsize)
 
     for i, (ylabel, ydata) in enumerate(data_dict.items()):
-        if type(ydata) == dict:
+        if isinstance(ydata, dict):
             if "limits" in ydata.keys():
                 axarr[i].set_ylim(ydata["limits"])
             elif "ticks" in ydata.keys():
@@ -497,7 +498,7 @@ def stacked_plots(
 
         # Doesn't correctly work when we give a dict version
         if xlim is not None:
-            if type(ydata) == dict:
+            if isinstance(ydata, dict):
                 ydata = ydata["data"]
             ydata = np.array(ydata, dtype="float")
             no_nan_y = ydata[np.isfinite(ydata)]
@@ -506,7 +507,7 @@ def stacked_plots(
 
     for j, data_dict in enumerate(data_dict_list):
         for i, (_, ydata) in enumerate(data_dict.items()):
-            if type(ydata) == dict:
+            if isinstance(ydata, dict):
                 ydata = ydata["data"]
             axarr[i].plot(xdata, ydata, clip_on=False, lw=6 * line_scaler, color=colors[j])
             if not lines_only:
@@ -624,9 +625,7 @@ def plot_opt_prob(
 
     # --- Check if user has a recent enough version of matplotlib to use hashed boundaries ---
     if conStyle.lower() == "hashed":
-        try:
-            patheffects.withTickedStroke
-        except AttributeError:
+        if not hasattr(patheffects, "withTickedStroke"):
             warnings.warn(
                 "matplotlib >= 3.4 is required for hashed inequality constrain boundaries, switching to shaded inequality constraint style",
                 stacklevel=2,
