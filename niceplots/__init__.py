@@ -1,7 +1,7 @@
 import os
 from matplotlib import font_manager
 
-__version__ = "2.6.2"
+__version__ = "2.6.3"
 
 
 def addFonts():

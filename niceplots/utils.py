@@ -363,7 +363,7 @@ def label_line_ends(ax, lines=None, labels=None, colors=None, x_offset_pts=6, y_
     return annotations
 
 
-def horiz_bar(labels, times, header, nd=1, size=[5, 0.5], color=None):
+def horiz_bar(labels, times, header, nd=1, size=[5, 0.5], color=None, includeBottomTicks=False):
     """Creates a horizontal bar chart to compare positive numbers.
 
     Parameters
@@ -381,6 +381,8 @@ def horiz_bar(labels, times, header, nd=1, size=[5, 0.5], color=None):
         the size of the final figure (iffy results)
     color : str
         hexcode for the color of the scatter points used
+    includeBottomTicks : bool
+        whether to include x-axis ticks (and ticklabels) at the bottom of the chart, by default False.
 
     Returns
     -------
@@ -402,8 +404,11 @@ def horiz_bar(labels, times, header, nd=1, size=[5, 0.5], color=None):
     height = size[1] * num
     t_max = max(times)
 
-    # Create the corresponding number of subplots for each individual timing
-    fig, axes = plt.subplots(num, 1, figsize=[width, height])
+    # Create the corresponding number of subplots for each individual timing.
+    # squeeze=False keeps axes as a 2-D array even when num == 1; flattening to a
+    # 1-D array of Axes below makes the loop and return value consistent for any num.
+    fig, axes = plt.subplots(num, 1, figsize=[width, height], squeeze=False, sharex=True)
+    axes = axes[:, 0]
 
     # Loop over each time and get the max number of digits
     t_max_digits = 0
@@ -421,15 +426,16 @@ def horiz_bar(labels, times, header, nd=1, size=[5, 0.5], color=None):
         # Set chart properties
         ax.set_ylim(0.99, 1.01)
         ax.set_xlim(0, t_max * 1.05)
+        labelBottom = j == num - 1 and includeBottomTicks  # only show x-axis ticks on the bottom (last) bar
         ax.tick_params(
             axis="both",  # changes apply to the x-axis
             which="both",  # both major and minor ticks are affected
             left=False,  # ticks along the bottom edge are off
             labelleft=False,
             labelright=False,
-            labelbottom=False,
+            labelbottom=labelBottom,
             right=False,  # ticks along the top edge are off
-            bottom=j == num,
+            bottom=labelBottom,  # only show x-axis ticks on the bottom (last) bar
             top=False,
         )
         ax.spines["top"].set_visible(False)
