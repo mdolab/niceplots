@@ -432,7 +432,7 @@ def horiz_bar(labels, times, header, nd=1, size=[5, 0.5], color=None):
             labelright=False,
             labelbottom=False,
             right=False,  # ticks along the top edge are off
-            bottom=j == num,
+            bottom=j == num - 1,  # only show x-axis ticks on the bottom (last) bar
             top=False,
         )
         ax.spines["top"].set_visible(False)
