@@ -402,8 +402,11 @@ def horiz_bar(labels, times, header, nd=1, size=[5, 0.5], color=None):
     height = size[1] * num
     t_max = max(times)
 
-    # Create the corresponding number of subplots for each individual timing
-    fig, axes = plt.subplots(num, 1, figsize=[width, height])
+    # Create the corresponding number of subplots for each individual timing.
+    # squeeze=False keeps axes as a 2-D array even when num == 1; flattening to a
+    # 1-D array of Axes below makes the loop and return value consistent for any num.
+    fig, axes = plt.subplots(num, 1, figsize=[width, height], squeeze=False)
+    axes = axes[:, 0]
 
     # Loop over each time and get the max number of digits
     t_max_digits = 0
